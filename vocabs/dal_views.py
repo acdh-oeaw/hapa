@@ -1,12 +1,12 @@
 import requests
 import json
-
 from dal import autocomplete
-from . models import SkosConcept, SkosConceptScheme, SkosCollection
+from .models import SkosConcept, SkosConceptScheme, SkosCollection
 from django.contrib.auth.models import User
 from mptt.settings import DEFAULT_LEVEL_INDICATOR
-from django import http
-from .endpoints import *
+
+from . endpoints import *
+
 
 ################ Global autocomplete for external concepts ################
 
@@ -16,14 +16,13 @@ def global_autocomplete(request, endpoint):
     q = request.GET.get('q')
     headers = {'accept': 'application/json'}
     ac_instance = ENDPOINT.get(endpoint, DbpediaAC())
-    print(ac_instance.__class__.__name__)
     if ac_instance.__class__.__name__.startswith('Fish'):
         scheme = ac_instance.scheme_dict.get(endpoint, 'FISH Event Types Thesaurus')
         r = requests.get(ac_instance.get_url(), headers=headers,
-        params=ac_instance.payload(scheme=scheme, q=q))
+                         params=ac_instance.payload(scheme=scheme, q=q))
     else:
         r = requests.get(ac_instance.get_url(), headers=headers,
-        params=ac_instance.payload(q=q))
+                         params=ac_instance.payload(q=q))
     response = json.loads(r.content.decode('utf-8'))
     choices = ac_instance.parse_response(response=response)
     return choices

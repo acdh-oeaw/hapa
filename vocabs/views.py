@@ -35,7 +35,6 @@ class BaseDetailView(DetailView):
 #
 ######################################################################
 
-
 class SkosConceptSchemeListView(GenericListView):
     model = SkosConceptScheme
     table_class = SkosConceptSchemeTable
@@ -71,7 +70,6 @@ class SkosConceptSchemeListView(GenericListView):
 
 
 class SkosConceptSchemeDetailView(BaseDetailView):
-
     model = SkosConceptScheme
     template_name = 'vocabs/skosconceptscheme_detail.html'
 
@@ -82,7 +80,6 @@ class SkosConceptSchemeDetailView(BaseDetailView):
 
 
 class SkosConceptSchemeCreate(BaseCreateView):
-
     model = SkosConceptScheme
     form_class = SkosConceptSchemeForm
     success_url = None
@@ -139,14 +136,13 @@ class SkosConceptSchemeCreate(BaseCreateView):
 
 
 class SkosConceptSchemeUpdate(BaseUpdateView):
-
     model = SkosConceptScheme
     form_class = SkosConceptSchemeForm
     permission_required = (
         'view_skosconceptscheme',
         'change_skosconceptscheme',
         'delete_skosconceptscheme',
-        )
+    )
     success_url = None
 
     def get_context_data(self, **kwargs):
@@ -154,13 +150,13 @@ class SkosConceptSchemeUpdate(BaseUpdateView):
         if self.request.POST:
             data['titles'] = ConceptSchemeTitleFormSet(
                 self.request.POST, instance=self.object
-                )
+            )
             data['descriptions'] = ConceptSchemeDescriptionFormSet(
                 self.request.POST, instance=self.object
-                )
+            )
             data['sources'] = ConceptSchemeSourceFormSet(
                 self.request.POST, instance=self.object
-                )
+            )
         else:
             data['titles'] = ConceptSchemeTitleFormSet(instance=self.object)
             data['descriptions'] = ConceptSchemeDescriptionFormSet(instance=self.object)
@@ -177,7 +173,7 @@ class SkosConceptSchemeUpdate(BaseUpdateView):
                 titles.instance = self.object
                 titles.save()
             else:
-                #raise forms.ValidationError("Both fields should be filled")
+                # raise forms.ValidationError("Both fields should be filled")
                 return super(SkosConceptSchemeUpdate, self).form_invalid(form)
             if descriptions.is_valid():
                 descriptions.instance = self.object
@@ -251,13 +247,11 @@ class SkosCollectionListView(GenericListView):
 
 
 class SkosCollectionDetailView(BaseDetailView):
-
     model = SkosCollection
     template_name = 'vocabs/skoscollection_detail.html'
 
 
 class SkosCollectionCreate(BaseCreateView):
-
     model = SkosCollection
     form_class = SkosCollectionForm
     success_url = None
@@ -318,14 +312,13 @@ class SkosCollectionCreate(BaseCreateView):
 
 
 class SkosCollectionUpdate(BaseUpdateView):
-
     model = SkosCollection
     form_class = SkosCollectionForm
     permission_required = (
         'view_skoscollection',
         'change_skoscollection',
         'delete_skoscollection',
-        )
+    )
     success_url = None
 
     def get_context_data(self, **kwargs):
@@ -404,7 +397,6 @@ class SkosConceptListView(GenericListView):
 
 
 class SkosConceptDetailView(BaseDetailView):
-
     model = SkosConcept
     template_name = 'vocabs/skosconcept_detail.html'
     success_url = None
@@ -415,7 +407,6 @@ class SkosConceptDetailView(BaseDetailView):
 
 
 class SkosConceptCreate(BaseCreateView):
-
     model = SkosConcept
     form_class = SkosConceptForm
 
@@ -477,14 +468,13 @@ class SkosConceptCreate(BaseCreateView):
 
 
 class SkosConceptUpdate(BaseUpdateView):
-
     model = SkosConcept
     form_class = SkosConceptForm
     permission_required = (
         'view_skosconcept',
         'change_skosconcept',
         'delete_skosconcept',
-        )
+    )
     success_url = None
 
     def get_context_data(self, **kwargs):

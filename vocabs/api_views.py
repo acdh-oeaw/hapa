@@ -16,7 +16,8 @@ class LargeResultsSetPagination(pagination.PageNumberPagination):
 class SkosConceptSchemeViewSet(viewsets.ModelViewSet):
     queryset = SkosConceptScheme.objects.all()
     serializer_class = SkosConceptSchemeSerializer
-    permission_classes = (DjangoFilterBackend, DjangoObjectPermissions, )
+    permission_classes = (DjangoObjectPermissions, )
+    # filter_backends = (filters.DjangoObjectPermissionsFilter, )
     pagination_class = LargeResultsSetPagination
 
 
