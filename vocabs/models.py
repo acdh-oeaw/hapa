@@ -5,9 +5,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
-from django.utils.functional import cached_property
 from django.contrib.auth.models import User
-from django.dispatch import receiver
 from mptt.models import MPTTModel, TreeForeignKey
 
 
@@ -28,7 +26,6 @@ try:
 except KeyError:
     DEFAULT_LANG = "en"
 
-
 LABEL_TYPES = (
     ('prefLabel', 'prefLabel'),
     ('altLabel', 'altLabel'),
@@ -44,7 +41,6 @@ NOTE_TYPES = (
     ('definition', 'definition'),
     ('example', 'example'),
 )
-
 
 
 ######################################################################
@@ -79,22 +75,22 @@ class SkosConceptScheme(models.Model):
     creator = models.TextField(
         blank=True, verbose_name="dc:creator",
         help_text="Person or organisation primarily responsible for making current concept scheme<br>"
-        "If more than one list all using a semicolon ;"
+                  "If more than one list all using a semicolon ;"
     )
     contributor = models.TextField(
         blank=True, verbose_name="dc:contributor",
         help_text="Person or organisation that made contributions to the vocabulary<br>"
-        "If more than one list all using a semicolon ;"
+                  "If more than one list all using a semicolon ;"
     )
     language = models.TextField(
         blank=True, verbose_name="dc:language",
         help_text="Language(s) used in concept scheme<br>"
-        "If more than one list all using a semicolon ;"
+                  "If more than one list all using a semicolon ;"
     )
     subject = models.TextField(
         blank=True, verbose_name="dc:subject",
         help_text="The subject of the vocabulary<br>"
-        "If more than one list all using a semicolon ;"
+                  "If more than one list all using a semicolon ;"
     )
     version = models.CharField(
         max_length=300, blank=True,
@@ -117,12 +113,12 @@ class SkosConceptScheme(models.Model):
     relation = models.URLField(
         blank=True, verbose_name="dc:relation",
         help_text="Related resource or project<br>"
-        "E.g. in case of relation to a project, add link to a project website"
+                  "E.g. in case of relation to a project, add link to a project website"
     )
     coverage = models.TextField(
         blank=True, verbose_name="dc:coverage",
         help_text="Spatial or temporal frame that the vocabulary relates to<br>"
-        "If more than one list all using a semicolon ;"
+                  "If more than one list all using a semicolon ;"
     )
     legacy_id = models.CharField(
         max_length=200, blank=True
@@ -282,7 +278,6 @@ class ConceptSchemeSource(models.Model):
         return "{}".format(self.name)
 
 
-
 ######################################################################
 #
 # SkosCollection
@@ -313,20 +308,20 @@ class SkosCollection(models.Model):
     )
     # relation to SkosConceptScheme to inherit all objects permissions
     scheme = models.ForeignKey(SkosConceptScheme,
-        related_name="has_collections",
-        verbose_name="skos:ConceptScheme",
-        help_text="Concept scheme that this collection belongs to",
-        on_delete=models.CASCADE
-    )
+                               related_name="has_collections",
+                               verbose_name="skos:ConceptScheme",
+                               help_text="Concept scheme that this collection belongs to",
+                               on_delete=models.CASCADE
+                               )
     creator = models.TextField(
         blank=True, verbose_name="dc:creator",
         help_text="Person or organisation that created this collection<br>"
-        "If more than one list all using a semicolon ;"
+                  "If more than one list all using a semicolon ;"
     )
     contributor = models.TextField(
         blank=True, verbose_name="dc:contributor",
         help_text="Person or organisation that made contributions to the collection<br>"
-        "If more than one list all using a semicolon ;"
+                  "If more than one list all using a semicolon ;"
     )
     legacy_id = models.CharField(
         max_length=200, blank=True
@@ -567,13 +562,13 @@ class SkosConcept(MPTTModel):
     creator = models.TextField(
         blank=True, verbose_name="dc:creator",
         help_text="Person or organisation that created this concept<br>"
-        "If more than one list all using a semicolon ;",
+                  "If more than one list all using a semicolon ;",
 
     )
     contributor = models.TextField(
         blank=True, verbose_name="dc:contributor",
         help_text="Person or organisation that made contributions to this concept<br>"
-        "If more than one list all using a semicolon ;"
+                  "If more than one list all using a semicolon ;"
     )
     needs_review = models.BooleanField(
         null=True,
@@ -748,3 +743,15 @@ class ConceptSource(models.Model):
 
     def __str__(self):
         return "{}".format(self.name)
+
+
+def get_all_children(self, include_self=True):
+    # many thanks to https://stackoverflow.com/questions/4725343
+    r = []
+    if include_self:
+        r.append(self)
+    for c in SkosConcept.objects.filter(broader_concept=self):
+        _r = get_all_children(c, include_self=True)
+        if 0 < len(_r):
+            r.extend(_r)
+    return r

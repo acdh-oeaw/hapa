@@ -63,7 +63,7 @@
                 |
                 <small>
                     <a href="{% url 'vocabs:skosconcept_delete' pk=object.id %}">
-                        <i class="far fa-trash-alt" title="delete"></i>
+                        <i data-feather="delete"></i>
                     </a>
                 </small>
             {% endif %}
@@ -97,7 +97,7 @@
         <td>{{object.notation}}</td>
         </tr>
         {% endif %}
-
+       
         {% if object.scheme %}
         <tr>
         <th>skos:inScheme</th>
@@ -303,7 +303,7 @@
         </div>
         {% endif %}
         {% endif %}
-        <!--change history ends here-->
+        <!--change history ends here-->            
     </div>
 </div><!-- col-8 ends -->
 </div><!-- row ends -->
