@@ -1,3 +1,4 @@
+acdh-django-browsing==0.0.1
 acdh-django-charts==0.5.3
 acdh-django-netvis==1.0.0
 asgiref==3.2.10

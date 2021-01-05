@@ -1,12 +1,18 @@
-import reversion
-
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+import reversion
 from mptt.models import MPTTModel, TreeForeignKey
+
+
+try:
+    notation_for_uri = settings.VOCABS_SETTINGS['notation_for_uri']
+except KeyError:
+    notation_for_uri = False
 
 
 DEFAULT_URI = "https://vocabs.acdh.oeaw.ac.at/"
@@ -613,6 +619,17 @@ class SkosConcept(MPTTModel):
             self.date_created = timezone.now()
         self.date_modified = timezone.now()
         super(SkosConcept, self).save(*args, **kwargs)
+
+    def create_uri(self):
+        mcs = self.scheme.identifier
+        if self.legacy_id:
+            concept_uri = f"{self.legacy_id}"
+        else:
+            if notation_for_uri:
+                concept_uri = f"{mcs}#concept__{slugify(self.notation, allow_unicode=False)}__{self.id}"
+            else:
+                concept_uri = f"{mcs}#concept{self.id}"
+        return concept_uri
 
     # change for template tag
     def creator_as_list(self):

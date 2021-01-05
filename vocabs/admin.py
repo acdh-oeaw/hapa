@@ -7,17 +7,18 @@ from mptt.admin import MPTTModelAdmin
 # With object permissions support
 @admin.register(SkosConcept)
 class SkosConceptAdmin(MPTTModelAdmin, VersionAdmin):
-    pass
+	pass
 
 
 class SkosCollectionAdmin(VersionAdmin):
-    pass
+	pass
 
 
 class SkosConceptSchemeAdmin(VersionAdmin):
-    pass
+	pass
 
 
+#admin.site.register(SkosConcept, SkosConceptAdmin)
 admin.site.register(SkosCollection, SkosCollectionAdmin)
 admin.site.register(SkosConceptScheme, SkosConceptSchemeAdmin)
 admin.site.register(ConceptSchemeTitle)
