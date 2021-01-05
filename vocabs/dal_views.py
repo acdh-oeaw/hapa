@@ -1,14 +1,15 @@
 import requests
 import json
+
 from dal import autocomplete
-from .models import SkosConcept, SkosConceptScheme, SkosCollection
 from django.contrib.auth.models import User
 from mptt.settings import DEFAULT_LEVEL_INDICATOR
 
 from . endpoints import *
+from . models import SkosConcept, SkosConceptScheme, SkosCollection
 
 
-################ Global autocomplete for external concepts ################
+# Global autocomplete for external concepts ################
 
 
 def global_autocomplete(request, endpoint):
