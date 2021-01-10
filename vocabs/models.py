@@ -351,7 +351,6 @@ class SkosCollection(models.Model):
         verbose_name = 'Collection'
 
     def save(self, *args, **kwargs):
-        print("#halloooooooooooo SkosCollection")
         if not self.id:
             self.date_created = timezone.now()
         self.date_modified = timezone.now()
@@ -365,7 +364,6 @@ class SkosCollection(models.Model):
             pass
         else:
             schemes = SkosConceptScheme.objects.all()
-            print("#halloooooooooooo SkosCollection")
             if schemes:
                 self.scheme = schemes.first()
             else:
@@ -624,7 +622,6 @@ class SkosConcept(MPTTModel):
         return "{}{}".format("https://whatever", self.get_absolute_url)
 
     def save(self, *args, **kwargs):
-        print("#halloooooooooooo SkosConcept")
         if self.notation == "":
             temp_notation = slugify(self.pref_label, allow_unicode=True)
             concepts = len(SkosConcept.objects.filter(notation=temp_notation))
