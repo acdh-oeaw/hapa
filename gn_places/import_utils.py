@@ -1,5 +1,7 @@
-from vocabs.models import SkosConceptScheme, SkosCollection, SkosConcept, ConceptNote
-from acdh_geonames_utils.acdh_geonames_utils import feature_codes_df
+from tqdm import tqdm
+from vocabs.models import (
+    SkosConceptScheme, SkosCollection, SkosConcept, ConceptNote
+)
 
 from . config import GN_FTC_SCHEME, GN_FTC_COLLECTION
 
@@ -22,7 +24,7 @@ def import_feature_codes(df):
             top_concept=True
         )
         top_concept.collection.add(col)
-        for i, row in cur_df.iterrows():
+        for i, row in tqdm(cur_df.iterrows(), total=len(cur_df)):
             item, _ = SkosConcept.objects.get_or_create(
                 notation=f"{row['code']}",
                 pref_label=f"{row['pref_label']}",
@@ -36,7 +38,7 @@ def import_feature_codes(df):
             except Exception as e:
                 item.broader_concept = None
                 item.save()
-                failed.append([item, top_concept])
+                failed.append([item, top_concept, e])
             notation, _ = ConceptNote.objects.get_or_create(
                 concept=item,
                 name=row['description'],
@@ -46,5 +48,4 @@ def import_feature_codes(df):
     for x in failed:
         x[0].broader_concept = x[1]
         x[0].save()
-    
     return scheme
