@@ -17,4 +17,10 @@ class GeoNamesPlaceAdmin(admin.ModelAdmin):
         'gn_long',
         'gn_lat',
     )
-    list_filter = ('gn_feature_class', 'gn_feature_code')
+    list_filter = (
+        'gn_feature_class',
+        'gn_feature_code',
+    )
+    search_fields = [
+        'gn_name',
+    ]
