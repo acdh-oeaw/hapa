@@ -168,7 +168,7 @@ class GeoNamesPlace(models.Model):
         if self.gn_lat:
             point = Point(self.gn_long, self.gn_lat, srid=4326)
             self.gn_point = point
-        
+
         if not self.gn_feature:
             if self.gn_feature_class and self.gn_feature_code:
                 ft = ".".join((
