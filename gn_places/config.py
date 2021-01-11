@@ -8,6 +8,8 @@ GN_FTC_COLLECTION = {
     "name": "GeoName Feature Codes"
 }
 
+GN_HTML_URL = "https://sws.geonames.org/"
+
 
 def field_mapping(some_class):
     """ returns a dictionary mapping model field names to lookukp values
