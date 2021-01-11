@@ -1,0 +1,32 @@
+{% extends "browsing/generic_detail.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %}{{ object.name }}{% endblock %}
+{% block custom %}
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">GeoNames Daten</h2>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>Name</th>
+                <td>{{ object.gn_name }}</td>
+            </tr>
+            <tr>
+                <th>URL</th>
+                <td>
+                    <small>html </small><a href="{{ object.get_geonames_url }}">{{ object.get_geonames_url}}</a><br />
+                    <small>rdf </small><a href="{{ object.get_geonames_rdf }}">{{ object.get_geonames_rdf}}</a><br />
+                </td>
+            </tr>
+            <tr>
+                <th>Feature Code</th>
+                <td>
+                    <a href="{{ object.gn_feature.get_absolute_url }}">{{ object.gn_feature }}</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock custom %}

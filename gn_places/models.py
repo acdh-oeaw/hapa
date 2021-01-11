@@ -10,6 +10,8 @@ from vocabs.models import SkosConcept
 
 from browsing.browsing_utils import model_to_dict
 
+from gn_places.config import GN_HTML_URL
+
 
 def set_extra(self, **kwargs):
     self.extra = kwargs
@@ -202,6 +204,12 @@ class GeoNamesPlace(models.Model):
         return reverse(
             'gn_places:geonamesplace_create'
         )
+
+    def get_geonames_url(self):
+        return f"{GN_HTML_URL}{self.gn_id}"
+
+    def get_geonames_rdf(self):
+        return f"{GN_HTML_URL}{self.gn_id}/about.rdf"
 
     def get_absolute_url(self):
         return reverse(
