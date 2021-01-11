@@ -651,7 +651,6 @@ class SkosConcept(MPTTModel):
         self.date_modified = timezone.now()
         super(SkosConcept, self).save(*args, **kwargs)
 
-
     def create_uri(self):
         mcs = self.scheme.identifier
         if self.legacy_id:

@@ -2,8 +2,8 @@
 
 from django.db import models
 from django.urls import reverse
-from django.contrib.postgres.fields import DateRangeField
 from django.contrib.gis.db.models import PointField
+from django.contrib.gis.geos import Point
 
 
 from vocabs.models import SkosConcept
@@ -20,7 +20,7 @@ models.Field.set_extra = set_extra
 
 
 class GeoNamesPlace(models.Model):
-    ### A Geonames Place Instance ###
+    """ A Geonames Place Instance """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -69,10 +69,8 @@ class GeoNamesPlace(models.Model):
         is_public=True,
         arche_prop="hasWkt",
     )
-    gn_feature_class = models.ForeignKey(
-        SkosConcept,
-        related_name='rvn_geonamesplace_gn_feature_class_skosconcept',
-        on_delete=models.SET_NULL,
+    gn_feature_class = models.CharField(
+        max_length=250,
         null=True,
         blank=True,
         verbose_name="Feature Class",
@@ -81,10 +79,8 @@ class GeoNamesPlace(models.Model):
         is_public=True,
         data_lookup="feature class",
     )
-    gn_feature_code = models.ForeignKey(
-        SkosConcept,
-        related_name='rvn_geonamesplace_gn_feature_code_skosconcept',
-        on_delete=models.SET_NULL,
+    gn_feature_code = models.CharField(
+        max_length=250,
         null=True,
         blank=True,
         verbose_name="Feature Code",
@@ -93,10 +89,18 @@ class GeoNamesPlace(models.Model):
         is_public=True,
         data_lookup="feature code",
     )
-    gn_country_code = models.ForeignKey(
+    gn_feature = models.ForeignKey(
         SkosConcept,
-        related_name='rvn_geonamesplace_gn_country_code_skosconcept',
-        on_delete=models.SET_NULL,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name="Feature Code as SKOS",
+        help_text="The Place's Feature Code as SKOS"
+    ).set_extra(
+        is_public=True
+    )
+    gn_country_code = models.CharField(
+        max_length=250,
         null=True,
         blank=True,
         verbose_name="Country Code",
@@ -105,9 +109,9 @@ class GeoNamesPlace(models.Model):
         is_public=True,
         data_lookup="country code",
     )
-    gn_cc2 = models.ManyToManyField(
-        SkosConcept,
-        related_name='rvn_geonamesplace_gn_cc2_skosconcept',
+    gn_cc2 = models.CharField(
+        max_length=250,
+        null=True,
         blank=True,
         verbose_name="Alternate Country Codes",
         help_text="Alternate Country Codes",
@@ -137,7 +141,7 @@ class GeoNamesPlace(models.Model):
         help_text="Modification Date",
     ).set_extra(
         is_public=True,
-        data_lookup="modificationdate",
+        data_lookup="modification date",
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -148,48 +152,71 @@ class GeoNamesPlace(models.Model):
         )
 
     class Meta:
-        
+
         ordering = [
             'gn_name',
         ]
         verbose_name = "GeoNamesPlace"
-    
+
     def __str__(self):
         if self.gn_name:
             return "{}".format(self.gn_name)
         else:
             return "{}".format(self.legacy_id)
 
+    def save(self, *args, **kwargs):
+        if self.gn_lat:
+            point = Point(self.gn_long, self.gn_lat, srid=4326)
+            self.gn_point = point
+        
+        if not self.gn_feature:
+            if self.gn_feature_class and self.gn_feature_code:
+                ft = ".".join((
+                    self.gn_feature_class, self.gn_feature_code)
+                )
+                try:
+                    self.gn_feature = SkosConcept.objects.get(notation=ft)
+                except Exception as e:
+                    print(e)
+        super(GeoNamesPlace, self).save(*args, **kwargs)
+
     def field_dict(self):
         return model_to_dict(self)
 
     @classmethod
     def get_listview_url(self):
-        return reverse('gn_places:geonamesplace_browse')
-    
+        return reverse(
+            'gn_places:geonamesplace_browse'
+        )
+
     @classmethod
     def get_source_table(self):
         return "AL"
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "gn_id"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('gn_places:geonamesplace_create')
+        return reverse(
+            'gn_places:geonamesplace_create'
+        )
 
     def get_absolute_url(self):
-        return reverse('gn_places:geonamesplace_detail', kwargs={'pk': self.id})
-
-    def get_absolute_url(self):
-        return reverse('gn_places:geonamesplace_detail', kwargs={'pk': self.id})
+        return reverse(
+            'gn_places:geonamesplace_detail', kwargs={'pk': self.id}
+        )
 
     def get_delete_url(self):
-        return reverse('gn_places:geonamesplace_delete', kwargs={'pk': self.id})
+        return reverse(
+            'gn_places:geonamesplace_delete', kwargs={'pk': self.id}
+        )
 
     def get_edit_url(self):
-        return reverse('gn_places:geonamesplace_edit', kwargs={'pk': self.id})
+        return reverse(
+            'gn_places:geonamesplace_edit', kwargs={'pk': self.id}
+        )
 
     def get_next(self):
         next = self.__class__.objects.filter(id__gt=self.id)
@@ -208,5 +235,3 @@ class GeoNamesPlace(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
-
-

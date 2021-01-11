@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^browsing/', include('browsing.urls', namespace='browsing')),
     url(r'^info/', include('infos.urls', namespace='info')),
+    # url(r'^gn-places/', include('gn_places.urls', namespace='gn_places')),
     url(r'^vocabs/', include('vocabs.urls', namespace='vocabs')),
     url(r'^vocabs-ac/', include('vocabs.dal_urls', namespace='vocabs-ac')),
     url(r'^', include('webpage.urls', namespace='webpage')),

@@ -3,4 +3,18 @@ from django.contrib import admin
 from . models import (
     GeoNamesPlace
 )
-admin.site.register(GeoNamesPlace)
+
+
+@admin.register(GeoNamesPlace)
+class GeoNamesPlaceAdmin(admin.ModelAdmin):
+    list_display = (
+        'gn_id',
+        'gn_name',
+        'gn_country_code',
+        'gn_feature_class',
+        'gn_feature_code',
+        'gn_feature',
+        'gn_long',
+        'gn_lat',
+    )
+    list_filter = ('gn_feature_class', 'gn_feature_code')
