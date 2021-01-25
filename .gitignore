@@ -45,3 +45,5 @@ dev_secret.py
 node_modules
 temp
 *.ipynb
+
+.env_dev
