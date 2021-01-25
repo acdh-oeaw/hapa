@@ -3,20 +3,23 @@ from .base import *
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '1234verysecret')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', True)
-REDMINE_ID = 11176
+REDMINE_ID = os.environ.get('REDMINE_ID', '12305')
 PROJECT_NAME = os.environ.get('PROJECT_NAME', 'hapa')
-
-
 BASE_URL = f"https://{PROJECT_NAME}.acdh.oeaw.ac.at"
 
-allowed_host = f"{PROJECT_NAME}.sisyphos.arz.oeaw.ac.at"
+VOCABS_DEFAULT_PEFIX = os.environ.get('VOCABS_DEFAULT_PEFIX', 'hapa')
+VOCABS_SETTINGS = {
+    'default_prefix': VOCABS_DEFAULT_PEFIX,
+    'default_ns': f"http://www.vocabs/{VOCABS_DEFAULT_PEFIX}/",
+    'default_lang': os.environ.get('VOCABS_DEFAULT_LANG', 'en'),
+}
 
+ADD_ALLOWED_HOST = os.environ.get('ALLOWED_HOST', '*')
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "0.0.0.0",
-    allowed_host,
+    ADD_ALLOWED_HOST,
 ]
 
 
@@ -33,4 +36,7 @@ DATABASES = {
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-SHEET_ID = os.environ.get('SECRET_KEY')
+
+Z_ID = os.environ.get("Z_ID", "440857")
+Z_LIBRARY_TYPE = os.environ.get("Z_LIBRARY_TYPE", "group")
+Z_API_KEY = os.environ.get("Z_API_KEY")
