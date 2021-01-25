@@ -18,6 +18,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^browsing/', include('browsing.urls', namespace='browsing')),
     url(r'^info/', include('infos.urls', namespace='info')),
+    url(r'^archiv/', include('archiv.urls', namespace='archiv')),
+    url(r'^archiv-ac/', include('archiv.dal_urls', namespace='archiv-ac')),
+    url(r'^bib/', include('bib.urls', namespace='bib')),
     url(r'^gn-places/', include('gn_places.urls', namespace='gn_places')),
     url(
         r'^gn-places-ac/',

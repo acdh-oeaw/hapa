@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'webpage',
     'browsing',
     'vocabs',
-    'gn_places',    
+    'gn_places',
+    'bib',
+    'archiv',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -138,3 +140,7 @@ VOCABS_SETTINGS = {
     'default_nsgg': "http://www.vocabs/hapa",
     'default_lang': "en"
 }
+
+Z_ID = "123"
+Z_LIBRARY_TYPE = "whatever"
+Z_API_KEY = "somethingelse"
