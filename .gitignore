@@ -47,3 +47,4 @@ temp
 *.ipynb
 
 .env_dev
+env

@@ -10,12 +10,13 @@ COPY nginx.default /etc/nginx/sites-available/default
 # copy source and install dependencies
 RUN mkdir -p /opt/app
 RUN mkdir -p /opt/app/djangobaseproject
-COPY requirements.txt start-server.sh /opt/app/
-COPY . /opt/app/djangobaseproject/
 WORKDIR /opt/app
-RUN pip install -U pip
+RUN pip install -U pip && pip install gunicorn --no-cache-dir
+COPY requirements.txt start-server.sh /opt/app/
 RUN pip install -r requirements.txt --no-cache-dir
-RUN pip install gunicorn --no-cache-dir
+
+COPY . /opt/app/djangobaseproject/
+
 RUN chown -R www-data:www-data /opt/app
 
 # start server
