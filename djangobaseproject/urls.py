@@ -21,7 +21,6 @@ urlpatterns = [
     url(r'^archiv/', include('archiv.urls', namespace='archiv')),
     url(r'^archiv-ac/', include('archiv.dal_urls', namespace='archiv-ac')),
     url(r'^bib/', include('bib.urls', namespace='bib')),
-    url(r'^gn-places/', include('gn_places.urls', namespace='gn_places')),
     url(
         r'^gn-places-ac/',
         include('gn_places.dal_urls', namespace='gn_places-ac')
