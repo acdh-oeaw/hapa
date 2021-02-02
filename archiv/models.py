@@ -3,6 +3,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.gis.db.models import PointField
+from django.contrib.gis.geos import Point
 from ckeditor.fields import RichTextField
 
 
@@ -254,6 +255,15 @@ class HapaPlaceName(models.Model):
             'name',
         ]
         verbose_name = "Ortsname"
+
+    def save(self, *args, **kwargs):
+        if not self.lat and self.geonames:
+            self.lat = self.geonames.gn_lat
+            self.long = self.geonames.gn_long
+        if self.lat and self.long:
+            self.point = Point(self.long, self.lat)
+
+        super(HapaPlaceName, self).save(*args, **kwargs)
 
     def __str__(self):
         if self.name:
