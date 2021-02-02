@@ -119,6 +119,14 @@ class HapaPlaceNameForm(forms.ModelForm):
     class Meta:
         model = HapaPlaceName
         fields = "__all__"
+        widgets = {
+            'beleg': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:hapabeleg-autocomplete'
+            ),
+            'geonames': autocomplete.ModelSelect2(
+                url='gn_places-ac:geonamesplace-autocomplete'
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super(HapaPlaceNameForm, self).__init__(*args, **kwargs)
