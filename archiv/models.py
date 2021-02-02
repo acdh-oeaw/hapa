@@ -3,6 +3,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.gis.db.models import PointField
+from ckeditor.fields import RichTextField
 
 
 from vocabs.models import SkosConcept
@@ -38,7 +39,7 @@ class HapaBeleg(models.Model):
     ).set_extra(
         is_public=True,
     )
-    text = models.TextField(
+    text = RichTextField(
         blank=True, null=True,
         verbose_name="Textauszug",
         help_text="ausgewähltes Quellenzitaten",
@@ -91,12 +92,12 @@ class HapaBeleg(models.Model):
         )
 
     class Meta:
-        
+
         ordering = [
             'short_quote',
         ]
         verbose_name = "Beleg"
-    
+
     def __str__(self):
         if self.short_quote:
             return "{}".format(self.short_quote)
@@ -109,22 +110,18 @@ class HapaBeleg(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:hapabeleg_browse')
-    
+
     @classmethod
     def get_source_table(self):
         return None
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "id"
-    
+
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:hapabeleg_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:hapabeleg_detail', kwargs={'pk': self.id})
 
     def get_absolute_url(self):
         return reverse('archiv:hapabeleg_detail', kwargs={'pk': self.id})
@@ -191,7 +188,7 @@ class HapaPlaceName(models.Model):
     ).set_extra(
         is_public=True,
     )
-    description = models.TextField(
+    description = RichTextField(
         blank=True, null=True,
         verbose_name="Etymologie und Wortbildung",
         help_text="Besprechung der Etymologie und Wortbildung des Ortsnamens",
@@ -227,7 +224,7 @@ class HapaPlaceName(models.Model):
     point = PointField(
         blank=True, null=True,
         verbose_name="Koordinaten",
-        help_text="Koordinaten (wird automatische aus den Angaben von Beiten- und Längengrad befüllt)",
+        help_text="Wird aus den Angaben von Beiten- und Längengrad befüllt)",
     ).set_extra(
         is_public=True,
         arche_prop="hasWkt",
@@ -252,12 +249,12 @@ class HapaPlaceName(models.Model):
         )
 
     class Meta:
-        
+
         ordering = [
             'name',
         ]
         verbose_name = "Ortsname"
-    
+
     def __str__(self):
         if self.name:
             return "{}".format(self.name)
@@ -270,22 +267,18 @@ class HapaPlaceName(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:hapaplacename_browse')
-    
+
     @classmethod
     def get_source_table(self):
         return None
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "id"
-    
+
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:hapaplacename_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:hapaplacename_detail', kwargs={'pk': self.id})
 
     def get_absolute_url(self):
         return reverse('archiv:hapaplacename_detail', kwargs={'pk': self.id})
@@ -313,5 +306,3 @@ class HapaPlaceName(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
-
-

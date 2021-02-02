@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'reversion',
+    'ckeditor',
     'crispy_forms',
     'django_filters',
     'django_tables2',
@@ -47,7 +48,8 @@ INSTALLED_APPS = [
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+    'DEFAULT_PERMISSION_CLASSES':
+    ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
 }
 
 MIDDLEWARE = [
