@@ -3,6 +3,8 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit,  Layout, Fieldset
 from crispy_forms.bootstrap import Accordion, AccordionGroup
+from dal import autocomplete
+
 
 from vocabs.models import SkosConcept
 from . models import (
@@ -51,6 +53,10 @@ class HapaBelegForm(forms.ModelForm):
     class Meta:
         model = HapaBeleg
         fields = "__all__"
+        widgets = {
+            'zotero_id': autocomplete.ModelSelect2(
+                url='bib:zotitem-autocomplete'),
+        }
 
     def __init__(self, *args, **kwargs):
         super(HapaBelegForm, self).__init__(*args, **kwargs)
