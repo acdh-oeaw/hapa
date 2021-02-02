@@ -41,7 +41,7 @@ class HapaBelegListView(GenericListView):
 class HapaBelegDetailView(BaseDetailView):
 
     model = HapaBeleg
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class HapaBelegCreate(BaseCreateView):
@@ -89,7 +89,7 @@ class HapaPlaceNameListView(GenericListView):
 class HapaPlaceNameDetailView(BaseDetailView):
 
     model = HapaPlaceName
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class HapaPlaceNameCreate(BaseCreateView):
