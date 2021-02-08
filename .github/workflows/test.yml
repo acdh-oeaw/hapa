@@ -36,11 +36,12 @@ jobs:
       run: coverage run manage.py test --settings=djangobaseproject.settings.test
     - name: Create Coverage Report
       run: coverage xml
-    # - name: "Upload coverage to Codecov"
-    #   uses: codecov/codecov-action@v1
-    #   with:
-    #     file: ./coverage.xml
-    #     fail_ci_if_error: true
+    - name: "Upload coverage to Codecov"
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
+        fail_ci_if_error: true
   push_to_registry:
     needs: test
     name: Push Docker image to Docker Hub
