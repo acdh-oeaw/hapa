@@ -1,7 +1,8 @@
-name: Test Django App
+name: Test, Build, Release
 on: [push]
 jobs:
-  build:
+  test:
+    name: Test Application
     runs-on: ubuntu-latest
     env:
       POSTGRES_DB: github_actions
@@ -32,3 +33,15 @@ jobs:
       run: python manage.py migrate --settings=djangobaseproject.settings.test
     - name: Run tests
       run: python manage.py test --settings=djangobaseproject.settings.test
+  push_to_registry:
+    needs: test
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker build
+        run: docker build -t acdhch/hapa .
+      - name: docker push
+        run: |
+          docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}" 
+          docker push acdhch/hapa
