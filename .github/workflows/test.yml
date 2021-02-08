@@ -29,12 +29,18 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install coverage
     - name: Run migrations
       run: python manage.py migrate --settings=djangobaseproject.settings.test
     - name: Run tests
-      run: python manage.py test --settings=djangobaseproject.settings.test
+      run: coverage run manage.py test --settings=djangobaseproject.settings.test
+    - name: Create Coverage Report
+      run: coverage xml
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.xml
+        fail_ci_if_error: true
   # push_to_registry:
   #   needs: test
   #   name: Push Docker image to Docker Hub
