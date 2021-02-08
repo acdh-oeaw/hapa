@@ -3,3 +3,5 @@ env
 pg_local.py
 server.py
 .env_dev
+htmlcov
+.coverage
