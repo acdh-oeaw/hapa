@@ -49,3 +49,4 @@ temp
 .env_dev
 env
 htmlcov
+coverage.xml
