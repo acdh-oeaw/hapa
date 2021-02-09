@@ -2,7 +2,7 @@
 
 from django.db import models
 from django.urls import reverse
-from django.contrib.gis.db.models import PointField
+from django.contrib.gis.db.models import PointField, PolygonField
 from django.contrib.gis.geos import Point
 from ckeditor.fields import RichTextField
 
@@ -240,6 +240,14 @@ class HapaPlaceName(models.Model):
         blank=True, null=True,
         verbose_name="Koordinaten",
         help_text="Wird aus den Angaben von Beiten- und Längengrad befüllt)",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasWkt",
+    )
+    fuzzy_geom = PolygonField(
+        blank=True, null=True,
+        verbose_name="Ungefähre Ortsangabe",
+        help_text="Ungefähre Lokalisierung historischer Orte",
     ).set_extra(
         is_public=True,
         arche_prop="hasWkt",
