@@ -241,6 +241,11 @@ class HapaPlaceName(models.Model):
     ).set_extra(
         is_public=True,
     )
+    historic = models.BooleanField(
+        default=False,
+        help_text="Historischer Ort bedeutet es gibt diesen Ort heute nicht mehr",
+        verbose_name="Historischer Ort"
+    )
     orig_data_csv = models.TextField(
         blank=True,
         null=True,

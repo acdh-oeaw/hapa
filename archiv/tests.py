@@ -21,3 +21,7 @@ class HapaPlaceNameTest(TestCase):
         item.geonames = self.linz_gn
         item.save()
         self.assertEqual(item.lat, self.linz_gn.gn_lat)
+
+    def test_003_historic_place(self):
+        item = self.linz
+        self.assertEqual(item.historic, False)
