@@ -1,3 +1,6 @@
+.. image:: https://codecov.io/gh/acdh-oeaw/acdh_geonames_utils/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/acdh-oeaw/acdh_geonames_utils
+
 # HAPA
 
 ## History of Albanian Place-names: Albania
