@@ -89,11 +89,6 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
             url="archiv-ac:hapabeleg-autocomplete",
         )
     )
-    description = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=HapaPlaceName._meta.get_field('description').help_text,
-        label=HapaPlaceName._meta.get_field('description').verbose_name
-    )
     orig_sprache = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
             collection__name="orig_sprache"
@@ -131,7 +126,6 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
             'name',
             'geonames',
             'beleg',
-            'description',
             'orig_sprache',
             'lat',
             'long',

@@ -25,3 +25,16 @@ class HapaPlaceNameTest(TestCase):
     def test_003_historic_place(self):
         item = self.linz
         self.assertEqual(item.historic, False)
+
+    def test_004_new_text_fields(self):
+        item = self.linz
+        item.wortbildung = "lorem ipsum"
+        item.etymology = "lorem ipsum"
+        item.syntax = "lorem ipsum"
+        item.save()
+        item = HapaPlaceName.objects.get(wortbildung="lorem ipsum")
+        self.assertEqual(item.wortbildung, "lorem ipsum")
+        item = HapaPlaceName.objects.get(etymology="lorem ipsum")
+        self.assertEqual(item.etymology, "lorem ipsum")
+        item = HapaPlaceName.objects.get(syntax="lorem ipsum")
+        self.assertEqual(item.syntax, "lorem ipsum")
