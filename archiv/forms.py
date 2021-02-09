@@ -88,7 +88,6 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                     'name',
                     'geonames',
                     'beleg',
-                    'description',
                     'orig_sprache',
                     'lat',
                     'long',
@@ -136,16 +135,3 @@ class HapaPlaceNameForm(forms.ModelForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
-        self.fields['description'].initial = """
-<h2>I. Sprache</h2>
-
-<p>lorem ipsum</p>
-
-<h2>II. Etymologie</h2>
-
-<p>lorem ipsum</p>
-
-<h2>III. Wortbildung</h2>
-
-<p>lorem ipsum</p>
-"""

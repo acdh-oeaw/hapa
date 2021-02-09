@@ -189,10 +189,24 @@ class HapaPlaceName(models.Model):
     ).set_extra(
         is_public=True,
     )
-    description = RichTextField(
+    wortbildung = RichTextField(
         blank=True, null=True,
-        verbose_name="Etymologie und Wortbildung",
-        help_text="Besprechung der Etymologie und Wortbildung des Ortsnamens",
+        verbose_name="Wortbildung",
+        help_text="Besprechung der Wortbildung des Ortsnamens",
+    ).set_extra(
+        is_public=True,
+    )
+    etymology = RichTextField(
+        blank=True, null=True,
+        verbose_name="Etymologie",
+        help_text="Besprechung der Etymologie des Ortsnamens",
+    ).set_extra(
+        is_public=True,
+    )
+    syntax = RichTextField(
+        blank=True, null=True,
+        verbose_name="Syntax",
+        help_text="Besprechung der Syntax des Ortsnamens",
     ).set_extra(
         is_public=True,
     )
