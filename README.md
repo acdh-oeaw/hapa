@@ -1,5 +1,5 @@
-.. image:: https://codecov.io/gh/acdh-oeaw/acdh_geonames_utils/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/acdh-oeaw/acdh_geonames_utils
+.. image:: https://codecov.io/gh/acdh-oeaw/hapa/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/acdh-oeaw/hapa
 
 # HAPA
 
