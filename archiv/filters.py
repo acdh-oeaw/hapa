@@ -130,6 +130,4 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
             'lat',
             'long',
             'adm_unit',
-            ]
-
-
+        ]
