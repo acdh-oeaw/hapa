@@ -100,10 +100,20 @@ class HapaBeleg(models.Model):
         verbose_name = "Beleg"
 
     def __str__(self):
-        if self.short_quote:
-            return "{}".format(self.short_quote)
+        if self.short_quote and self.zotero_id:
+            quote = f"{self.short_quote}"
         else:
-            return "{}".format(self.legacy_id)
+            quote = f"{self.id}"
+        if self.page:
+            return f"{quote}, {self.page}"
+        else:
+            return f"{self.id}"
+
+    def save(self, *args, **kwargs):
+        if self.zotero_id:
+            self.full_quote = self.zotero_id.zot_bibtex
+            self.short_quote = self.zotero_id.zot_title
+        super(HapaBeleg, self).save(*args, **kwargs)
 
     def field_dict(self):
         return model_to_dict(self)
