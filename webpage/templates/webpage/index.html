@@ -4,11 +4,13 @@
 {% load webpage_extras %}
 {% block content %}
 
-        <div class="jumbotron" style="background-image: url({% static 'webpage/img/project_background.jpg' %}) ">
+        <div class="jumbotron" style="background-image: url('https://www.larsreisen.de/wp-content/uploads/2019/03/Albanien-2018-1-von-105.jpg'); background-repeat: no-repeat; background-position: center center; background-size:cover; height: 500px;">
             <div class="container">
-                <h1 style="text-align:center; color: #111;">{% projects_metadata 'title' %}</h1>
-                <h3 style="text-align:center; color: #111;">{% projects_metadata 'subtitle' %}</h3>
-                <h5 style="text-align:center; color: #111;">{% projects_metadata 'description' %}</h5>
+                <h1 style="text-align:center; color: white;">{% projects_metadata 'title' %}</h1>
+                <h3 style="text-align:center; color: white;">{% projects_metadata 'subtitle' %}</h3>
+                <div style="text-align:center;" >
+                    <small style="color: white;">Bildnachweis: <a href="https://www.larsreisen.de/2019/03/09/ein-kurzer-rueckblick-auf-den-herbst-albanien-2018-teil-2/" style="color: whitesmoke;">https://www.larsreisen.de/</a></small>
+                </div>
             </div>
         </div>
 
