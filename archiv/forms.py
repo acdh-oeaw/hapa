@@ -5,6 +5,8 @@ from crispy_forms.layout import Submit,  Layout, Fieldset
 from crispy_forms.bootstrap import Accordion, AccordionGroup
 from dal import autocomplete
 
+from leaflet.forms.widgets import LeafletWidget
+
 
 from vocabs.models import SkosConcept
 from . models import (
@@ -125,6 +127,7 @@ class HapaPlaceNameForm(forms.ModelForm):
             'geonames': autocomplete.ModelSelect2(
                 url='gn_places-ac:geonamesplace-autocomplete'
             ),
+            'fuzzy_geom': LeafletWidget(),
         }
 
     def __init__(self, *args, **kwargs):
