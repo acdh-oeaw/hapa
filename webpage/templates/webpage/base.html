@@ -38,7 +38,7 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
     <!-- End Cookie Consent plugin -->
     <!-- Matomo -->
-      <!-- <script type="text/javascript">
+      <script type="text/javascript">
         var _paq = _paq || [];
         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
         _paq.push(['trackPageView']);
@@ -50,7 +50,7 @@
           var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
           g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
         })();
-      </script> -->
+      </script>
     <!-- End Matomo Code -->
     {% block scriptHeader %}
     {% endblock %}
@@ -79,6 +79,16 @@
                                         <a class="dropdown-item" href="{% url 'infos:about-the-project' %}">About the project</a>
                                         <a class="dropdown-item" href="{% url 'infos:project-team' %}">Team</a>
                                         <a class="dropdown-item" href="{% url 'webpage:staticpage' template='imprint' %}">Imprint | Impressum</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        Orte und Belege
+                                        <span class="caret"/>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'archiv:hapabeleg_browse' %}">Belege</a>
+                                        <a class="dropdown-item" href="{% url 'archiv:hapaplacename_browse' %}">Ortslemma</a>
                                     </div>
                                 </li>
                                 {% if 'vocabs' in APPS %}
