@@ -145,3 +145,10 @@ VOCABS_SETTINGS = {
 Z_ID = "123"
 Z_LIBRARY_TYPE = "whatever"
 Z_API_KEY = "somethingelse"
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (41, 20),
+    'DEFAULT_ZOOM': 9,
+    'MIN_ZOOM': 3,
+    'OVERLAYS': []
+}
