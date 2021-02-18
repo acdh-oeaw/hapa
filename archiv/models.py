@@ -107,7 +107,7 @@ class HapaBeleg(models.Model):
         if self.page:
             return f"{quote}, {self.page}"
         else:
-            return f"{self.id}"
+            return f"{quote}, {self.id}"
 
     def save(self, *args, **kwargs):
         if self.zotero_id:
