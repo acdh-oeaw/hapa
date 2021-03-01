@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.gis.db.models import PointField, PolygonField
 from django.contrib.gis.geos import Point
 from ckeditor.fields import RichTextField
-
+from taggit.managers import TaggableManager
 
 from vocabs.models import SkosConcept
 from gn_places.models import GeoNamesPlace
@@ -83,6 +83,21 @@ class HapaBeleg(models.Model):
         help_text="Jahreszahl, z.B. 899 für 9. Jh",
     ).set_extra(
         is_public=True,
+    )
+    tags = TaggableManager(blank=True)
+    comment = RichTextField(
+        blank=True, null=True,
+        verbose_name="Kommentar",
+        help_text="Kommentar",
+    ).set_extra(
+        is_public=True,
+    )
+    internal_comment = RichTextField(
+        blank=True, null=True,
+        verbose_name="Kommentar (intern)",
+        help_text="Kommentar (intern)",
+    ).set_extra(
+        is_public=False,
     )
     orig_data_csv = models.TextField(
         blank=True,
@@ -277,6 +292,21 @@ class HapaPlaceName(models.Model):
         default=False,
         help_text="Historischer Ort bedeutet es gibt diesen Ort heute nicht mehr",
         verbose_name="Historischer Ort"
+    )
+    tags = TaggableManager(blank=True)
+    comment = RichTextField(
+        blank=True, null=True,
+        verbose_name="Kommentar",
+        help_text="Kommentar",
+    ).set_extra(
+        is_public=True,
+    )
+    internal_comment = RichTextField(
+        blank=True, null=True,
+        verbose_name="Kommentar (intern)",
+        help_text="Kommentar (intern)",
+    ).set_extra(
+        is_public=False,
     )
     orig_data_csv = models.TextField(
         blank=True,

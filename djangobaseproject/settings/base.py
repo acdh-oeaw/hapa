@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django_tables2',
     'rest_framework',
     'mptt',
+    'taggit',
     'infos',
     'leaflet',
     'charts',
