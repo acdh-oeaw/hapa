@@ -5,9 +5,12 @@ import requests
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.template import RequestContext, loader
+from django.template import loader
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login, logout
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 
 from . forms import form_user_login
 from . metadata import PROJECT_METADATA as PM
@@ -30,7 +33,6 @@ class ImprintView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        imprint_url = get_imprint_url()
         r = requests.get(get_imprint_url())
 
         if r.status_code == 200:
@@ -38,7 +40,8 @@ class ImprintView(TemplateView):
         else:
             context['imprint_body'] = """
             On of our services is currently not available. Please try it later or write an email to
-            acdh@oeaw.ac.at; if you are service provide, make sure that you provided ACDH_IMPRINT_URL and REDMINE_ID
+            acdh@oeaw.ac.at; if you are service provide,\
+                make sure that you provided ACDH_IMPRINT_URL and REDMINE_ID
             """
         return context
 
@@ -56,9 +59,13 @@ class GenericWebpageView(TemplateView):
         try:
             loader.select_template([template_name])
             template_name = "webpage/{}.html".format(self.kwargs.get("template", 'index'))
-        except:
+        except:  # noqa: E722
             template_name = "webpage/index.html"
         return [template_name]
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(GenericWebpageView, self).dispatch(*args, **kwargs)
 
 
 #################################################################
