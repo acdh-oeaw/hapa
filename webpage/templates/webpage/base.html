@@ -105,6 +105,11 @@
                                         </li>
                                     {% endif %}
                                 {% endif %}
+                                {% if user.is_authenticated %}
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{% url 'bib:synczotero' %}">Syn-Zotero</span></a>
+                                  </li>
+                                {% endif %}
                             </ul>
                             <ul class="navbar-nav justify-content-end">
                                 {% if user.is_authenticated %}
