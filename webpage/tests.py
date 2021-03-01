@@ -10,7 +10,7 @@ class WebpageTest(TestCase):
 
     def test_webpage(self):
         rv = self.client.get('/')
-        self.assertEqual(rv.status_code, 200)
+        self.assertEqual(rv.status_code, 302)
         # self.assertContains(rv, 'Django Base Project')
         rv = self.client.get('/accounts/login/')
         self.assertContains(rv, 'Username')
