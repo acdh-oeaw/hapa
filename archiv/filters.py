@@ -59,6 +59,7 @@ class HapaBelegListFilter(django_filters.FilterSet):
             'full_quote',
             'time_of_origin_start',
             'time_of_origin_end',
+            # 'tags',
             ]
 
 
