@@ -34,6 +34,7 @@ class HapaBelegFilterFormHelper(FormHelper):
                     'Advanced search',
                     'zotero_id',
                     'text',
+                    'tags',
                     'page',
                     'short_quote',
                     'full_quote',
@@ -94,6 +95,7 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                     'lat',
                     'long',
                     'adm_unit',
+                    'tags',
                     css_id="more"
                     ),
                 AccordionGroup(

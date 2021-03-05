@@ -2,6 +2,7 @@
 import django_filters
 
 from dal import autocomplete
+from taggit.models import Tag
 
 from vocabs.models import SkosConcept
 from bib.models import ZotItem
@@ -25,6 +26,11 @@ class HapaBelegListFilter(django_filters.FilterSet):
         widget=autocomplete.Select2Multiple(
             url="bib:zotitem-autocomplete",
         )
+    )
+    tags = django_filters.ModelMultipleChoiceFilter(
+        queryset=Tag.objects.all(),
+        help_text='Tags',
+        label='Tags'
     )
     text = django_filters.CharFilter(
         lookup_expr='icontains',
@@ -59,11 +65,16 @@ class HapaBelegListFilter(django_filters.FilterSet):
             'full_quote',
             'time_of_origin_start',
             'time_of_origin_end',
-            # 'tags',
+            'tags',
             ]
 
 
 class HapaPlaceNameListFilter(django_filters.FilterSet):
+    tags = django_filters.ModelMultipleChoiceFilter(
+        queryset=Tag.objects.all(),
+        help_text='Tags',
+        label='Tags'
+    )
     legacy_id = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=HapaPlaceName._meta.get_field('legacy_id').help_text,
@@ -131,4 +142,5 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
             'lat',
             'long',
             'adm_unit',
+            'tags',
         ]
