@@ -26,6 +26,15 @@
     <link rel="stylesheet" id="fundament-styles"  href="{{ SHARED_URL }}fundament/dist/fundament/css/fundament.min.css" type="text/css"/>
     <link rel="stylesheet" href="{% static 'webpage/css/style.css' %}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ SHARED_URL }}apis/libraries/scroll-to-top/css/ap-scroll-top.min.css" />
+    <style>
+        @font-face {
+          font-family: 'myFirstFont';
+          src: url({% static 'webpage/fonts/times_new_uni.ttf' %});
+        }
+        * {
+           font-family: myFirstFont;
+        }
+      </style>
     <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
     <script type="text/javascript">
         window.cookieconsent_options = {
