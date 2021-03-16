@@ -89,7 +89,7 @@ class HapaPlaceNameListView(GenericListView):
 class HapaPlaceNameDetailView(BaseDetailView):
 
     model = HapaPlaceName
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/place_detail.html'
 
 
 class HapaPlaceNameCreate(BaseCreateView):
