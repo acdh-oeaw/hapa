@@ -6,7 +6,7 @@ from crispy_forms.bootstrap import Accordion, AccordionGroup
 from dal import autocomplete
 
 from leaflet.forms.widgets import LeafletWidget
-
+from mptt.forms import TreeNodeChoiceField
 
 from vocabs.models import SkosConcept
 from . models import (
@@ -55,7 +55,10 @@ class HapaBelegForm(forms.ModelForm):
 
     class Meta:
         model = HapaBeleg
-        fields = "__all__"
+        exclude = (
+            'legacy_id',
+            'orig_data_csv',
+        )
         widgets = {
             'zotero_id': autocomplete.ModelSelect2(
                 url='bib:zotitem-autocomplete'),
@@ -108,12 +111,12 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
 
 
 class HapaPlaceNameForm(forms.ModelForm):
-    orig_sprache = forms.ModelChoiceField(
+    orig_sprache = TreeNodeChoiceField(
         required=False,
         label="Sprache",
         queryset=SkosConcept.objects.filter(collection__name="orig_sprache")
     )
-    adm_unit = forms.ModelChoiceField(
+    adm_unit = TreeNodeChoiceField(
         required=False,
         label="Administrative Einheit",
         queryset=SkosConcept.objects.filter(collection__name="adm_unit")
@@ -121,7 +124,10 @@ class HapaPlaceNameForm(forms.ModelForm):
 
     class Meta:
         model = HapaPlaceName
-        fields = "__all__"
+        exclude = (
+            'legacy_id',
+            'orig_data_csv',
+        )
         widgets = {
             'beleg': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:hapabeleg-autocomplete'
