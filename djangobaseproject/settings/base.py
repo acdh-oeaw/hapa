@@ -129,6 +129,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 ARCHE_SETTINGS = {
     'project_name': "hapa",
@@ -163,6 +166,56 @@ CUSTOM_SPECIAL_CHARS = "ĀāĂăĄąĆćČčĐđĒēĔĕĖėĘęĚěĜĝĨĩĪī
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'specialChars': [x for x in CUSTOM_SPECIAL_CHARS] + DEFAULT_SPECIAL_CHARS
+        # 'skin': 'office2013',
+        'specialChars': [x for x in CUSTOM_SPECIAL_CHARS] + DEFAULT_SPECIAL_CHARS,
+        'toolbar_YourCustomToolbarConfig': [
+            {
+                'name': 'document',
+                'items': [
+                    'Source', '-', 'Preview', 'Print', 'Templates', 'Maximize', 'ShowBlocks'
+                ]
+            },
+            {
+                'name': 'clipboard',
+                'items': [
+                    'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'
+                ]
+            },
+            {
+                'name': 'paragraph',
+                'items': [
+                    'NumberedList', 'BulletedList', 'Outdent', 'Indent',
+                    'Blockquote', 'CreateDiv', 'JustifyLeft', 'JustifyCenter',
+                    'JustifyRight', 'JustifyBlock', 'Language'
+                ]
+            },
+            {
+                'name': 'links',
+                'items': ['Link', 'Unlink', 'Anchor']},
+            {
+                'name': 'insert',
+                'items': [
+                    'Table', 'HorizontalRule', 'PageBreak']},
+            {
+                'name': 'styles',
+                'items': [
+                    'Styles', 'Format', 'Font', 'FontSize'
+                ]
+            },
+            {
+                'name': 'colors',
+                'items': [
+                    'TextColor', 'BGColor'
+                ]
+            },
+            {
+                'name': 'basicstyles',
+                'items': [
+                    'Bold', 'Italic', 'Underline', 'Strike',
+                    'Subscript', 'Superscript', 'RemoveFormat', 'SpecialChar'
+                ]
+            },
+        ],
+        'toolbar': 'YourCustomToolbarConfig',
     }
 }
