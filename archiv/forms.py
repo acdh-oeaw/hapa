@@ -116,10 +116,13 @@ class HapaPlaceNameForm(forms.ModelForm):
         label="Sprache",
         queryset=SkosConcept.objects.filter(collection__name="orig_sprache")
     )
-    adm_unit = TreeNodeChoiceField(
+    adm_unit = forms.ModelChoiceField(
         required=False,
         label="Administrative Einheit",
-        queryset=SkosConcept.objects.filter(collection__name="adm_unit")
+        queryset=SkosConcept.objects.filter(collection__name="adm_unit"),
+        widget=autocomplete.ModelSelect2(
+                url='archiv-ac:adm-units'
+            ),
     )
 
     class Meta:
