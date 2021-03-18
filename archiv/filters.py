@@ -122,7 +122,7 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
         help_text=HapaPlaceName._meta.get_field('adm_unit').help_text,
         label=HapaPlaceName._meta.get_field('adm_unit').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/adm_unit",
+            url='archiv-ac:adm-units',
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,

@@ -130,6 +130,7 @@ class HapaPlaceNameForm(forms.ModelForm):
         exclude = (
             'legacy_id',
             'orig_data_csv',
+            'point',
         )
         widgets = {
             'beleg': autocomplete.ModelSelect2Multiple(
