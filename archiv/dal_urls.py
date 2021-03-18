@@ -5,6 +5,11 @@ from . import dal_views
 app_name = 'archiv'
 urlpatterns = [
     url(
+        r'^adm-units/$',
+        dal_views.AdmUnitsAC.as_view(),
+        name='adm-units'
+    ),
+    url(
         r'^hapabeleg-autocomplete/$',
         dal_views.HapaBelegAC.as_view(),
         name='hapabeleg-autocomplete'
