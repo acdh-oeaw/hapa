@@ -101,6 +101,14 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
             url="archiv-ac:hapabeleg-autocomplete",
         )
     )
+    beleg__zotero_id = django_filters.ModelMultipleChoiceFilter(
+        queryset=ZotItem.objects.all(),
+        help_text='Bibliographischer Eintrag',
+        label='Bibliographischer Eintrag',
+        widget=autocomplete.Select2Multiple(
+            url="bib:zotitem-autocomplete",
+        )
+    )
     orig_sprache = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
             collection__name="orig_sprache"
@@ -108,7 +116,7 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
         help_text=HapaPlaceName._meta.get_field('orig_sprache').help_text,
         label=HapaPlaceName._meta.get_field('orig_sprache').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/orig_sprache",
+            url="archiv-ac:orig-sprache",
             attrs={
                 'data-placeholder': 'Autocomplete ...',
                 'data-minimum-input-length': 2,
@@ -129,18 +137,39 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
                 },
         )
     )
+    wortbildung = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=HapaPlaceName._meta.get_field('wortbildung').help_text,
+        label=HapaPlaceName._meta.get_field('wortbildung').verbose_name
+    )
+    etymology = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=HapaPlaceName._meta.get_field('etymology').help_text,
+        label=HapaPlaceName._meta.get_field('etymology').verbose_name
+    )
+    syntax = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=HapaPlaceName._meta.get_field('syntax').help_text,
+        label=HapaPlaceName._meta.get_field('syntax').verbose_name
+    )
+    comment = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=HapaPlaceName._meta.get_field('comment').help_text,
+        label=HapaPlaceName._meta.get_field('comment').verbose_name
+    )
+    internal_comment = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=HapaPlaceName._meta.get_field('internal_comment').help_text,
+        label=HapaPlaceName._meta.get_field('internal_comment').verbose_name
+    )
 
     class Meta:
         model = HapaPlaceName
-        fields = [
-            'id',
+        exclude = [
             'legacy_id',
-            'name',
-            'geonames',
-            'beleg',
-            'orig_sprache',
+            'point',
+            'fuzzy_geom',
             'lat',
             'long',
-            'adm_unit',
-            'tags',
+            'orig_data_csv',
         ]
