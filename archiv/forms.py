@@ -57,10 +57,7 @@ class HapaBelegForm(forms.ModelForm):
 
     class Meta:
         model = HapaBeleg
-        exclude = (
-            'legacy_id',
-            'orig_data_csv',
-        )
+        exclude = ()
         widgets = {
             'zotero_id': autocomplete.ModelSelect2(
                 url='bib:zotitem-autocomplete'),
@@ -136,10 +133,7 @@ class HapaPlaceNameForm(forms.ModelForm):
 
     class Meta:
         model = HapaPlaceName
-        exclude = (
-            'legacy_id',
-            'orig_data_csv',
-        )
+        exclude = ()
         widgets = {
             'beleg': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:hapabeleg-autocomplete'

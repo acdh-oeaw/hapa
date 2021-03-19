@@ -37,7 +37,6 @@ class HapaBelegAC(autocomplete.Select2QuerySetView):
 
         if self.q:
             qs = qs.filter(
-                Q(legacy_id__icontains=self.q) |
                 Q(short_quote__icontains=self.q)
             )
         return qs
@@ -49,7 +48,6 @@ class HapaPlaceNameAC(autocomplete.Select2QuerySetView):
 
         if self.q:
             qs = qs.filter(
-                Q(legacy_id__icontains=self.q) |
                 Q(name__icontains=self.q)
             )
         return qs
