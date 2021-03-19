@@ -14,11 +14,6 @@ from . models import (
 
 
 class HapaBelegListFilter(django_filters.FilterSet):
-    legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=HapaBeleg._meta.get_field('legacy_id').help_text,
-        label=HapaBeleg._meta.get_field('legacy_id').verbose_name
-    )
     zotero_id = django_filters.ModelMultipleChoiceFilter(
         queryset=ZotItem.objects.all(),
         help_text=HapaBeleg._meta.get_field('zotero_id').help_text,
@@ -67,7 +62,6 @@ class HapaBelegListFilter(django_filters.FilterSet):
         model = HapaBeleg
         fields = [
             'id',
-            'legacy_id',
             'zotero_id',
             'text',
             'page',
@@ -84,11 +78,6 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
         queryset=Tag.objects.all(),
         help_text='Tags',
         label='Tags'
-    )
-    legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=HapaPlaceName._meta.get_field('legacy_id').help_text,
-        label=HapaPlaceName._meta.get_field('legacy_id').verbose_name
     )
     name = django_filters.CharFilter(
         lookup_expr='icontains',
@@ -176,7 +165,6 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
     class Meta:
         model = HapaPlaceName
         exclude = [
-            'legacy_id',
             'point',
             'fuzzy_geom',
             'lat',

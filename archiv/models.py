@@ -25,10 +25,6 @@ models.Field.set_extra = set_extra
 
 class HapaBeleg(models.Model):
     """ Beleg """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
     zotero_id = models.ForeignKey(
         ZotItem,
         related_name='rvn_hapabeleg_zotero_id_zotitem',
@@ -179,10 +175,6 @@ class HapaBeleg(models.Model):
 
 class HapaPlaceName(models.Model):
     """ Ortsname """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
     name = models.CharField(
         max_length=250,
         blank=True,
@@ -336,7 +328,7 @@ class HapaPlaceName(models.Model):
         if self.name:
             return "{}".format(self.name)
         else:
-            return "{}".format(self.legacy_id)
+            return "{}".format(self.id)
 
     def field_dict(self):
         return model_to_dict(self)
