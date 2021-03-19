@@ -52,6 +52,16 @@ class HapaBelegListFilter(django_filters.FilterSet):
         help_text=HapaBeleg._meta.get_field('full_quote').help_text,
         label=HapaBeleg._meta.get_field('full_quote').verbose_name
     )
+    comment = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=HapaBeleg._meta.get_field('comment').help_text,
+        label=HapaBeleg._meta.get_field('comment').verbose_name
+    )
+    internal_comment = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=HapaBeleg._meta.get_field('internal_comment').help_text,
+        label=HapaBeleg._meta.get_field('internal_comment').verbose_name
+    )
 
     class Meta:
         model = HapaBeleg

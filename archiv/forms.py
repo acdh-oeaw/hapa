@@ -40,11 +40,13 @@ class HapaBelegFilterFormHelper(FormHelper):
                     'full_quote',
                     'time_of_origin_start',
                     'time_of_origin_end',
+                    'comment',
                     css_id="more"
                     ),
                 AccordionGroup(
                     'admin',
-                    'legacy_id',
+                    'tags',
+                    'internal_comment',
                     css_id="admin_search"
                     ),
                 )
