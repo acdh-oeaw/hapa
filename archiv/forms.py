@@ -90,20 +90,27 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                 ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
+                    'Geographie',
                     'name',
                     'geonames',
-                    'beleg',
-                    'orig_sprache',
-                    'lat',
-                    'long',
                     'adm_unit',
-                    'tags',
                     css_id="more"
                     ),
                 AccordionGroup(
+                    'Etymologisches',
+                    'orig_sprache',
+                    'wortbildung',
+                    'etymology',
+                    'syntax',
+                    'comment',
+                    'beleg',
+                    # 'beleg__zotero_id',
+                    css_id="etym"
+                    ),
+                AccordionGroup(
                     'admin',
-                    'legacy_id',
+                    'tags',
+                    'internal_comment',
                     css_id="admin_search"
                     ),
                 )
@@ -130,7 +137,6 @@ class HapaPlaceNameForm(forms.ModelForm):
         exclude = (
             'legacy_id',
             'orig_data_csv',
-            'point',
         )
         widgets = {
             'beleg': autocomplete.ModelSelect2Multiple(
@@ -140,6 +146,7 @@ class HapaPlaceNameForm(forms.ModelForm):
                 url='gn_places-ac:geonamesplace-autocomplete'
             ),
             'fuzzy_geom': LeafletWidget(),
+            'point': LeafletWidget(),
         }
 
     def __init__(self, *args, **kwargs):

@@ -7,6 +7,18 @@ from . models import HapaBeleg, HapaPlaceName
 from vocabs.models import SkosConcept
 
 
+class LangAC(autocomplete.Select2QuerySetView):
+    def get_result_label(self, item):
+        level_indicator = DEFAULT_LEVEL_INDICATOR * item.level
+        return level_indicator + ' ' + str(item)
+
+    def get_queryset(self):
+        qs = SkosConcept.objects.filter(collection__name='orig_sprache')
+        if self.q:
+            qs = qs.filter(pref_label__icontains=self.q)
+        return qs
+
+
 class AdmUnitsAC(autocomplete.Select2QuerySetView):
     def get_result_label(self, item):
         level_indicator = DEFAULT_LEVEL_INDICATOR * item.level

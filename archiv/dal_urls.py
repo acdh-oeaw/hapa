@@ -10,6 +10,11 @@ urlpatterns = [
         name='adm-units'
     ),
     url(
+        r'^orig-sprache/$',
+        dal_views.LangAC.as_view(),
+        name='orig-sprache'
+    ),
+    url(
         r'^hapabeleg-autocomplete/$',
         dal_views.HapaBelegAC.as_view(),
         name='hapabeleg-autocomplete'
