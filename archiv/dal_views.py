@@ -21,11 +21,15 @@ class LangAC(autocomplete.Select2QuerySetView):
 
 class AdmUnitsAC(autocomplete.Select2QuerySetView):
     def get_result_label(self, item):
-        level_indicator = DEFAULT_LEVEL_INDICATOR * item.level
-        return level_indicator + ' ' + str(item)
+        result = f"{item} << {item.broader_concept} << {item.broader_concept.broader_concept}"
+        return result
 
     def get_queryset(self):
-        qs = SkosConcept.objects.filter(collection__name='adm_unit')
+        qs = SkosConcept.objects.filter(
+            collection__name='adm_unit'
+        ).filter(
+            narrower_concepts=None
+        )
         if self.q:
             qs = qs.filter(pref_label__icontains=self.q)
         return qs
