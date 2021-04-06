@@ -51,3 +51,4 @@ env
 htmlcov
 coverage.xml
 static
+bib
