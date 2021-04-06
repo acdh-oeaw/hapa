@@ -112,7 +112,7 @@ class HapaBeleg(models.Model):
 
     def __str__(self):
         if self.short_quote and self.zotero_id:
-            quote = f"{self.zotero_id.author}, {self.short_quote}"
+            quote = f"{self.short_quote}"
         else:
             quote = f"{self.id}"
         if self.page:
@@ -123,7 +123,7 @@ class HapaBeleg(models.Model):
     def save(self, *args, **kwargs):
         if self.zotero_id:
             self.full_quote = self.zotero_id.zot_bibtex
-            self.short_quote = self.zotero_id.zot_title
+            self.short_quote = f"{self.zotero_id.author}, {self.zotero_id.zot_title}"
         super(HapaBeleg, self).save(*args, **kwargs)
 
     def field_dict(self):
