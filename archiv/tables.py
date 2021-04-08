@@ -11,7 +11,9 @@ class HapaBelegTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
     tags = tables.ManyToManyColumn()
-    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    text = tables.TemplateColumn("{{ record.text|safe }}")
+    comment = tables.TemplateColumn("{{ record.comment|safe }}")
+    internal_comment = tables.TemplateColumn("{{ record.internal_comment|safe }}")
 
     class Meta:
         model = HapaBeleg
@@ -25,6 +27,11 @@ class HapaPlaceNameTable(tables.Table):
     tags = tables.ManyToManyColumn()
     # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
     beleg = tables.columns.ManyToManyColumn()
+    wortbildung = tables.TemplateColumn("{{ record.wortbildung|safe }}")
+    etymology = tables.TemplateColumn("{{ record.etymology|safe }}")
+    syntax = tables.TemplateColumn("{{ record.syntax|safe }}")
+    comment = tables.TemplateColumn("{{ record.comment|safe }}")
+    internal_comment = tables.TemplateColumn("{{ record.internal_comment|safe }}")
 
     class Meta:
         model = HapaPlaceName
