@@ -95,6 +95,11 @@ class HapaBeleg(models.Model):
     ).set_extra(
         is_public=False,
     )
+    unclear = models.BooleanField(
+        default=False,
+        help_text="Eintrag mit offenen Fragen",
+        verbose_name="unklar"
+    )
     orig_data_csv = models.TextField(
         blank=True,
         null=True,
@@ -299,6 +304,11 @@ class HapaPlaceName(models.Model):
         help_text="Kommentar (intern)",
     ).set_extra(
         is_public=False,
+    )
+    unclear = models.BooleanField(
+        default=False,
+        help_text="Eintrag mit offenen Fragen",
+        verbose_name="unklar"
     )
     orig_data_csv = models.TextField(
         blank=True,
