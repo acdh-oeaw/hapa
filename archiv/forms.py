@@ -85,6 +85,7 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'name',
+                'alternative_names',
                 css_id="basic_search_fields"
                 ),
             Accordion(
