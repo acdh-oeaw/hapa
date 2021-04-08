@@ -155,12 +155,12 @@
           <tbody>
             {% for x in object.beleg.all %}
             <td>
-              <a href="{{ x.get_absolute_url }}">{{ x.zotero_id.zot_key }}</a>
+              <a href="{{ x.zotero_id.zot_html_link }}">{{ x.zotero_id.zot_key }}</a>
             </td>
             <td>{{ x.short_quote }}</td>
             <td>{{ x.page }}</td>
             <td>{{ x.time_of_origin_start }} - {{ x.time_of_origin_end }} </td>
-            <td>{{ x.text }}</td>
+            <td>{{ x.text|safe }}</td>
             {% endfor %}
           </tbody>
         </table>
