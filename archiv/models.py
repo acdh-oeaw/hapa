@@ -189,6 +189,14 @@ class HapaPlaceName(models.Model):
         is_public=True,
         arche_prop="hasTitle",
     )
+    alternative_names = models.TextField(
+        blank=True,
+        verbose_name="Alternative Namen",
+        help_text="Alternative Namen, verwende '; ' als Trennzeichen",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasAlternativeTitle",
+    )
     geonames = models.ForeignKey(
         GeoNamesPlace,
         related_name='rvn_hapaplacename_geonames_geonamesplace',
