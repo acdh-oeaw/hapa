@@ -55,89 +55,42 @@
   </div>
   <div class="card-body">
     {% block custom %}
-    <legend>Basic Information</legend>
     <div class="row">
       <div class="col-md-6">
-        <table class="table table-responsive table-hover">
-          {% for x in object.field_dict %}
-          {% if x.value %}
-          {% if user.is_authenticated %}
-          <tr>
-            <th>
-              {% if x.help_text %}
-              <abbr title="{{ x.help_text }}">{{ x.verbose_name }}</abbr>
-              {% else %}
-              {{ x.verbose_name }}
-              {% endif %}
-            </th>
-            <td>
-              {% if x.f_type == 'M2M' %}
-              {% for y in x.value %}
-              <li>
-                <a href="{{ y.get_absolute_url }}">{{ y }}</a>
-              </li>
-              {% endfor %}
-              {% elif  x.f_type == 'FK' %}
-              <a href="{{ x.value.get_absolute_url }}">{{ x.value }}</a>
-              {% elif  x.f_type == 'FK' %}
-              <a href="{{ x.value.get_absolute_url }}">{{ x.value }}</a>
-              {% elif  x.f_type == 'REVRESE_RELATION' %}
-              {% for y in x.value %}
-              <li>
-                <a href="{{ y.get_absolute_url }}">{{ y }}</a>
-              </li>
-              {% endfor %}
-
-              {% elif  x.f_type == 'SIMPLE' %}
-              {{ x.value|safe }}
-              {% endif %}
-            </td>
-          </tr>
-          {% elif not x.extra_fields or x.extra_fields.is_public %}
-          {% if x.verbose_name != "The original data" and x.verbose_name != "ID" and x.verbose_name != "Matches FileChecker Entry" %}
-          <tr>
-            <th>
-              {% if x.help_text %}
-              <abbr title="{{ x.help_text }}">{{ x.verbose_name }}</abbr>
-              {% else %}
-              {{ x.verbose_name }}
-              {% endif %}
-            </th>
-            <td>
-              {% if x.f_type == 'M2M' %}
-              {% for y in x.value %}
-              <li>
-                <a href="{{ y.get_absolute_url }}">{{ y }}</a>
-              </li>
-              {% endfor %}
-              {% elif  x.f_type == 'FK' %}
-              <a href="{{ x.value.get_absolute_url }}">
-                {% if x.verbose_name == "Copyright" %}
-                {{ x.value|upper }}
-                {% else %}
-                {{ x.value }}
-                {% endif %}
-              </a>
-              {% elif  x.f_type == 'FK' %}
-              <a href="{{ x.value.get_absolute_url }}"></a>
-              {% elif  x.f_type == 'REVRESE_RELATION' %}
-              {% for y in x.value %}
-              <li>
-                <a href="{{ y.get_absolute_url }}">{{ y|upper }}</a>
-              </li>
-              {% endfor %}
-
-              {% elif  x.f_type == 'SIMPLE' %}
-              {{ x.value|safe }}
-              {% endif %}
-            </td>
-          </tr>
-          {% endif %}
-          {% endif %}
-          {% endif %}
-          {% endfor %}
-        </table>
-        <legend>Belege</legend>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Info</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-responsive table-hover">
+              <tr>
+                <th>Name</th>
+                <td>{{ object.name }}</td>
+              </tr>
+              <tr>
+                <th>Alternative Bezeichnungen</th>
+                <td>{{ object.alternative_names }}</td>
+              </tr>
+              <tr>
+                <th>Sprache</th>
+                <td>{{ object.orig_sprache }}</td>
+              </tr>
+              <tr>
+                <th>Administrative Einheit</th>
+                <td>{{ object.adm_unit }} >> {{ object.adm_unit.broader_concept }}</td>
+              </tr>
+              <tr>
+                <th>Historischer Ort</th>
+                <td>{{ object.historic }}</td>
+              </tr>
+            </table>
+            <legend>Wortbildung</legend>
+            <div>{{ object.wortbildung|safe }}</div>
+            <legend>Etymologie</legend>
+            <div>{{ object.etymology|safe }}</div>
+            <legend>Syntax</legend>
+            <div>{{ object.syntax|safe }}</div>
+            <legend>Belege</legend>
         <table class="table table-responsive table-hover">
           <thead>
             <tr>
@@ -164,6 +117,28 @@
             {% endfor %}
           </tbody>
         </table>
+            <hr />
+            <legend>Intern</legend>
+            <table class="table table-responsive table-hover">
+              <tr>
+                <th>Fraglich</th>
+                <td>{{ object.unclear }}</td>
+              </tr>
+              <tr>
+                <th>Anmerkung</th>
+                <td>{{ object.internal_comment|safe }}</td>
+              </tr>
+              <tr>
+                <th>Tags</th>
+                <td>
+                  {% for x in object.tags.all %}
+                  <span class="badge badge-secondary">{{ x.name }}</span>
+                  {% endfor %}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
       <div class="col-md-6">
         <div class="card">
