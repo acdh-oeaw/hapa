@@ -26,7 +26,7 @@ class HapaBelegFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Basic search options',
-                'id',
+                'short_quote',
                 css_id="basic_search_fields"
                 ),
             Accordion(
@@ -36,7 +36,6 @@ class HapaBelegFilterFormHelper(FormHelper):
                     'text',
                     'tags',
                     'page',
-                    'short_quote',
                     'full_quote',
                     'time_of_origin_start',
                     'time_of_origin_end',
@@ -47,6 +46,7 @@ class HapaBelegFilterFormHelper(FormHelper):
                     'admin',
                     'tags',
                     'internal_comment',
+                    'unclear',
                     css_id="admin_search"
                     ),
                 )
@@ -84,13 +84,12 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Basic search options',
-                'id',
+                'name',
                 css_id="basic_search_fields"
                 ),
             Accordion(
                 AccordionGroup(
                     'Geographie',
-                    'name',
                     'geonames',
                     'adm_unit',
                     css_id="more"
@@ -110,6 +109,7 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                     'admin',
                     'tags',
                     'internal_comment',
+                    'unclear',
                     css_id="admin_search"
                     ),
                 )
