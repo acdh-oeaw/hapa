@@ -96,7 +96,7 @@ class HapaPlaceNameCreate(BaseCreateView):
 
     model = HapaPlaceName
     form_class = HapaPlaceNameForm
-    template_name = 'archiv/generic_create.html'
+    template_name = 'archiv/placename_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -107,7 +107,7 @@ class HapaPlaceNameUpdate(BaseUpdateView):
 
     model = HapaPlaceName
     form_class = HapaPlaceNameForm
-    template_name = 'archiv/generic_create.html'
+    template_name = 'archiv/placename_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
