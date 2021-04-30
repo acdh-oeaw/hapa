@@ -3,26 +3,31 @@
 {% load stats_extras %}
 {% load webpage_extras %}
 {% block content %}
-
-        <div class="jumbotron" style="background-image: url('https://www.larsreisen.de/wp-content/uploads/2019/03/Albanien-2018-1-von-105.jpg'); background-repeat: no-repeat; background-position: center center; background-size:cover; height: 500px;">
-            <div class="container">
-                <h1 style="text-align:center; color: white;">{% projects_metadata 'title' %}</h1>
-                <h3 style="text-align:center; color: white;">{% projects_metadata 'subtitle' %}</h3>
-                <div style="text-align:center;" >
-                    <small style="color: white;">Bildnachweis: <a href="https://www.larsreisen.de/2019/03/09/ein-kurzer-rueckblick-auf-den-herbst-albanien-2018-teil-2/" style="color: whitesmoke;">https://www.larsreisen.de/</a></small>
-                </div>
+    <div class="jumbotron" style="background-image: url('https://www.larsreisen.de/wp-content/uploads/2019/03/Albanien-2018-1-von-105.jpg'); background-repeat: no-repeat; background-position: center center; background-size:cover; height: 500px;">
+        <div class="container hero-title-img" style="background-color:rgba(235,233,231,0.70) !important; text-align:center;">
+            <h1 style="text-align:center; color: #000;">{% projects_metadata 'title' %}</h1>
+            <h3 style="text-align:center; color: #000;">{% projects_metadata 'subtitle' %}</h3>
+            <div style="text-align:center;" >
+                <small style="color: #000;">Bildnachweis: <a href="https://www.larsreisen.de/2019/03/09/ein-kurzer-rueckblick-auf-den-herbst-albanien-2018-teil-2/" style="color: #262626;">https://www.larsreisen.de/</a></small>
             </div>
+            <a href="https://hapa.ihb.oeaw.ac.at/" target="_blank">
+                <img style="max-width: 258.9px;max-height:257.7px;margin:1em 0 .7em 0;" src="https://hapa.ihb.oeaw.ac.at/wp-content/uploads/2021/04/hapa-logo-transparent.png" title="Logo Hapa" alt="{% projects_metadata 'title' %}" itemprop="{% projects_metadata 'title' %}"/>
+            </a>
         </div>
-
+    </div>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12" style="text-align:center">
-                <h4>Data-Count</h4>
+        <div class="row">  
+            <div class="col-md-12" style="text-align:center">                    
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Data-Count</h4>
+                    </div>
+                </div>
             </div>
             {% create_object_count app='archiv' as models %}
             {% for x in models %}
                 <div class="col-md-4  text-center">
-                    <div class="card flex-md-row mb-4 box-shadow">
+                    <div class="card flex-md-row mb-4 box-shadow">                        
                         <div class="card-body">
                             <h4 class="mb-0">{{x.name}}</h4>
                             <h4 class="count">{{ x.count }}</h4>

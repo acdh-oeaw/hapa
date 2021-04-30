@@ -1,11 +1,10 @@
 html {
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    height: 100%;
     font-family: 'Libre Franklin', sans-serif;
 }
 
@@ -55,6 +54,10 @@ header {
     flex: 0 0 auto;
 }
 
+.hero-title-img{
+    max-width:30% !important;
+}
+
 .main-content{
     flex: 1 0 auto;
 }
@@ -91,11 +94,17 @@ footer {
     #github-logo {
         width: 7%;
     }
+    .hero-title-img{
+        max-width:100% !important;
+    }    
 }
 
 @media (min-width: 768px) and (max-width: 1105px) {
     .navbar-right {
         float: none !important;
+    }
+    .hero-title-img{
+        max-width:100% !important;
     }
 }
 
