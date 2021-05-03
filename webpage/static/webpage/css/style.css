@@ -47,7 +47,7 @@ span.select2-container--default .select2-selection--single .select2-selection__r
 }
 
 a {
-    color: #295495;
+    color: #e35205;
 }
 
 header {
@@ -115,12 +115,22 @@ footer {
     white-space: normal;
     margin-bottom: 10px;
     border-color: #e35205;
-    color:#000;
+    color:#e35205;
+    background-color: transparent;
 }
 .btn:hover {
     background-color: #e35205;
     border-color: #e35205;
-    color:#000;
+    color:#444;
+}
+.pagination li a {
+    border-color: #e35205 !important;
+    background-color: #e35205 !important;
+    color: #444 !important;
+    padding: .2em;
+}
+.pagination li {
+    padding: 0 .3em;
 }
 .separate-panel legend, .legend-blue {
     /*change color of border when the pallete is chosen*/
