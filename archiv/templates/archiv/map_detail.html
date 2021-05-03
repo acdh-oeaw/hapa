@@ -4,8 +4,8 @@
 {% load webpage_extras %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block scriptHeader %}
-{% leaflet_js %}
-{% leaflet_css %}
+    {% leaflet_js %}
+    {% leaflet_css %}
 {% endblock scriptHeader %}
 {% block content %}
     <div class="container">
@@ -17,17 +17,15 @@
                     </div>
                     <div class="card-body">
                         <script type="text/javascript">
-                            function map_init_basic(map, options) {
-                                var coords = ["test"];
-                                                                        
-                                console.log(coords);
-                                var placeName = "<a href='{{ object.get_absolute_url }}'>{{ object.name }}</a>"
-                                var lat = "{{ object.lat }}"
-                                var lng = "{{ object.long }}"
-                                L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map)
-                                    .bindPopup(placeName)
-                                    .openPopup();
-                            };
+                            function map_init_basic(map, options) {   
+                                {% for x in placename_object.all %}
+                                {% if x.lat %}
+                                    L.marker([ parseFloat("{{ x.lat }}"), parseFloat("{{ x.long }}") ]).addTo(map)
+                                    .bindPopup("<a href='{{ x.get_absolute_url }}'>{{ x.name }}</a>")
+                                    .openPopup()
+                                {% endif %}      
+                                {% endfor %}                       
+                            }
                         </script>
                         <div style="padding:0;">
 

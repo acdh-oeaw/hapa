@@ -124,5 +124,9 @@ class HapaPlaceNameDelete(DeleteView):
         return super(HapaPlaceNameDelete, self).dispatch(*args, **kwargs)
 
 class HapaMapDetailView(TemplateView):
-    #model = HapaPlaceName
     template_name = 'archiv/map_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["placename_object"] = HapaPlaceName.objects.all()
+        return context
