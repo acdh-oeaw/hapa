@@ -3,15 +3,12 @@
 {% load stats_extras %}
 {% load webpage_extras %}
 {% block content %}
-    <div class="jumbotron" style="background-image: url('https://www.larsreisen.de/wp-content/uploads/2019/03/Albanien-2018-1-von-105.jpg'); background-repeat: no-repeat; background-position: center center; background-size:cover; height: 500px;">
-        <div class="container hero-title-img" style="background-color:rgba(235,233,231,0.70) !important; text-align:center;">
+    <div class="jumbotron" style="background-image: url({% static 'webpage/img/hero-title-500px.png' %}); background-repeat: no-repeat;  background-size:cover; height: 500px;">
+        <div class="container hero-title-img" style="padding:.5em;background-color:rgba(235,233,231,0.70) !important; text-align:center;">
             <a href="https://hapa.ihb.oeaw.ac.at/">
                 <img style="max-width: 258.9px;max-height:257.7px;margin:1em 0 .7em 0;" src="{% static 'webpage/img/hapa-logo-transparent.png' %}" title="Logo Hapa" alt="{% projects_metadata 'title' %}" itemprop="{% projects_metadata 'title' %}"/>
             </a>
-            <h1 style="text-align:center; color: #000;">{% projects_metadata 'subtitle' %}</h1>
-            <div style="text-align:center;" >
-                <small style="color: #000;">Bildnachweis: <a href="https://www.larsreisen.de/2019/03/09/ein-kurzer-rueckblick-auf-den-herbst-albanien-2018-teil-2/" style="color: #262626;">https://www.larsreisen.de/</a></small>
-            </div>            
+            <h1 style="text-align:center; color: #000;">{% projects_metadata 'subtitle' %}</h1>          
         </div>
     </div>
     <div class="container">
@@ -42,9 +39,7 @@
                     <div class="card-body">
                         <h4 class="mb-0">Map</h4>
                         <h4 class="count">all</h4>
-                        <h4>
-                            <a class="btn btn-main btn-outline-primary btn-sm" href="{% url 'archiv:hapamap_browser' %}" role="button">View Map</a>
-                        </h4>
+                        <a class="btn btn-main btn-outline-primary btn-sm" href="{% url 'archiv:hapamap_browser' %}" role="button">View Map</a>
                     </div>
                 </div>
             </div>
