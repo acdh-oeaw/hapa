@@ -24,7 +24,7 @@ from archiv.models import (
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
 )
-
+from django.views.generic.base import TemplateView
 
 class HapaBelegListView(GenericListView):
 
@@ -122,3 +122,7 @@ class HapaPlaceNameDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(HapaPlaceNameDelete, self).dispatch(*args, **kwargs)
+
+class HapaMapDetailView(TemplateView):
+    #model = HapaPlaceName
+    template_name = 'archiv/map_detail.html'

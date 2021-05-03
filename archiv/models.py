@@ -14,14 +14,12 @@ from bib.models import ZotItem
 
 from browsing.browsing_utils import model_to_dict
 
-
 def set_extra(self, **kwargs):
     self.extra = kwargs
     return self
 
 
 models.Field.set_extra = set_extra
-
 
 class HapaBeleg(models.Model):
     """ Beleg """

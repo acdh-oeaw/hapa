@@ -4,7 +4,7 @@
 PROJECT_METADATA = {
     'title': 'HAPA',
     'author': 'Peter Andorfer',
-    'subtitle': 'History of Albanian Place-names: Albania',
+    'subtitle': 'History of Albanian Place Names',
     'description': 'This project which analyzes the linguistic history of the toponymy in the Southwestern Balkans with thefocus on the place-names of Albania fits into the general research on toponymy. As with theinvestigation of toponymy in other language areas, this analysis also starts from the oldest evidenceavailable and examines the phonetic and semantic changes of place-names over time.',
     'github': 'https://github.com/acdh-oeaw/hapa',
     'purpose_de': 'Publikation von Forschungsdaten',

@@ -1,0 +1,43 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load leaflet_tags %}
+{% load webpage_extras %}
+{% block title %}{{ object.name }}{% endblock %}
+{% block scriptHeader %}
+{% leaflet_js %}
+{% leaflet_css %}
+{% endblock scriptHeader %}
+{% block content %}
+    <div class="container">
+        <div class="row">  
+            <div class="col-md-12" style="text-align:center">                    
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Karte</h4>
+                    </div>
+                    <div class="card-body">
+                        <script type="text/javascript">
+                            function map_init_basic(map, options) {
+                                var coords = ["test"];
+                                                                        
+                                console.log(coords);
+                                var placeName = "<a href='{{ object.get_absolute_url }}'>{{ object.name }}</a>"
+                                var lat = "{{ object.lat }}"
+                                var lng = "{{ object.long }}"
+                                L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map)
+                                    .bindPopup(placeName)
+                                    .openPopup();
+                            };
+                        </script>
+                        <div style="padding:0;">
+
+                            {% leaflet_map "fullmap" callback="window.map_init_basic" %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+{% endblock content %}
