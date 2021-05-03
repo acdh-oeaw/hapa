@@ -51,5 +51,11 @@ urlpatterns = [
     url(
         r'^hapaplacename/delete/(?P<pk>[0-9]+)$',
         views.HapaPlaceNameDelete.as_view(),
-        name='hapaplacename_delete'),
+        name='hapaplacename_delete'
+    ),
+    url(
+        r'^hapamap/$',
+        views.HapaMapDetailView.as_view(),
+        name='hapamap_browse'
+    ),
 ]
