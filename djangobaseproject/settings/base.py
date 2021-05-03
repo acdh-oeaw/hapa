@@ -152,7 +152,7 @@ Z_API_KEY = "somethingelse"
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (41, 20),
-    'DEFAULT_ZOOM': 9,
+    'DEFAULT_ZOOM': 8,
     'MIN_ZOOM': 3,
     'OVERLAYS': []
 }

@@ -56,6 +56,6 @@ urlpatterns = [
     url(
         r'^hapamap/$',
         views.HapaMapDetailView.as_view(),
-        name='hapamap_browse'
+        name='hapamap_browser'
     ),
 ]
