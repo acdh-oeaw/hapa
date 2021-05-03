@@ -114,6 +114,13 @@ footer {
     font-variant: small-caps;*/
     white-space: normal;
     margin-bottom: 10px;
+    border-color: #e35205;
+    color:#000;
+}
+.btn:hover {
+    background-color: #e35205;
+    border-color: #e35205;
+    color:#000;
 }
 .separate-panel legend, .legend-blue {
     /*change color of border when the pallete is chosen*/
@@ -226,9 +233,7 @@ footer {
 
 .btn-index:hover {
    box-shadow: 0px 0px 0px 2px #254aa5;
-
 }
-
 
 .tooltip-inner {
   background-color: #fff !important;
