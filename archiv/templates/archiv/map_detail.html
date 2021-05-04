@@ -1,11 +1,19 @@
 {% extends "webpage/base.html" %}
 {% load static %}
-{% load leaflet_tags %}
 {% load webpage_extras %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block scriptHeader %}
-    {% leaflet_js %}
-    {% leaflet_css %}
+    <!-- ############### leaflet stylesheets ############### -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+    <!-- ############### leaflet script ################ -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 {% endblock scriptHeader %}
 {% block content %}
     <div class="container">
@@ -16,22 +24,33 @@
                         <h4 class="card-title">Karte</h4>
                     </div>
                     <div class="card-body">
-                        <script type="text/javascript">
-                            function map_init_basic(map, options) {   
-                                {% for x in placename_object.all %}
-                                {% if x.lat %}
-                                    L.marker([ parseFloat("{{ x.lat }}"), parseFloat("{{ x.long }}") ]).addTo(map)
-                                    .bindPopup("<a href='{{ x.get_absolute_url }}'>{{ x.name }}</a>")
-                                    .openPopup()
-                                {% endif %}      
-                                {% endfor %}                       
-                            }
-                        </script>
-                        <div style="padding:0;">
-
-                            {% leaflet_map "fullmap" callback="window.map_init_basic" %}
-
+                        <div id="leaflet-map-one" style="padding:0;">
                         </div>
+                        <script type="text/javascript">
+                            // leaflet map initialize
+                            var mymap = L.map('leaflet-map-one').setView([41, 20], 8);
+                            // leaflet map add tileLayer
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: 'Map data &amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+                                maxZoom: 18,
+                                zIndex: 1
+                            }).addTo(mymap);
+                            //create labels for each coordinate; create popup with placenames and link
+                            var markers = L.markerClusterGroup();
+                            {% for x in placename_object.all %}
+                            {% if x.lat %}
+                                markers.addLayer(L.marker([ parseFloat("{{ x.lat }}"), parseFloat("{{ x.long }}") ]))
+                                .bindPopup("<a href='{{ x.get_absolute_url }}'>{{ x.name }}</a>")
+                            {% endif %}      
+                            {% endfor %} 
+                            mymap.addLayer(markers);
+                            // map fitBounds to get view area
+                            try {
+                                mymap.fitBounds(markers.getBounds());
+                            } catch (err) {
+                                console.log(err);
+                            }         
+                        </script>
                     </div>
                 </div>
             </div>
