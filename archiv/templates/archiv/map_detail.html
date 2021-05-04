@@ -21,9 +21,9 @@
             <div class="col-md-12" style="text-align:center">                    
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Karte</h4>
+                        <h4 class="card-title">Karte</h4>                        
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="padding:0 !important;">
                         <div id="leaflet-map-one" style="padding:0;">
                         </div>
                         <script type="text/javascript">
@@ -39,8 +39,10 @@
                             var markers = L.markerClusterGroup();
                             {% for x in placename_object.all %}
                             {% if x.lat %}
-                                markers.addLayer(L.marker([ parseFloat("{{ x.lat }}"), parseFloat("{{ x.long }}") ]))
-                                .bindPopup("<a href='{{ x.get_absolute_url }}'>{{ x.name }}</a>")
+                                var lat = parseFloat("{{ x.lat }}");
+                                var long = parseFloat("{{ x.long }}");
+                                var place = "<a href='{{ x.get_absolute_url }}'>{{ x.name }}</a>";
+                                markers.addLayer(L.marker([ lat, long ]).bindPopup( place ));
                             {% endif %}      
                             {% endfor %} 
                             mymap.addLayer(markers);
