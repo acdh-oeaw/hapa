@@ -35,12 +35,14 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Municipality</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for x in placename_object.all %}                           
                                     <tr>
                                         <td><a class="map-coordinates" href="{{ x.get_absolute_url }}" title="{{ x.name }}" alt="{{ x.name }}" lat="{{ x.lat }}" long="{{ x.long }}">{{ x.name }}</a></td>
+                                        <td><span title="{{ x.adm_unit }}" alt="{{ x.adm_unit }}">{{ x.adm_unit }}</span></td>
                                     </tr>
                                 {% endfor %} 
                             </tbody>
