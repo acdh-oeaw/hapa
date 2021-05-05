@@ -1,6 +1,6 @@
 acdh-django-browsing>=0.1.1
 acdh-django-charts>=0.5.3
-acdh-django-geonames>=0.1.7
+acdh-django-geonames>=0.1.8
 acdh-django-netvis>=0.1.0
 django-taggit==1.3.0
 acdh-django-vocabs>=0.1.3
