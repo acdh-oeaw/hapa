@@ -81,7 +81,7 @@ class HapaPlaceNameListView(GenericListView):
     formhelper_class = HapaPlaceNameFilterFormHelper
     table_class = HapaPlaceNameTable
     init_columns = [
-        'id', 'name',
+        'id', 'name', 'adm_unit'
     ]
     enable_merge = True
 
@@ -122,6 +122,7 @@ class HapaPlaceNameDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(HapaPlaceNameDelete, self).dispatch(*args, **kwargs)
+
 
 class HapaMapDetailView(TemplateView):
     template_name = 'archiv/map_detail.html'
