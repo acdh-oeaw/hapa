@@ -37,3 +37,4 @@ class HapaPlaceNameTable(tables.Table):
         model = HapaPlaceName
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}
+        order_by = ['-id', ]
