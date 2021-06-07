@@ -218,10 +218,10 @@ CKEDITOR_CONFIGS = {
         ],
         'toolbar': 'YourCustomToolbarConfig',
         'font_names': 
-            'Arial/Arial;' 
-            'Times New Roman;' 
+            'Arial/Arial;'
+            'Times New Roman;'
             'Verdana;',
-        'font_defaultLabel': 'Trebuchet MS',
+        'font_defaultLabel': 'Arial',
         'fontSize_defaultLabel': '12px'
     }
 }
