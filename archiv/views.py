@@ -35,7 +35,8 @@ class HapaBelegListView(GenericListView):
     init_columns = [
         'id', 'short_quote',
     ]
-    enable_merge = True
+    enable_merge = True,
+    template_name = 'archiv/overrides-genericlistviews.html'
 
 
 class HapaBelegDetailView(BaseDetailView):
@@ -83,7 +84,8 @@ class HapaPlaceNameListView(GenericListView):
     init_columns = [
         'id', 'name', 'adm_unit'
     ]
-    enable_merge = True
+    enable_merge = True,
+    template_name = 'archiv/overrides-genericlistviews.html'
 
 
 class HapaPlaceNameDetailView(BaseDetailView):
