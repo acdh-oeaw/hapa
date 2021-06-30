@@ -1,8 +1,7 @@
-name: Test
+name: Test, Build, Release
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [published]
 jobs:
   test:
     name: Test Application
@@ -47,3 +46,22 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: ./coverage.xml
         fail_ci_if_error: true
+  push_to_registry:
+    needs: test
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker build
+        run: docker build -t acdhch/hapa .
+      - name: docker push
+        run: |
+          docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}" 
+          docker push acdhch/hapa
+  rancher:
+     needs: push_to_registry
+     name: Deploy to rancher
+     runs-on: ubuntu-latest
+     steps:
+     - name: Rancher Deploy Action
+       run: "docker run --rm curlimages/curl:7.74.0  --request POST 'https://rancher.acdh-dev.oeaw.ac.at/v3/project/c-zdbh8:p-8xg6d/workloads/deployment:hapa:hapa?action=redeploy' --header 'Accept: application/json' --header 'Authorization: Bearer ${{ secrets.RANCHER_BARER_TOKEN }}'"
