@@ -13,6 +13,20 @@ from . models import (
 )
 
 
+DATE_LOOKUP_CHOICES = [
+    ('exact', 'Equals'),
+    ('gt', 'Greater than'),
+    ('lt', 'Less than')
+]
+
+CHAR_LOOKUP_CHOICES = [
+    ('icontains', 'Contains'),
+    ('iexact', 'Equals'),
+    ('istartswith', 'Starts with'),
+    ('iendswith', 'Ends with')
+]
+
+
 class HapaBelegListFilter(django_filters.FilterSet):
     zotero_id = django_filters.ModelMultipleChoiceFilter(
         queryset=ZotItem.objects.all(),
@@ -27,33 +41,33 @@ class HapaBelegListFilter(django_filters.FilterSet):
         help_text='Tags',
         label='Tags'
     )
-    text = django_filters.CharFilter(
-        lookup_expr='icontains',
+    text = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaBeleg._meta.get_field('text').help_text,
-        label=HapaBeleg._meta.get_field('text').verbose_name
+        label=HapaBeleg._meta.get_field('text').verbose_name,
     )
-    page = django_filters.CharFilter(
-        lookup_expr='icontains',
+    page = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaBeleg._meta.get_field('page').help_text,
         label=HapaBeleg._meta.get_field('page').verbose_name
     )
-    short_quote = django_filters.CharFilter(
-        lookup_expr='icontains',
+    short_quote = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaBeleg._meta.get_field('short_quote').help_text,
         label=HapaBeleg._meta.get_field('short_quote').verbose_name
     )
-    full_quote = django_filters.CharFilter(
-        lookup_expr='icontains',
+    full_quote = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaBeleg._meta.get_field('full_quote').help_text,
         label=HapaBeleg._meta.get_field('full_quote').verbose_name
     )
-    comment = django_filters.CharFilter(
-        lookup_expr='icontains',
+    comment = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaBeleg._meta.get_field('comment').help_text,
         label=HapaBeleg._meta.get_field('comment').verbose_name
     )
-    internal_comment = django_filters.CharFilter(
-        lookup_expr='icontains',
+    internal_comment = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaBeleg._meta.get_field('internal_comment').help_text,
         label=HapaBeleg._meta.get_field('internal_comment').verbose_name
     )
@@ -79,13 +93,13 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
         help_text='Tags',
         label='Tags'
     )
-    name = django_filters.CharFilter(
-        lookup_expr='icontains',
+    name = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaPlaceName._meta.get_field('name').help_text,
         label=HapaPlaceName._meta.get_field('name').verbose_name
     )
-    alternative_names = django_filters.CharFilter(
-        lookup_expr='icontains',
+    alternative_names = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaPlaceName._meta.get_field('alternative_names').help_text,
         label=HapaPlaceName._meta.get_field('alternative_names').verbose_name
     )
@@ -141,28 +155,28 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
                 },
         )
     )
-    wortbildung = django_filters.CharFilter(
-        lookup_expr='icontains',
+    wortbildung = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaPlaceName._meta.get_field('wortbildung').help_text,
         label=HapaPlaceName._meta.get_field('wortbildung').verbose_name
     )
-    etymology = django_filters.CharFilter(
-        lookup_expr='icontains',
+    etymology = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaPlaceName._meta.get_field('etymology').help_text,
         label=HapaPlaceName._meta.get_field('etymology').verbose_name
     )
-    syntax = django_filters.CharFilter(
-        lookup_expr='icontains',
+    syntax = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaPlaceName._meta.get_field('syntax').help_text,
         label=HapaPlaceName._meta.get_field('syntax').verbose_name
     )
-    comment = django_filters.CharFilter(
-        lookup_expr='icontains',
+    comment = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaPlaceName._meta.get_field('comment').help_text,
         label=HapaPlaceName._meta.get_field('comment').verbose_name
     )
-    internal_comment = django_filters.CharFilter(
-        lookup_expr='icontains',
+    internal_comment = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaPlaceName._meta.get_field('internal_comment').help_text,
         label=HapaPlaceName._meta.get_field('internal_comment').verbose_name
     )
