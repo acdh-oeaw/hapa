@@ -34,7 +34,6 @@ class HapaBelegFilterFormHelper(FormHelper):
                     'Advanced search',
                     'zotero_id',
                     'text',
-                    'tags',
                     'page',
                     'full_quote',
                     'time_of_origin_start',
@@ -46,7 +45,6 @@ class HapaBelegFilterFormHelper(FormHelper):
                     'admin',
                     'tags',
                     'internal_comment',
-                    'unclear',
                     css_id="admin_search"
                     ),
                 )
