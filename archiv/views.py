@@ -26,6 +26,7 @@ from browsing.browsing_utils import (
 )
 from django.views.generic.base import TemplateView
 
+
 class HapaBelegListView(GenericListView):
 
     model = HapaBeleg
@@ -35,7 +36,7 @@ class HapaBelegListView(GenericListView):
     init_columns = [
         'id', 'short_quote',
     ]
-    enable_merge = True,
+    enable_merge = False
     template_name = 'archiv/overrides-genericlistviews.html'
 
 
@@ -84,7 +85,7 @@ class HapaPlaceNameListView(GenericListView):
     init_columns = [
         'id', 'name', 'adm_unit'
     ]
-    enable_merge = True,
+    enable_merge = False
     template_name = 'archiv/overrides-genericlistviews.html'
 
 
