@@ -46,11 +46,6 @@ class HapaBelegListFilter(django_filters.FilterSet):
         help_text=HapaBeleg._meta.get_field('text').help_text,
         label=HapaBeleg._meta.get_field('text').verbose_name,
     )
-    page = django_filters.LookupChoiceFilter(
-        lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaBeleg._meta.get_field('page').help_text,
-        label=HapaBeleg._meta.get_field('page').verbose_name
-    )
     short_quote = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaBeleg._meta.get_field('short_quote').help_text,

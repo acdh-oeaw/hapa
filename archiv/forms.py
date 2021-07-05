@@ -34,7 +34,6 @@ class HapaBelegFilterFormHelper(FormHelper):
                     'Advanced search',
                     'zotero_id',
                     'text',
-                    'page',
                     'full_quote',
                     'time_of_origin_start',
                     'time_of_origin_end',
