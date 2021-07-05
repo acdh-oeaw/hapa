@@ -225,3 +225,7 @@ CKEDITOR_CONFIGS = {
         'fontSize_defaultLabel': '12px'
     }
 }
+
+# default empty choice label = '-----'; if set to None it is removed as option
+# https://django-filter.readthedocs.io/en/stable/ref/settings.html#filters-empty-choice-label
+FILTERS_EMPTY_CHOICE_LABEL = None
