@@ -42,6 +42,7 @@ class HapaBelegFilterFormHelper(FormHelper):
                     ),
                 AccordionGroup(
                     'admin',
+                    'id',
                     'tags',
                     'internal_comment',
                     css_id="admin_search"
@@ -105,6 +106,7 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                     ),
                 AccordionGroup(
                     'admin',
+                    'id',
                     'tags',
                     'internal_comment',
                     'unclear',

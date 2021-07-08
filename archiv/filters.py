@@ -79,7 +79,7 @@ class HapaBelegListFilter(django_filters.FilterSet):
             'time_of_origin_start',
             'time_of_origin_end',
             'tags',
-            ]
+        ]
 
 
 class HapaPlaceNameListFilter(django_filters.FilterSet):
@@ -174,6 +174,9 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaPlaceName._meta.get_field('internal_comment').help_text,
         label=HapaPlaceName._meta.get_field('internal_comment').verbose_name
+    )
+    id = django_filters.NumberFilter(
+        field_name='id'
     )
 
     class Meta:
