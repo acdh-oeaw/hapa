@@ -1,13 +1,14 @@
 from django.apps import apps
 
 from django.test import TestCase, Client
+from django.contrib.auth.models import User
+
 from gn_places.utils import gn_get_or_create
 
 from archiv.models import HapaPlaceName
 
 LINZ_GN = "https://www.geonames.org/2772400/linz.html"
 MODELS = list(apps.all_models['archiv'].values())
-
 client = Client()
 USER = {
     "username": "testuser",
@@ -19,6 +20,7 @@ class HapaPlaceNameTest(TestCase):
     def setUp(self):
         self.linz = HapaPlaceName.objects.create(name="Linz")
         self.linz_gn = gn_get_or_create(LINZ_GN)
+        User.objects.create_user(**USER)
 
     def test_001_create_object(self):
         """Simple test to check if object was created"""
@@ -63,6 +65,41 @@ class HapaPlaceNameTest(TestCase):
             item = x.objects.first()
             try:
                 url = item.get_absolute_url()
+            except AttributeError:
+                url = False
+            if url:
+                response = client.get(url, {'pk': item.id})
+                self.assertEqual(response.status_code, 200)
+
+    def test_007_editviews(self):
+        client.login(**USER)
+        for x in MODELS:
+            item = x.objects.first()
+            try:
+                url = item.get_edit_url()
+            except AttributeError:
+                url = False
+            if url:
+                response = client.get(url, {'pk': item.id})
+                self.assertEqual(response.status_code, 200)
+
+    def test_008_createviews_not_logged_in(self):
+        for x in MODELS:
+            item = x.objects.first()
+            try:
+                url = item.get_createview_url()
+            except AttributeError:
+                url = False
+            if url:
+                response = client.get(url, {'pk': item.id})
+                self.assertEqual(response.status_code, 302)
+
+    def test_009_createviews_logged_in(self):
+        client.login(**USER)
+        for x in MODELS:
+            item = x.objects.first()
+            try:
+                url = item.get_createview_url()
             except AttributeError:
                 url = False
             if url:
