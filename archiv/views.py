@@ -43,7 +43,7 @@ class HapaBelegListView(GenericListView):
 class HapaBelegDetailView(BaseDetailView):
 
     model = HapaBeleg
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/beleg_detail.html'
 
 
 class HapaBelegCreate(BaseCreateView):
