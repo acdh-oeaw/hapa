@@ -1,9 +1,18 @@
-from django.test import TestCase
+from django.apps import apps
+
+from django.test import TestCase, Client
 from gn_places.utils import gn_get_or_create
 
 from archiv.models import HapaPlaceName
 
 LINZ_GN = "https://www.geonames.org/2772400/linz.html"
+MODELS = list(apps.all_models['archiv'].values())
+
+client = Client()
+USER = {
+    "username": "testuser",
+    "password": "somepassword"
+}
 
 
 class HapaPlaceNameTest(TestCase):
@@ -38,3 +47,24 @@ class HapaPlaceNameTest(TestCase):
         self.assertEqual(item.etymology, "lorem ipsum")
         item = HapaPlaceName.objects.get(syntax="lorem ipsum")
         self.assertEqual(item.syntax, "lorem ipsum")
+
+    def test_005_listviews(self):
+        for x in MODELS:
+            try:
+                url = x.get_listview_url()
+            except AttributeError:
+                url = False
+            if url:
+                response = client.get(url)
+                self.assertEqual(response.status_code, 200)
+
+    def test_006_detailviews(self):
+        for x in MODELS:
+            item = x.objects.first()
+            try:
+                url = item.get_absolute_url()
+            except AttributeError:
+                url = False
+            if url:
+                response = client.get(url, {'pk': item.id})
+                self.assertEqual(response.status_code, 200)
