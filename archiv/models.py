@@ -337,8 +337,10 @@ class HapaPlaceName(models.Model):
         if not self.lat and self.geonames:
             self.lat = self.geonames.gn_lat
             self.long = self.geonames.gn_long
-        if self.lat and self.long:
+        if self.lat and self.long and not self.point:
             self.point = Point(self.long, self.lat)
+        if self.point:
+            self.long, self.lat = self.point.coord_seq[0]
 
         super(HapaPlaceName, self).save(*args, **kwargs)
 
