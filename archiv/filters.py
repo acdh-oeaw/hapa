@@ -91,7 +91,7 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
     name = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=HapaPlaceName._meta.get_field('name').help_text,
-        label=HapaPlaceName._meta.get_field('name').verbose_name
+        label=HapaPlaceName._meta.get_field('name').verbose_name,
     )
     alternative_names = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
