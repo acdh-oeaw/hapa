@@ -94,13 +94,13 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                 ),
             Accordion(
                 AccordionGroup(
-                    'Geographie',
+                    'Geography',
                     'geonames',
                     'adm_unit',
                     css_id="more"
                     ),
                 AccordionGroup(
-                    'Etymologisches',
+                    'Details',
                     'orig_sprache',
                     'wortbildung',
                     'etymology',
