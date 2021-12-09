@@ -14,10 +14,13 @@ class HapaBelegTable(tables.Table):
     text = tables.TemplateColumn("{{ record.text|safe }}")
     comment = tables.TemplateColumn("{{ record.comment|safe }}")
     internal_comment = tables.TemplateColumn("{{ record.internal_comment|safe }}")
+    zot_key = tables.TemplateColumn(
+        "{{ record.zotero_id.zot_key }}", orderable=False
+    )
 
     class Meta:
         model = HapaBeleg
-        sequence = ('id',)
+        sequence = ('id', '...', 'zotero_id', 'page_nr', 'zot_key',)
         attrs = {"class": "table table-responsive table-hover"}
 
 

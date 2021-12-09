@@ -43,7 +43,7 @@ class HapaBeleg(models.Model):
     ).set_extra(
         is_public=True,
     )
-    page = models.CharField(
+    page_nr = models.CharField(
         max_length=250,
         blank=True,
         verbose_name="genaue Stelle",
@@ -112,6 +112,7 @@ class HapaBeleg(models.Model):
 
         ordering = [
             'short_quote',
+            'page_nr'
         ]
         verbose_name = "Beleg"
 
@@ -120,8 +121,8 @@ class HapaBeleg(models.Model):
             quote = f"{self.short_quote}"
         else:
             quote = f"{self.id}"
-        if self.page:
-            return f"{quote}, {self.page}"
+        if self.page_nr:
+            return f"{quote}, {self.page_nr}"
         else:
             return f"{quote}, {self.id}"
 
