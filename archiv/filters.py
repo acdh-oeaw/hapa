@@ -73,7 +73,7 @@ class HapaBelegListFilter(django_filters.FilterSet):
             'id',
             'zotero_id',
             'text',
-            'page',
+            'page_nr',
             'short_quote',
             'full_quote',
             'time_of_origin_start',

@@ -41,7 +41,8 @@ class HapaBelegAC(autocomplete.Select2QuerySetView):
 
         if self.q:
             qs = qs.filter(
-                Q(short_quote__icontains=self.q)
+                Q(short_quote__icontains=self.q) |
+                Q(page_nr__icontains=self.q)
             )
         return qs
 

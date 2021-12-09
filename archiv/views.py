@@ -34,10 +34,10 @@ class HapaBelegListView(GenericListView):
     formhelper_class = HapaBelegFilterFormHelper
     table_class = HapaBelegTable
     init_columns = [
-        'id', 'short_quote',
+        'id', 'zot_key', 'short_quote', 'page_nr',
     ]
     enable_merge = False
-    template_name = 'archiv/overrides-genericlistviews.html'
+    # template_name = 'archiv/overrides-genericlistviews.html'
 
 
 class HapaBelegDetailView(BaseDetailView):
