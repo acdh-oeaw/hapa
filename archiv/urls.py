@@ -45,6 +45,11 @@ urlpatterns = [
         name='hapaplacename_detail'
     ),
     url(
+        r'^hapaplacenamenew/detail/(?P<pk>[0-9]+)$',
+        views.HapaPlaceNameDetailViewNew.as_view(),
+        name='hapaplacename_detail_new'
+    ),
+    url(
         r'^hapaplacename/create/$',
         views.HapaPlaceNameCreate.as_view(),
         name='hapaplacename_create'
