@@ -94,6 +94,12 @@ class HapaPlaceNameDetailView(BaseDetailView):
     template_name = 'archiv/place_detail.html'
 
 
+class HapaPlaceNameDetailViewNew(BaseDetailView):
+
+    model = HapaPlaceName
+    template_name = 'archiv/place_detail_new.html'
+
+
 class HapaPlaceNameCreate(BaseCreateView):
 
     model = HapaPlaceName
