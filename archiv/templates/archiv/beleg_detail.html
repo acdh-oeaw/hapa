@@ -1,6 +1,12 @@
 {% extends "browsing/generic_detail.html" %}
 {% load static %}
+{% load leaflet_tags %}
+
 {% load webpage_extras %}
+{% block scriptHeader %}
+{% leaflet_js %}
+{% leaflet_css %}
+{% endblock %}
 {% block custom %}
 <table class="table table-responsive table-hover">
   <tr>
@@ -9,7 +15,7 @@
   </tr>
   <tr>
     <th>Zotero-Key</th>
-    <td>{{ object.zotero_id.zot_key }}</td>
+    <td><a href="{{ object.zotero_id.zot_html_link }}">{{ object.zotero_id.zot_key }}</a></td>
   </tr>
   <tr>
     <th>Zeitliche Einordnung</th>
@@ -23,13 +29,64 @@
   <tr>
     <th>reference for Lemmata</th>
     <td>
-      <ul>
-        {% for x in object.rvn_hapaplacename_beleg_beleg.all %}
-          <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
-        {% endfor %}
-      </ul>
+      <div class="row">
+        <div class="col-md-6">
+          <ul>
+            {% for x in object.rvn_hapaplacename_beleg_beleg.all %}
+              <li><a href="{{ x.get_absolute_url }}">{{ x }} <small>({{ x.id }})</small></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <div style="padding:0;">
+
+            {% leaflet_map "yourmap" callback="window.map_init_basic" %}
+
+          </div>
+        </div>
+        
+      </div>
+      
+    </td>
+  </tr>
+  <tr>
+    <th>Kurzzitat</th>
+    <td>{{ object.short_quote }}</td>
+  </tr>
+  <tr>
+    <th>genaue Stelle / Seitenangabe</th>
+    <td>{{ object.page_nr }}</td>
+  </tr>
+  <tr>
+    <th>Kurzzitat</th>
+    <td>{{ object.short_quote }}</td>
+  </tr>
+  <tr>
+    <th>Vollzitat</th>
+    <td>{{ object.full_quote }}</td>
+  </tr>
+  <tr>
+    <th>Tags</th>
+    <td>
+      {% for x in object.tags.all %}
+      <span class="badge badge-secondary">{{ x.name }}</span>
+      {% endfor %}
     </td>
   </tr>
 
 </table> 
+<script type="text/javascript">
+  function map_init_basic(map, options) {
+    {% for x in object.rvn_hapaplacename_beleg_beleg.all %}
+      {% if x.lat %}
+        var placeName = "<a href='{{ x.get_absolute_url }}'>{{ x.name }}</a>"
+        var lat = "{{ x.lat }}"
+        var lng = "{{ x.long }}"
+        L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map)
+          .bindPopup(placeName)
+          .openPopup(); 
+      {% endif %}
+    {% endfor %}
+  };
+</script>
 {% endblock custom %}
