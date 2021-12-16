@@ -37,7 +37,6 @@ class HapaBelegListView(GenericListView):
         'id', 'zot_key', 'short_quote', 'page_nr',
     ]
     enable_merge = False
-    # template_name = 'archiv/overrides-genericlistviews.html'
 
 
 class HapaBelegDetailView(BaseDetailView):
