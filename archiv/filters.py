@@ -98,6 +98,11 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
         help_text=HapaPlaceName._meta.get_field('alternative_names').help_text,
         label=HapaPlaceName._meta.get_field('alternative_names').verbose_name
     )
+    historic_names = django_filters.LookupChoiceFilter(
+        lookup_choices=CHAR_LOOKUP_CHOICES,
+        help_text=HapaPlaceName._meta.get_field('historic_names').help_text,
+        label=HapaPlaceName._meta.get_field('historic_names').verbose_name
+    )
     geonames = django_filters.ModelMultipleChoiceFilter(
         queryset=GeoNamesPlace.objects.all(),
         help_text=HapaPlaceName._meta.get_field('geonames').help_text,

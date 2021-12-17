@@ -90,6 +90,8 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                     data_kioskboard_specialcharacters="false"
                 ),
                 'alternative_names',
+                'historic_names',
+                'historic',
                 css_id="basic_search_fields"
                 ),
             Accordion(
