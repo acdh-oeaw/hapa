@@ -399,9 +399,18 @@ class HapaPlaceName(models.Model):
         return False
 
     def as_geojson(self):
+        geom_field = 'point'
+        if self.fuzzy_geom:
+            geom_field = 'fuzzy_geom'
         output = serialize(
             'geojson', HapaPlaceName.objects.filter(id=self.id),
-            geometry_field='fuzzy_geom',
-            fields=('name', )
+            geometry_field=geom_field,
+            fields=(
+                'id',
+                'name',
+            )
         )
         return json.loads(output)["features"][0]
+
+    def geojson_id(self):
+        return f"geojson-{self.id}"
