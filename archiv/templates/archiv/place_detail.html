@@ -152,15 +152,15 @@
             <h4 class="card-title">Karte</h4>
           </div>
           <div class="card-body">
+            {{ object.as_geojson|json_script:"my-geojson" }}
             <script type="text/javascript">
               function map_init_basic(map, options) {
-                {% if object.lat %}
-                  var placeName = "<a href='{{ object.get_absolute_url }}'>{{ object.name }}</a>"
-                  var lat = "{{ object.lat }}"
-                  var lng = "{{ object.long }}"
-                  L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map)
-                    .bindPopup(placeName)
-                    .openPopup(); 
+                {% if object.lat or object.fuzzy_geom %}
+                   var geojsonFeature = L.geoJSON(JSON.parse(document.getElementById('my-geojson').textContent));
+                   geojsonFeature.addTo(map);
+                   var bounds = geojsonFeature.getBounds();
+                   var center = bounds.getCenter();
+                   map.panTo(center);
                 {% endif %}
               };
             </script>
