@@ -77,6 +77,14 @@
   </tr>
 
 </table> 
+
+{% if user.is_authenticated %}
+  <div class="row">
+    <div class="col text-center">
+      <a href="{% url 'archiv:copy_beleg' %}?current-id={{object.id}}" title="copy" class="btn btn-default">Copy<i data-feather="copy"></i></a>
+    </div>
+  </div>
+{% endif %}
 <script type="text/javascript">
   function map_init_basic(map, options) {
     {% for x in object.rvn_hapaplacename_beleg_beleg.all %}
