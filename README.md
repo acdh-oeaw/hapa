@@ -1,6 +1,7 @@
 # HAPA
 
 [![codecov](https://codecov.io/gh/acdh-oeaw/hapa/branch/master/graph/badge.svg?token=BIH9K909AS)](https://codecov.io/gh/acdh-oeaw/hapa)
+[![flake8 Lint](https://github.com/acdh-oeaw/hapa/actions/workflows/lint.yml/badge.svg)](https://github.com/acdh-oeaw/hapa/actions/workflows/lint.yml)
 
 ## History of Albanian Place-names: Albania
 

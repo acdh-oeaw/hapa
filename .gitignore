@@ -17,13 +17,6 @@ cypress.json
 .idea
 .pip_cache
 
-# migrations
-vocabs/migrations/*
-bib/migrations/*
-webpage/migrations/*
-places/migrations/*
-
-
 # Ipython Notebook checkpoints
 .ipynb_checkpoints
 
