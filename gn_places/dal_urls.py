@@ -5,7 +5,7 @@ from . import dal_views
 app_name = 'gn_places'
 urlpatterns = [
     path(
-        'geonamesplace-autocomplete/$',
+        'geonamesplace-autocomplete/',
         dal_views.GeoNamesPlaceAC.as_view(),
         name='geonamesplace-autocomplete'
     ),
