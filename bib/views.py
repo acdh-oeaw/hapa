@@ -1,12 +1,6 @@
-import requests
-from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.shortcuts import render
-from django.views import generic
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic.detail import DetailView
-from django.urls import reverse, reverse_lazy
-from django.utils.decorators import method_decorator
+
 from django.contrib.auth.decorators import login_required
 
 from .models import ZotItem
