@@ -7,189 +7,172 @@ from taggit.models import Tag
 from vocabs.models import SkosConcept
 from bib.models import ZotItem
 from gn_places.models import GeoNamesPlace
-from . models import (
-    HapaBeleg,
-    HapaPlaceName
-)
+from .models import HapaBeleg, HapaPlaceName
 
 
-DATE_LOOKUP_CHOICES = [
-    ('exact', 'Equals'),
-    ('gt', 'Greater than'),
-    ('lt', 'Less than')
-]
+DATE_LOOKUP_CHOICES = [("exact", "Equals"), ("gt", "Greater than"), ("lt", "Less than")]
 
 CHAR_LOOKUP_CHOICES = [
-    ('icontains', 'Contains'),
-    ('iexact', 'Equals'),
-    ('istartswith', 'Starts with'),
-    ('iendswith', 'Ends with')
+    ("icontains", "Contains"),
+    ("iexact", "Equals"),
+    ("istartswith", "Starts with"),
+    ("iendswith", "Ends with"),
 ]
 
 
 class HapaBelegListFilter(django_filters.FilterSet):
     zotero_id = django_filters.ModelMultipleChoiceFilter(
         queryset=ZotItem.objects.all(),
-        help_text=HapaBeleg._meta.get_field('zotero_id').help_text,
-        label=HapaBeleg._meta.get_field('zotero_id').verbose_name,
+        help_text=HapaBeleg._meta.get_field("zotero_id").help_text,
+        label=HapaBeleg._meta.get_field("zotero_id").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="bib:zotitem-autocomplete",
-        )
+        ),
     )
     tags = django_filters.ModelMultipleChoiceFilter(
-        queryset=Tag.objects.all(),
-        help_text='Tags',
-        label='Tags'
+        queryset=Tag.objects.all(), help_text="Tags", label="Tags"
     )
     text = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaBeleg._meta.get_field('text').help_text,
-        label=HapaBeleg._meta.get_field('text').verbose_name,
+        help_text=HapaBeleg._meta.get_field("text").help_text,
+        label=HapaBeleg._meta.get_field("text").verbose_name,
     )
     short_quote = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaBeleg._meta.get_field('short_quote').help_text,
-        label=HapaBeleg._meta.get_field('short_quote').verbose_name
+        help_text=HapaBeleg._meta.get_field("short_quote").help_text,
+        label=HapaBeleg._meta.get_field("short_quote").verbose_name,
     )
     full_quote = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaBeleg._meta.get_field('full_quote').help_text,
-        label=HapaBeleg._meta.get_field('full_quote').verbose_name
+        help_text=HapaBeleg._meta.get_field("full_quote").help_text,
+        label=HapaBeleg._meta.get_field("full_quote").verbose_name,
     )
     comment = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaBeleg._meta.get_field('comment').help_text,
-        label=HapaBeleg._meta.get_field('comment').verbose_name
+        help_text=HapaBeleg._meta.get_field("comment").help_text,
+        label=HapaBeleg._meta.get_field("comment").verbose_name,
     )
     internal_comment = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaBeleg._meta.get_field('internal_comment').help_text,
-        label=HapaBeleg._meta.get_field('internal_comment').verbose_name
+        help_text=HapaBeleg._meta.get_field("internal_comment").help_text,
+        label=HapaBeleg._meta.get_field("internal_comment").verbose_name,
     )
 
     class Meta:
         model = HapaBeleg
         fields = [
-            'id',
-            'zotero_id',
-            'text',
-            'page_nr',
-            'short_quote',
-            'full_quote',
-            'time_of_origin_start',
-            'time_of_origin_end',
-            'tags',
+            "id",
+            "zotero_id",
+            "text",
+            "page_nr",
+            "short_quote",
+            "full_quote",
+            "time_of_origin_start",
+            "time_of_origin_end",
+            "tags",
         ]
 
 
 class HapaPlaceNameListFilter(django_filters.FilterSet):
     tags = django_filters.ModelMultipleChoiceFilter(
-        queryset=Tag.objects.all(),
-        help_text='Tags',
-        label='Tags'
+        queryset=Tag.objects.all(), help_text="Tags", label="Tags"
     )
     name = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaPlaceName._meta.get_field('name').help_text,
-        label=HapaPlaceName._meta.get_field('name').verbose_name,
+        help_text=HapaPlaceName._meta.get_field("name").help_text,
+        label=HapaPlaceName._meta.get_field("name").verbose_name,
     )
     alternative_names = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaPlaceName._meta.get_field('alternative_names').help_text,
-        label=HapaPlaceName._meta.get_field('alternative_names').verbose_name
+        help_text=HapaPlaceName._meta.get_field("alternative_names").help_text,
+        label=HapaPlaceName._meta.get_field("alternative_names").verbose_name,
     )
     historic_names = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaPlaceName._meta.get_field('historic_names').help_text,
-        label=HapaPlaceName._meta.get_field('historic_names').verbose_name
+        help_text=HapaPlaceName._meta.get_field("historic_names").help_text,
+        label=HapaPlaceName._meta.get_field("historic_names").verbose_name,
     )
     geonames = django_filters.ModelMultipleChoiceFilter(
         queryset=GeoNamesPlace.objects.all(),
-        help_text=HapaPlaceName._meta.get_field('geonames').help_text,
-        label=HapaPlaceName._meta.get_field('geonames').verbose_name,
+        help_text=HapaPlaceName._meta.get_field("geonames").help_text,
+        label=HapaPlaceName._meta.get_field("geonames").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="gn_places-ac:geonamesplace-autocomplete",
-        )
+        ),
     )
     beleg = django_filters.ModelMultipleChoiceFilter(
         queryset=HapaBeleg.objects.all(),
-        help_text=HapaPlaceName._meta.get_field('beleg').help_text,
-        label=HapaPlaceName._meta.get_field('beleg').verbose_name,
+        help_text=HapaPlaceName._meta.get_field("beleg").help_text,
+        label=HapaPlaceName._meta.get_field("beleg").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:hapabeleg-autocomplete",
-        )
+        ),
     )
     beleg__zotero_id = django_filters.ModelMultipleChoiceFilter(
         queryset=ZotItem.objects.all(),
-        help_text='Bibliographischer Eintrag',
-        label='Bibliographischer Eintrag',
+        help_text="Bibliographischer Eintrag",
+        label="Bibliographischer Eintrag",
         widget=autocomplete.Select2Multiple(
             url="bib:zotitem-autocomplete",
-        )
+        ),
     )
     orig_sprache = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.filter(
-            collection__name="orig_sprache"
-        ),
-        help_text=HapaPlaceName._meta.get_field('orig_sprache').help_text,
-        label=HapaPlaceName._meta.get_field('orig_sprache').verbose_name,
+        queryset=SkosConcept.objects.filter(collection__name="orig_sprache"),
+        help_text=HapaPlaceName._meta.get_field("orig_sprache").help_text,
+        label=HapaPlaceName._meta.get_field("orig_sprache").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:orig-sprache",
             attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-                },
-        )
+                "data-placeholder": "Autocomplete ...",
+                "data-minimum-input-length": 2,
+            },
+        ),
     )
     adm_unit = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.filter(
-            collection__name="adm_unit"
-        ),
-        help_text=HapaPlaceName._meta.get_field('adm_unit').help_text,
-        label=HapaPlaceName._meta.get_field('adm_unit').verbose_name,
+        queryset=SkosConcept.objects.filter(collection__name="adm_unit"),
+        help_text=HapaPlaceName._meta.get_field("adm_unit").help_text,
+        label=HapaPlaceName._meta.get_field("adm_unit").verbose_name,
         widget=autocomplete.Select2Multiple(
-            url='archiv-ac:adm-units',
+            url="archiv-ac:adm-units",
             attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-                },
-        )
+                "data-placeholder": "Autocomplete ...",
+                "data-minimum-input-length": 2,
+            },
+        ),
     )
     wortbildung = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaPlaceName._meta.get_field('wortbildung').help_text,
-        label=HapaPlaceName._meta.get_field('wortbildung').verbose_name
+        help_text=HapaPlaceName._meta.get_field("wortbildung").help_text,
+        label=HapaPlaceName._meta.get_field("wortbildung").verbose_name,
     )
     etymology = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaPlaceName._meta.get_field('etymology').help_text,
-        label=HapaPlaceName._meta.get_field('etymology').verbose_name
+        help_text=HapaPlaceName._meta.get_field("etymology").help_text,
+        label=HapaPlaceName._meta.get_field("etymology").verbose_name,
     )
     syntax = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaPlaceName._meta.get_field('syntax').help_text,
-        label=HapaPlaceName._meta.get_field('syntax').verbose_name
+        help_text=HapaPlaceName._meta.get_field("syntax").help_text,
+        label=HapaPlaceName._meta.get_field("syntax").verbose_name,
     )
     comment = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaPlaceName._meta.get_field('comment').help_text,
-        label=HapaPlaceName._meta.get_field('comment').verbose_name
+        help_text=HapaPlaceName._meta.get_field("comment").help_text,
+        label=HapaPlaceName._meta.get_field("comment").verbose_name,
     )
     internal_comment = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
-        help_text=HapaPlaceName._meta.get_field('internal_comment').help_text,
-        label=HapaPlaceName._meta.get_field('internal_comment').verbose_name
+        help_text=HapaPlaceName._meta.get_field("internal_comment").help_text,
+        label=HapaPlaceName._meta.get_field("internal_comment").verbose_name,
     )
-    id = django_filters.NumberFilter(
-        field_name='id'
-    )
+    id = django_filters.NumberFilter(field_name="id")
 
     class Meta:
         model = HapaPlaceName
         exclude = [
-            'point',
-            'fuzzy_geom',
-            'lat',
-            'long',
-            'orig_data_csv',
+            "point",
+            "fuzzy_geom",
+            "lat",
+            "long",
+            "orig_data_csv",
         ]

@@ -10,16 +10,15 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--lang',
-            default="en",
-            help="The language code of the features"
+            "--lang", default="en", help="The language code of the features"
         )
 
     def handle(self, *args, **kwargs):
-        lang = kwargs.get('lang', )
+        lang = kwargs.get(
+            "lang",
+        )
         df = feature_codes_df(lang=lang)
         import_feature_codes(df)
         self.stdout.write(
-            self.style.SUCCESS(
-                f'Successfully imported {len(df)} concepts')
+            self.style.SUCCESS(f"Successfully imported {len(df)} concepts")
         )

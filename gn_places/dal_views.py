@@ -9,9 +9,7 @@ class GeoNamesPlaceAC(autocomplete.Select2QuerySetView):
         qs = GeoNamesPlace.objects.all()
 
         if self.q:
-            qs = qs.filter(
-                Q(gn_name__icontains=self.q) | Q(gn_id__icontains=self.q)
-            )
+            qs = qs.filter(Q(gn_name__icontains=self.q) | Q(gn_id__icontains=self.q))
         return qs
 
     def get_result_label(self, item):

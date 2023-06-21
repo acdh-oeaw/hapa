@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0002_auto_20210202_1709'),
+        ("archiv", "0002_auto_20210202_1709"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='hapaplacename',
-            name='historic',
-            field=models.BooleanField(default=False, help_text='Historischer Ort bedeutet es gibt diesen Ort heute nicht mehr', verbose_name='Historischer Ort'),
+            model_name="hapaplacename",
+            name="historic",
+            field=models.BooleanField(
+                default=False,
+                help_text="Historischer Ort bedeutet es gibt diesen Ort heute nicht mehr",
+                verbose_name="Historischer Ort",
+            ),
         ),
     ]

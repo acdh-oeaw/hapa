@@ -6,17 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0014_auto_20211209_1422'),
+        ("archiv", "0014_auto_20211209_1422"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='hapabeleg',
-            options={'ordering': ['short_quote', 'page_nr'], 'verbose_name': 'Beleg'},
+            name="hapabeleg",
+            options={"ordering": ["short_quote", "page_nr"], "verbose_name": "Beleg"},
         ),
         migrations.AddField(
-            model_name='hapaplacename',
-            name='historic_names',
-            field=models.TextField(blank=True, help_text="Historische(r) Name(n), verwende '; ' als Trennzeichen", verbose_name='Historische(r) Name(n)'),
+            model_name="hapaplacename",
+            name="historic_names",
+            field=models.TextField(
+                blank=True,
+                help_text="Historische(r) Name(n), verwende '; ' als Trennzeichen",
+                verbose_name="Historische(r) Name(n)",
+            ),
         ),
     ]

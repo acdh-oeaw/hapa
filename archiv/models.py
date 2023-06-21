@@ -25,10 +25,11 @@ models.Field.set_extra = set_extra
 
 
 class HapaBeleg(models.Model):
-    """ Beleg """
+    """Beleg"""
+
     zotero_id = models.ForeignKey(
         ZotItem,
-        related_name='rvn_hapabeleg_zotero_id_zotitem',
+        related_name="rvn_hapabeleg_zotero_id_zotitem",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -38,7 +39,8 @@ class HapaBeleg(models.Model):
         is_public=True,
     )
     text = RichTextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Textauszug",
         help_text="ausgewähltes Quellenzitaten",
     ).set_extra(
@@ -61,21 +63,24 @@ class HapaBeleg(models.Model):
         is_public=True,
     )
     full_quote = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Vollzitat",
         help_text="wird automatisch aus verknüpftem Zotero Eintrag übernommen",
     ).set_extra(
         is_public=True,
     )
     time_of_origin_start = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Zeitliche Einordnung (Beginn)",
         help_text="Jahreszahl, z.B. 800 für 9. Jh",
     ).set_extra(
         is_public=True,
     )
     time_of_origin_end = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Zeitliche Einordnung (Ende)",
         help_text="Jahreszahl, z.B. 899 für 9. Jh",
     ).set_extra(
@@ -83,38 +88,31 @@ class HapaBeleg(models.Model):
     )
     tags = TaggableManager(blank=True)
     comment = RichTextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Kommentar",
         help_text="Kommentar",
     ).set_extra(
         is_public=True,
     )
     internal_comment = RichTextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Kommentar (intern)",
         help_text="Kommentar (intern)",
     ).set_extra(
         is_public=False,
     )
     unclear = models.BooleanField(
-        default=False,
-        help_text="Eintrag mit offenen Fragen",
-        verbose_name="unklar"
+        default=False, help_text="Eintrag mit offenen Fragen", verbose_name="unklar"
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
 
-        ordering = [
-            'short_quote',
-            'page_nr'
-        ]
+        ordering = ["short_quote", "page_nr"]
         verbose_name = "Beleg"
 
     def __str__(self):
@@ -138,7 +136,7 @@ class HapaBeleg(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:hapabeleg_browse')
+        return reverse("archiv:hapabeleg_browse")
 
     @classmethod
     def get_source_table(self):
@@ -150,38 +148,33 @@ class HapaBeleg(models.Model):
 
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:hapabeleg_create')
+        return reverse("archiv:hapabeleg_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:hapabeleg_detail', kwargs={'pk': self.id})
+        return reverse("archiv:hapabeleg_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:hapabeleg_delete', kwargs={'pk': self.id})
+        return reverse("archiv:hapabeleg_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:hapabeleg_edit', kwargs={'pk': self.id})
+        return reverse("archiv:hapabeleg_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = self.__class__.objects.filter(id__gt=self.id)
         if next:
-            return reverse(
-                'archiv:hapabeleg_detail',
-                kwargs={'pk': next.first().id}
-            )
+            return reverse("archiv:hapabeleg_detail", kwargs={"pk": next.first().id})
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = self.__class__.objects.filter(id__lt=self.id).order_by("-id")
         if prev:
-            return reverse(
-                'archiv:hapabeleg_detail',
-                kwargs={'pk': prev.first().id}
-            )
+            return reverse("archiv:hapabeleg_detail", kwargs={"pk": prev.first().id})
         return False
 
 
 class HapaPlaceName(models.Model):
-    """ Ortsname """
+    """Ortsname"""
+
     name = models.CharField(
         max_length=250,
         blank=True,
@@ -208,7 +201,7 @@ class HapaPlaceName(models.Model):
     )
     geonames = models.ForeignKey(
         GeoNamesPlace,
-        related_name='rvn_hapaplacename_geonames_geonamesplace',
+        related_name="rvn_hapaplacename_geonames_geonamesplace",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -221,7 +214,7 @@ class HapaPlaceName(models.Model):
     )
     beleg = models.ManyToManyField(
         "HapaBeleg",
-        related_name='rvn_hapaplacename_beleg_beleg',
+        related_name="rvn_hapaplacename_beleg_beleg",
         blank=True,
         verbose_name="Beleg",
         help_text="Dokumentation der Belege mit ausgewählten Quellenzitaten",
@@ -229,21 +222,24 @@ class HapaPlaceName(models.Model):
         is_public=True,
     )
     wortbildung = RichTextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Wortbildung",
         help_text="Besprechung der Wortbildung des Ortsnamens",
     ).set_extra(
         is_public=True,
     )
     etymology = RichTextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Etymologie",
         help_text="Besprechung der Etymologie des Ortsnamens",
     ).set_extra(
         is_public=True,
     )
     syntax = RichTextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Syntax",
         help_text="Besprechung der Syntax des Ortsnamens",
     ).set_extra(
@@ -251,7 +247,7 @@ class HapaPlaceName(models.Model):
     )
     orig_sprache = models.ForeignKey(
         SkosConcept,
-        related_name='rvn_hapaplacename_orig_sprache_skosconcept',
+        related_name="rvn_hapaplacename_orig_sprache_skosconcept",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -262,21 +258,24 @@ class HapaPlaceName(models.Model):
         arche_prop="hasLanguage",
     )
     lat = models.FloatField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Breitengrad",
         help_text="Latitude",
     ).set_extra(
         is_public=True,
     )
     long = models.FloatField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Längengrad",
         help_text="Longitude",
     ).set_extra(
         is_public=True,
     )
     point = PointField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Koordinaten",
         help_text="Wird aus den Angaben von Beiten- und Längengrad befüllt)",
     ).set_extra(
@@ -284,7 +283,8 @@ class HapaPlaceName(models.Model):
         arche_prop="hasWkt",
     )
     fuzzy_geom = PolygonField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Ungefähre Ortsangabe",
         help_text="Ungefähre Lokalisierung historischer Orte",
     ).set_extra(
@@ -293,7 +293,7 @@ class HapaPlaceName(models.Model):
     )
     adm_unit = models.ForeignKey(
         SkosConcept,
-        related_name='rvn_hapaplacename_adm_unit_skosconcept',
+        related_name="rvn_hapaplacename_adm_unit_skosconcept",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -305,40 +305,36 @@ class HapaPlaceName(models.Model):
     historic = models.BooleanField(
         default=False,
         help_text="Historischer Ort bedeutet es gibt diesen Ort heute nicht mehr",
-        verbose_name="Historischer Ort"
+        verbose_name="Historischer Ort",
     )
     tags = TaggableManager(blank=True)
     comment = RichTextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Kommentar",
         help_text="Kommentar",
     ).set_extra(
         is_public=True,
     )
     internal_comment = RichTextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Kommentar (intern)",
         help_text="Kommentar (intern)",
     ).set_extra(
         is_public=False,
     )
     unclear = models.BooleanField(
-        default=False,
-        help_text="Eintrag mit offenen Fragen",
-        verbose_name="unklar"
+        default=False, help_text="Eintrag mit offenen Fragen", verbose_name="unklar"
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
 
         ordering = [
-            'name',
+            "name",
         ]
         verbose_name = "Ortsname"
 
@@ -364,7 +360,7 @@ class HapaPlaceName(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:hapaplacename_browse')
+        return reverse("archiv:hapaplacename_browse")
 
     @classmethod
     def get_source_table(self):
@@ -376,46 +372,45 @@ class HapaPlaceName(models.Model):
 
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:hapaplacename_create')
+        return reverse("archiv:hapaplacename_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:hapaplacename_detail', kwargs={'pk': self.id})
+        return reverse("archiv:hapaplacename_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:hapaplacename_delete', kwargs={'pk': self.id})
+        return reverse("archiv:hapaplacename_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:hapaplacename_edit', kwargs={'pk': self.id})
+        return reverse("archiv:hapaplacename_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         next = self.__class__.objects.filter(id__gt=self.id)
         if next:
             return reverse(
-                'archiv:hapaplacename_detail',
-                kwargs={'pk': next.first().id}
+                "archiv:hapaplacename_detail", kwargs={"pk": next.first().id}
             )
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = self.__class__.objects.filter(id__lt=self.id).order_by("-id")
         if prev:
             return reverse(
-                'archiv:hapaplacename_detail',
-                kwargs={'pk': prev.first().id}
+                "archiv:hapaplacename_detail", kwargs={"pk": prev.first().id}
             )
         return False
 
     def as_geojson(self):
-        geom_field = 'point'
+        geom_field = "point"
         if self.fuzzy_geom:
-            geom_field = 'fuzzy_geom'
+            geom_field = "fuzzy_geom"
         output = serialize(
-            'geojson', HapaPlaceName.objects.filter(id=self.id),
+            "geojson",
+            HapaPlaceName.objects.filter(id=self.id),
             geometry_field=geom_field,
             fields=(
-                'id',
-                'name',
-            )
+                "id",
+                "name",
+            ),
         )
         return json.loads(output)["features"][0]
 

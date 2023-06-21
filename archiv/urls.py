@@ -3,53 +3,50 @@ from django.urls import path
 from . import views
 from archiv import copy_views
 
-app_name = 'archiv'
+app_name = "archiv"
 urlpatterns = [
-    path('hapabeleg-copy/',
-        copy_views.copy_beleg,
-        name='copy_beleg'
-    ),
-    path('hapabeleg/',
-        views.HapaBelegListView.as_view(),
-        name='hapabeleg_browse'
-    ),
-    path('hapabeleg/detail/<int:pk>',
+    path("hapabeleg-copy/", copy_views.copy_beleg, name="copy_beleg"),
+    path("hapabeleg/", views.HapaBelegListView.as_view(), name="hapabeleg_browse"),
+    path(
+        "hapabeleg/detail/<int:pk>",
         views.HapaBelegDetailView.as_view(),
-        name='hapabeleg_detail'
+        name="hapabeleg_detail",
     ),
-    path('hapabeleg/create/',
-        views.HapaBelegCreate.as_view(),
-        name='hapabeleg_create'
-    ),
-    path('hapabeleg/edit/<int:pk>',
+    path("hapabeleg/create/", views.HapaBelegCreate.as_view(), name="hapabeleg_create"),
+    path(
+        "hapabeleg/edit/<int:pk>",
         views.HapaBelegUpdate.as_view(),
-        name='hapabeleg_edit'
+        name="hapabeleg_edit",
     ),
-    path('hapabeleg/delete/<int:pk>',
+    path(
+        "hapabeleg/delete/<int:pk>",
         views.HapaBelegDelete.as_view(),
-        name='hapabeleg_delete'),
-    path('hapaplacename/',
+        name="hapabeleg_delete",
+    ),
+    path(
+        "hapaplacename/",
         views.HapaPlaceNameListView.as_view(),
-        name='hapaplacename_browse'
+        name="hapaplacename_browse",
     ),
-    path('hapaplacename/detail/<int:pk>',
+    path(
+        "hapaplacename/detail/<int:pk>",
         views.HapaPlaceNameDetailView.as_view(),
-        name='hapaplacename_detail'
+        name="hapaplacename_detail",
     ),
-    path('hapaplacename/create/',
+    path(
+        "hapaplacename/create/",
         views.HapaPlaceNameCreate.as_view(),
-        name='hapaplacename_create'
+        name="hapaplacename_create",
     ),
-    path('hapaplacename/edit/<int:pk>',
+    path(
+        "hapaplacename/edit/<int:pk>",
         views.HapaPlaceNameUpdate.as_view(),
-        name='hapaplacename_edit'
+        name="hapaplacename_edit",
     ),
-    path('hapaplacename/delete/<int:pk>',
+    path(
+        "hapaplacename/delete/<int:pk>",
         views.HapaPlaceNameDelete.as_view(),
-        name='hapaplacename_delete'
+        name="hapaplacename_delete",
     ),
-    path('hapamap/',
-        views.HapaMapDetailView.as_view(),
-        name='hapamap_browser'
-    ),
+    path("hapamap/", views.HapaMapDetailView.as_view(), name="hapamap_browser"),
 ]

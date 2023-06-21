@@ -3,26 +3,20 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
-from archiv.filters import (
-    HapaBelegListFilter,
-    HapaPlaceNameListFilter
-)
+from archiv.filters import HapaBelegListFilter, HapaPlaceNameListFilter
 from archiv.forms import (
     HapaBelegFilterFormHelper,
     HapaBelegForm,
     HapaPlaceNameFilterFormHelper,
-    HapaPlaceNameForm
+    HapaPlaceNameForm,
 )
-from archiv.tables import (
-    HapaBelegTable,
-    HapaPlaceNameTable
-)
-from archiv.models import (
-    HapaBeleg,
-    HapaPlaceName
-)
+from archiv.tables import HapaBelegTable, HapaPlaceNameTable
+from archiv.models import HapaBeleg, HapaPlaceName
 from browsing.browsing_utils import (
-    GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
+    GenericListView,
+    BaseCreateView,
+    BaseUpdateView,
+    BaseDetailView,
 )
 from django.views.generic.base import TemplateView
 
@@ -34,7 +28,10 @@ class HapaBelegListView(GenericListView):
     formhelper_class = HapaBelegFilterFormHelper
     table_class = HapaBelegTable
     init_columns = [
-        'id', 'zot_key', 'short_quote', 'page_nr',
+        "id",
+        "zot_key",
+        "short_quote",
+        "page_nr",
     ]
     enable_merge = False
 
@@ -42,7 +39,7 @@ class HapaBelegListView(GenericListView):
 class HapaBelegDetailView(BaseDetailView):
 
     model = HapaBeleg
-    template_name = 'archiv/beleg_detail.html'
+    template_name = "archiv/beleg_detail.html"
 
 
 class HapaBelegCreate(BaseCreateView):
@@ -67,8 +64,8 @@ class HapaBelegUpdate(BaseUpdateView):
 
 class HapaBelegDelete(DeleteView):
     model = HapaBeleg
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:hapabeleg_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:hapabeleg_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -81,24 +78,22 @@ class HapaPlaceNameListView(GenericListView):
     filter_class = HapaPlaceNameListFilter
     formhelper_class = HapaPlaceNameFilterFormHelper
     table_class = HapaPlaceNameTable
-    init_columns = [
-        'id', 'name', 'adm_unit'
-    ]
+    init_columns = ["id", "name", "adm_unit"]
     enable_merge = False
-    template_name = 'archiv/overrides-genericlistviews.html'
+    template_name = "archiv/overrides-genericlistviews.html"
 
 
 class HapaPlaceNameDetailView(BaseDetailView):
 
     model = HapaPlaceName
-    template_name = 'archiv/place_detail.html'
+    template_name = "archiv/place_detail.html"
 
 
 class HapaPlaceNameCreate(BaseCreateView):
 
     model = HapaPlaceName
     form_class = HapaPlaceNameForm
-    template_name = 'archiv/placename_create.html'
+    template_name = "archiv/placename_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -109,7 +104,7 @@ class HapaPlaceNameUpdate(BaseUpdateView):
 
     model = HapaPlaceName
     form_class = HapaPlaceNameForm
-    template_name = 'archiv/placename_create.html'
+    template_name = "archiv/placename_create.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -118,8 +113,8 @@ class HapaPlaceNameUpdate(BaseUpdateView):
 
 class HapaPlaceNameDelete(DeleteView):
     model = HapaPlaceName
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:hapaplacename_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:hapaplacename_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -127,7 +122,7 @@ class HapaPlaceNameDelete(DeleteView):
 
 
 class HapaMapDetailView(TemplateView):
-    template_name = 'archiv/map_detail.html'
+    template_name = "archiv/map_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -18,13 +18,12 @@ models.Field.set_extra = set_extra
 
 
 class GeoNamesPlace(models.Model):
-    """ A Geonames Place Instance """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-    )
+    """A Geonames Place Instance"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     gn_id = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="GeoNames ID",
         help_text="GeoNames ID",
     ).set_extra(
@@ -44,7 +43,8 @@ class GeoNamesPlace(models.Model):
         arche_prop="hasTitle",
     )
     gn_lat = models.FloatField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="latitude",
         help_text="Latitude",
     ).set_extra(
@@ -52,7 +52,8 @@ class GeoNamesPlace(models.Model):
         data_lookup="latitude",
     )
     gn_long = models.FloatField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="longitude",
         help_text="Longitude",
     ).set_extra(
@@ -93,10 +94,8 @@ class GeoNamesPlace(models.Model):
         blank=True,
         null=True,
         verbose_name="Feature Code as SKOS",
-        help_text="The Place's Feature Code as SKOS"
-    ).set_extra(
-        is_public=True
-    )
+        help_text="The Place's Feature Code as SKOS",
+    ).set_extra(is_public=True)
     gn_country_code = models.CharField(
         max_length=250,
         null=True,
@@ -118,7 +117,8 @@ class GeoNamesPlace(models.Model):
         data_lookup="cc2",
     )
     gn_population = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Population",
         help_text="Population",
     ).set_extra(
@@ -126,7 +126,8 @@ class GeoNamesPlace(models.Model):
         data_lookup="population",
     )
     gn_elevation = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Elevation (m)",
         help_text="Elevation (m)",
     ).set_extra(
@@ -134,7 +135,8 @@ class GeoNamesPlace(models.Model):
         data_lookup="elevation",
     )
     gn_modification_date = models.DateField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Modifcation Date",
         help_text="Modification Date",
     ).set_extra(
@@ -142,24 +144,22 @@ class GeoNamesPlace(models.Model):
         data_lookup="modification date",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-    ).set_extra(
-        is_public=True
-    )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
 
         ordering = [
-            'gn_name',
+            "gn_name",
         ]
         verbose_name = "GeoNamesPlace"
 
     def __str__(self):
         if self.gn_name:
             if self.gn_country_code and self.gn_feature_code:
-                return f"{self.gn_name} ({self.gn_country_code}; {self.gn_feature_code})"
+                return (
+                    f"{self.gn_name} ({self.gn_country_code}; {self.gn_feature_code})"
+                )
             else:
                 return f"{self.gn_name}"
         else:
@@ -173,9 +173,7 @@ class GeoNamesPlace(models.Model):
             self.legacy_id = self.gn_id
         if not self.gn_feature:
             if self.gn_feature_class and self.gn_feature_code:
-                ft = ".".join((
-                    self.gn_feature_class, self.gn_feature_code)
-                )
+                ft = ".".join((self.gn_feature_class, self.gn_feature_code))
                 try:
                     self.gn_feature = SkosConcept.objects.get(notation=ft)
                 except ObjectDoesNotExist:

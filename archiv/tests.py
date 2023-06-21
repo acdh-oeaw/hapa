@@ -8,12 +8,9 @@ from gn_places.utils import gn_get_or_create
 from archiv.models import HapaPlaceName
 
 LINZ_GN = "https://www.geonames.org/2772400/linz.html"
-MODELS = list(apps.all_models['archiv'].values())
+MODELS = list(apps.all_models["archiv"].values())
 client = Client()
-USER = {
-    "username": "testuser",
-    "password": "somepassword"
-}
+USER = {"username": "testuser", "password": "somepassword"}
 
 
 class HapaPlaceNameTest(TestCase):
@@ -25,7 +22,7 @@ class HapaPlaceNameTest(TestCase):
     def test_001_create_object(self):
         """Simple test to check if object was created"""
         item = HapaPlaceName.objects.get(name="Linz")
-        self.assertEqual(item.name, 'Linz')
+        self.assertEqual(item.name, "Linz")
 
     def test_002_check_coords_fetch_from_rel_gn_entry(self):
         item = HapaPlaceName.objects.get(name="Linz")
@@ -68,7 +65,7 @@ class HapaPlaceNameTest(TestCase):
             except AttributeError:
                 url = False
             if url:
-                response = client.get(url, {'pk': item.id})
+                response = client.get(url, {"pk": item.id})
                 self.assertEqual(response.status_code, 200)
 
     def test_007_editviews(self):
@@ -80,7 +77,7 @@ class HapaPlaceNameTest(TestCase):
             except AttributeError:
                 url = False
             if url:
-                response = client.get(url, {'pk': item.id})
+                response = client.get(url, {"pk": item.id})
                 self.assertEqual(response.status_code, 200)
 
     def test_008_createviews_not_logged_in(self):
@@ -91,7 +88,7 @@ class HapaPlaceNameTest(TestCase):
             except AttributeError:
                 url = False
             if url:
-                response = client.get(url, {'pk': item.id})
+                response = client.get(url, {"pk": item.id})
                 self.assertEqual(response.status_code, 302)
 
     def test_009_createviews_logged_in(self):
@@ -103,5 +100,5 @@ class HapaPlaceNameTest(TestCase):
             except AttributeError:
                 url = False
             if url:
-                response = client.get(url, {'pk': item.id})
+                response = client.get(url, {"pk": item.id})
                 self.assertEqual(response.status_code, 200)

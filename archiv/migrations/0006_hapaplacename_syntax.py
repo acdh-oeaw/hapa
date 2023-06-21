@@ -7,13 +7,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0005_hapaplacename_etymology'),
+        ("archiv", "0005_hapaplacename_etymology"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='hapaplacename',
-            name='syntax',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Besprechung der Syntax des Ortsnamens', null=True, verbose_name='Syntax'),
+            model_name="hapaplacename",
+            name="syntax",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Besprechung der Syntax des Ortsnamens",
+                null=True,
+                verbose_name="Syntax",
+            ),
         ),
     ]

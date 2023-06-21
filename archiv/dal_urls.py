@@ -2,22 +2,18 @@
 from django.urls import path
 from . import dal_views
 
-app_name = 'archiv'
+app_name = "archiv"
 urlpatterns = [
-    path('adm-units/',
-        dal_views.AdmUnitsAC.as_view(),
-        name='adm-units'
-    ),
-    path('orig-sprache/',
-        dal_views.LangAC.as_view(),
-        name='orig-sprache'
-    ),
-    path('hapabeleg-autocomplete/',
+    path("adm-units/", dal_views.AdmUnitsAC.as_view(), name="adm-units"),
+    path("orig-sprache/", dal_views.LangAC.as_view(), name="orig-sprache"),
+    path(
+        "hapabeleg-autocomplete/",
         dal_views.HapaBelegAC.as_view(),
-        name='hapabeleg-autocomplete'
+        name="hapabeleg-autocomplete",
     ),
-    path('hapaplacename-autocomplete/',
+    path(
+        "hapaplacename-autocomplete/",
         dal_views.HapaPlaceNameAC.as_view(),
-        name='hapaplacename-autocomplete'
+        name="hapaplacename-autocomplete",
     ),
 ]

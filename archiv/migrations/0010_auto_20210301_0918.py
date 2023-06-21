@@ -8,34 +8,54 @@ import taggit.managers
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('taggit', '0003_taggeditem_add_unique_index'),
-        ('archiv', '0009_hapaplacename_tags'),
+        ("taggit", "0003_taggeditem_add_unique_index"),
+        ("archiv", "0009_hapaplacename_tags"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='hapabeleg',
-            name='comment',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Kommentar', null=True, verbose_name='Kommentar'),
+            model_name="hapabeleg",
+            name="comment",
+            field=ckeditor.fields.RichTextField(
+                blank=True, help_text="Kommentar", null=True, verbose_name="Kommentar"
+            ),
         ),
         migrations.AddField(
-            model_name='hapabeleg',
-            name='internal_comment',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Kommentar (intern)', null=True, verbose_name='Kommentar (intern)'),
+            model_name="hapabeleg",
+            name="internal_comment",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Kommentar (intern)",
+                null=True,
+                verbose_name="Kommentar (intern)",
+            ),
         ),
         migrations.AddField(
-            model_name='hapabeleg',
-            name='tags',
-            field=taggit.managers.TaggableManager(blank=True, help_text='A comma-separated list of tags.', through='taggit.TaggedItem', to='taggit.Tag', verbose_name='Tags'),
+            model_name="hapabeleg",
+            name="tags",
+            field=taggit.managers.TaggableManager(
+                blank=True,
+                help_text="A comma-separated list of tags.",
+                through="taggit.TaggedItem",
+                to="taggit.Tag",
+                verbose_name="Tags",
+            ),
         ),
         migrations.AddField(
-            model_name='hapaplacename',
-            name='comment',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Kommentar', null=True, verbose_name='Kommentar'),
+            model_name="hapaplacename",
+            name="comment",
+            field=ckeditor.fields.RichTextField(
+                blank=True, help_text="Kommentar", null=True, verbose_name="Kommentar"
+            ),
         ),
         migrations.AddField(
-            model_name='hapaplacename',
-            name='internal_comment',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Kommentar (intern)', null=True, verbose_name='Kommentar (intern)'),
+            model_name="hapaplacename",
+            name="internal_comment",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Kommentar (intern)",
+                null=True,
+                verbose_name="Kommentar (intern)",
+            ),
         ),
     ]

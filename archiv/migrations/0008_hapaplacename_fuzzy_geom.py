@@ -7,13 +7,19 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0007_remove_hapaplacename_description'),
+        ("archiv", "0007_remove_hapaplacename_description"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='hapaplacename',
-            name='fuzzy_geom',
-            field=django.contrib.gis.db.models.fields.PolygonField(blank=True, help_text='Ungefähre Lokalisierung historischer Orte', null=True, srid=4326, verbose_name='Ungefähre Ortsangabe'),
+            model_name="hapaplacename",
+            name="fuzzy_geom",
+            field=django.contrib.gis.db.models.fields.PolygonField(
+                blank=True,
+                help_text="Ungefähre Lokalisierung historischer Orte",
+                null=True,
+                srid=4326,
+                verbose_name="Ungefähre Ortsangabe",
+            ),
         ),
     ]

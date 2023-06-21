@@ -6,18 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0011_auto_20210319_1507'),
+        ("archiv", "0011_auto_20210319_1507"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='hapabeleg',
-            name='unclear',
-            field=models.BooleanField(default=False, help_text='Eintrag mit offenen Fragen', verbose_name='unklar'),
+            model_name="hapabeleg",
+            name="unclear",
+            field=models.BooleanField(
+                default=False,
+                help_text="Eintrag mit offenen Fragen",
+                verbose_name="unklar",
+            ),
         ),
         migrations.AddField(
-            model_name='hapaplacename',
-            name='unclear',
-            field=models.BooleanField(default=False, help_text='Eintrag mit offenen Fragen', verbose_name='unklar'),
+            model_name="hapaplacename",
+            name="unclear",
+            field=models.BooleanField(
+                default=False,
+                help_text="Eintrag mit offenen Fragen",
+                verbose_name="unklar",
+            ),
         ),
     ]

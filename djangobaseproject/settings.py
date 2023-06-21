@@ -184,7 +184,7 @@ SERIALIZATION_MODULES = {
 
 Z_ID = "440857"
 Z_LIBRARY_TYPE = "group"
-Z_API_KEY = os.environ.get('Z_API_KEY')
+Z_API_KEY = os.environ.get("Z_API_KEY")
 
 LEAFLET_CONFIG = {
     "DEFAULT_CENTER": (41, 20),

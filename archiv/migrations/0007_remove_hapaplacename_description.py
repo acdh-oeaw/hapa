@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0006_hapaplacename_syntax'),
+        ("archiv", "0006_hapaplacename_syntax"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='hapaplacename',
-            name='description',
+            model_name="hapaplacename",
+            name="description",
         ),
     ]

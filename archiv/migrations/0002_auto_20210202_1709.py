@@ -8,23 +8,39 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('archiv', '0001_initial'),
+        ("archiv", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='hapabeleg',
-            name='text',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='ausgewähltes Quellenzitaten', null=True, verbose_name='Textauszug'),
+            model_name="hapabeleg",
+            name="text",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="ausgewähltes Quellenzitaten",
+                null=True,
+                verbose_name="Textauszug",
+            ),
         ),
         migrations.AlterField(
-            model_name='hapaplacename',
-            name='description',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='Besprechung der Etymologie und Wortbildung des Ortsnamens', null=True, verbose_name='Etymologie und Wortbildung'),
+            model_name="hapaplacename",
+            name="description",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="Besprechung der Etymologie und Wortbildung des Ortsnamens",
+                null=True,
+                verbose_name="Etymologie und Wortbildung",
+            ),
         ),
         migrations.AlterField(
-            model_name='hapaplacename',
-            name='point',
-            field=django.contrib.gis.db.models.fields.PointField(blank=True, help_text='Wird aus den Angaben von Beiten- und Längengrad befüllt)', null=True, srid=4326, verbose_name='Koordinaten'),
+            model_name="hapaplacename",
+            name="point",
+            field=django.contrib.gis.db.models.fields.PointField(
+                blank=True,
+                help_text="Wird aus den Angaben von Beiten- und Längengrad befüllt)",
+                null=True,
+                srid=4326,
+                verbose_name="Koordinaten",
+            ),
         ),
     ]
