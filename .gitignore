@@ -52,3 +52,4 @@ htmlcov
 coverage.xml
 bib
 static/ckeditor
+secret.env
