@@ -1,6 +1,4 @@
-import json
 from django import template
-from bib.models import ZotItem
 
 register = template.Library()
 
