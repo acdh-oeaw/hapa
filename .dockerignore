@@ -5,3 +5,5 @@ server.py
 .env_dev
 htmlcov
 .coverage
+secret.env
+.env
