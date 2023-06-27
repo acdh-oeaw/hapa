@@ -45,3 +45,4 @@ htmlcov
 coverage.xml
 static/ckeditor
 secret.env
+dump.sql
