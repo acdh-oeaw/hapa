@@ -35,4 +35,4 @@ REDMINE_ID=12345
 
 `docker run -it -p 8020:8020 --rm --env-file .env_dev hapa:latest`
 
-docker run -it -p 8020:8020 --rm --env-file docker.env ghcr.io/acdh-oeaw/hapa:latest
+`docker run -it -p 8020:8020 --rm --env-file docker.env ghcr.io/acdh-oeaw/hapa:latest`
