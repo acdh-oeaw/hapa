@@ -12,6 +12,7 @@ if os.environ.get("DEBUG"):
 else:
     DEBUG = False
 
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 ADD_ALLOWED_HOST = os.environ.get("ALLOWED_HOST", "*")
 ALLOWED_HOSTS = [
     "127.0.0.1",
