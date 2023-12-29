@@ -161,7 +161,7 @@ class HapaBeleg(models.Model):
     def get_next(self):
         next = next_in_order(self)
         if next:
-            return reverse("archiv:hapabeleg_detail", kwargs={"pk": next.id()})
+            return reverse("archiv:hapabeleg_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):

@@ -93,8 +93,8 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                     "etymology",
                     "syntax",
                     "comment",
-                    # "beleg",
-                    # 'beleg__zotero_id',
+                    "beleg",
+                    "beleg__zotero_id",
                     css_id="etym",
                 ),
                 AccordionGroup(

@@ -99,27 +99,27 @@ class HapaPlaceNameListFilter(django_filters.FilterSet):
             url="gn_places-ac:geonamesplace-autocomplete",
         ),
     )
-    # beleg = django_filters.ModelMultipleChoiceFilter(
-    #     queryset=HapaBeleg.objects.all(),
-    #     help_text=HapaPlaceName._meta.get_field("beleg").help_text,
-    #     label=HapaPlaceName._meta.get_field("beleg").verbose_name,
-    #     widget=autocomplete.Select2Multiple(
-    #         url="archiv-ac:hapabeleg-autocomplete",
-    #     ),
-    # )
-    # beleg__zotero_id = django_filters.ModelMultipleChoiceFilter(
-    #     queryset=ZotItem.objects.all(),
-    #     help_text="Bibliographischer Eintrag",
-    #     label="Bibliographischer Eintrag",
-    #     widget=autocomplete.Select2Multiple(
-    #         url="bib:zotitem-autocomplete",
-    #     ),
-    # )
+    beleg = django_filters.ModelMultipleChoiceFilter(
+        queryset=HapaBeleg.objects.all(),
+        help_text=HapaPlaceName._meta.get_field("beleg").help_text,
+        label=HapaPlaceName._meta.get_field("beleg").verbose_name,
+        widget=autocomplete.ModelSelect2Multiple(
+            url="archiv-ac:hapabeleg-autocomplete",
+        ),
+    )
+    beleg__zotero_id = django_filters.ModelMultipleChoiceFilter(
+        queryset=ZotItem.objects.all(),
+        help_text="Bibliographischer Eintrag",
+        label="Bibliographischer Eintrag",
+        widget=autocomplete.ModelSelect2Multiple(
+            url="bib:zotitem-autocomplete",
+        ),
+    )
     orig_sprache = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(collection__name="orig_sprache"),
         help_text=HapaPlaceName._meta.get_field("orig_sprache").help_text,
         label=HapaPlaceName._meta.get_field("orig_sprache").verbose_name,
-        widget=autocomplete.Select2Multiple(
+        widget=autocomplete.ModelSelect2Multiple(
             url="archiv-ac:orig-sprache",
             attrs={
                 "data-placeholder": "Autocomplete ...",
