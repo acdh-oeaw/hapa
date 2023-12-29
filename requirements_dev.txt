@@ -4,4 +4,4 @@ django_extensions
 django-fixture-magic
 flake8
 isort
-- r requirements.txt
+-r requirements.txt
