@@ -74,7 +74,7 @@ class HapaPlaceNameListView(GenericListView):
     filter_class = HapaPlaceNameListFilter
     formhelper_class = HapaPlaceNameFilterFormHelper
     table_class = HapaPlaceNameTable
-    init_columns = ["id", "name", "adm_unit", "beleg"]
+    init_columns = ["id", "name", "adm_unit"]
     enable_merge = False
     template_name = "archiv/overrides-genericlistviews.html"
 
