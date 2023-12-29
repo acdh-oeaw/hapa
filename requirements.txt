@@ -12,5 +12,5 @@ django-leaflet
 django-taggit==1.3.0
 pyzotero
 xlrd==1.2.0
-psycopg2-binary==2.8.6
+psycopg2-binary
 tablib>=3.0.0
