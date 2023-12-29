@@ -6,6 +6,7 @@ from dal import autocomplete
 from django import forms
 from leaflet.forms.widgets import LeafletWidget
 from mptt.forms import TreeNodeChoiceField
+from icecream import ic
 
 from vocabs.models import SkosConcept
 
@@ -43,11 +44,19 @@ class HapaBelegFilterFormHelper(FormHelper):
 
 
 class HapaBelegForm(forms.ModelForm):
+    place = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=HapaPlaceName.objects.all(),
+        widget=autocomplete.ModelSelect2Multiple(
+            url="archiv-ac:hapaplacename-autocomplete"
+        ),
+    )
+
     class Meta:
         model = HapaBeleg
         exclude = ()
         widgets = {
-            "zotero_id": autocomplete.ModelSelect2(url="bib:zotitem-autocomplete"),
+            "zotero_id": autocomplete.ModelSelect2(url="bib:zotitem-autocomplete")
         }
 
     def __init__(self, *args, **kwargs):
@@ -60,6 +69,18 @@ class HapaBelegForm(forms.ModelForm):
         self.helper.add_input(
             Submit("submit", "save"),
         )
+
+        if self.instance.pk:
+            self.fields[
+                "place"
+            ].initial = self.instance.rvn_hapaplacename_beleg_beleg.all()
+            ic(self.fields["place"].initial)
+
+    def save(self, *args, **kwargs):
+        instance = super(HapaBelegForm, self).save(*args, **kwargs)
+        if self.cleaned_data["place"]:
+            instance.rvn_hapaplacename_beleg_beleg.add(*self.cleaned_data["place"])
+        return self.instance
 
 
 class HapaPlaceNameFilterFormHelper(FormHelper):
