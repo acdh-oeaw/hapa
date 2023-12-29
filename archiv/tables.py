@@ -28,7 +28,7 @@ class HapaPlaceNameTable(tables.Table):
     id = tables.LinkColumn(verbose_name="ID")
     tags = tables.ManyToManyColumn()
     # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
-    beleg = tables.columns.ManyToManyColumn()
+    beleg = tables.columns.ManyToManyColumn(verbose_name="Belege")
     wortbildung = tables.TemplateColumn("{{ record.wortbildung|safe }}")
     etymology = tables.TemplateColumn("{{ record.etymology|safe }}")
     syntax = tables.TemplateColumn("{{ record.syntax|safe }}")

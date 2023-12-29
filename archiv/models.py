@@ -8,6 +8,7 @@ from django.contrib.gis.geos import Point
 from django.core.serializers import serialize
 from django.db import models
 from django.urls import reverse
+from next_prev import next_in_order, prev_in_order
 from taggit.managers import TaggableManager
 
 from bib.models import ZotItem
@@ -158,15 +159,15 @@ class HapaBeleg(models.Model):
         return reverse("archiv:hapabeleg_edit", kwargs={"pk": self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return reverse("archiv:hapabeleg_detail", kwargs={"pk": next.first().id})
+            return reverse("archiv:hapabeleg_detail", kwargs={"pk": next.id()})
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by("-id")
+        prev = prev_in_order(self)
         if prev:
-            return reverse("archiv:hapabeleg_detail", kwargs={"pk": prev.first().id})
+            return reverse("archiv:hapabeleg_detail", kwargs={"pk": prev.id})
         return False
 
 
@@ -381,19 +382,15 @@ class HapaPlaceName(models.Model):
         return reverse("archiv:hapaplacename_edit", kwargs={"pk": self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return reverse(
-                "archiv:hapaplacename_detail", kwargs={"pk": next.first().id}
-            )
+            return reverse("archiv:hapaplacename_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by("-id")
+        prev = prev_in_order(self)
         if prev:
-            return reverse(
-                "archiv:hapaplacename_detail", kwargs={"pk": prev.first().id}
-            )
+            return reverse("archiv:hapaplacename_detail", kwargs={"pk": prev.id})
         return False
 
     def as_geojson(self):

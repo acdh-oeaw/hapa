@@ -93,7 +93,7 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                     "etymology",
                     "syntax",
                     "comment",
-                    "beleg",
+                    # "beleg",
                     # 'beleg__zotero_id',
                     css_id="etym",
                 ),
