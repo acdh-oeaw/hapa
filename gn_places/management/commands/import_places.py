@@ -1,10 +1,11 @@
-import math
 import json
+import math
+
+from acdh_geonames_utils.acdh_geonames_utils import download_to_df
 from django.core.management.base import BaseCommand
 from django.core.serializers.json import DjangoJSONEncoder
-
 from tqdm import tqdm
-from acdh_geonames_utils.acdh_geonames_utils import download_to_df
+
 from gn_places.config import field_mapping
 from gn_places.models import GeoNamesPlace
 

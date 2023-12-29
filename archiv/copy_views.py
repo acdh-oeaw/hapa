@@ -1,6 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
 
 from archiv.models import HapaBeleg
 

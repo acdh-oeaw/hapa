@@ -1,10 +1,9 @@
 import django_tables2 as tables
-from django_tables2.utils import A
-from .models import AboutTheProject, TeamMember, ProjectInst
+
+from .models import AboutTheProject, ProjectInst, TeamMember
 
 
 class AboutTheProjectTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
 
     class Meta:
@@ -14,7 +13,6 @@ class AboutTheProjectTable(tables.Table):
 
 
 class TeamMemberTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
 
     class Meta:
@@ -24,7 +22,6 @@ class TeamMemberTable(tables.Table):
 
 
 class ProjectInstTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
 
     class Meta:

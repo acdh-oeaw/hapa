@@ -6,11 +6,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "1234verysecret")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-if os.environ.get("DEBUG"):
-    DEBUG = True
-else:
-    DEBUG = False
+DEBUG = os.environ.get("DEBUG", False)
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 ADD_ALLOWED_HOST = os.environ.get("ALLOWED_HOST", "*")

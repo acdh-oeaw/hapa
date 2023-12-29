@@ -1,6 +1,5 @@
-from django.core.management.base import BaseCommand
-
 from acdh_geonames_utils.acdh_geonames_utils import feature_codes_df
+from django.core.management.base import BaseCommand
 
 from gn_places.import_utils import import_feature_codes
 

@@ -1,16 +1,14 @@
 from copy import deepcopy
 
 import requests
-
 from django.conf import settings
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.template import loader
-from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login, logout
-from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.shortcuts import render
+from django.template import loader
+from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView
 
 from .forms import form_user_login
 from .metadata import PROJECT_METADATA as PM
@@ -102,7 +100,6 @@ def handler404(request, exception):
 
 
 def project_info(request):
-
     """
     returns a dict providing metadata about the current project
     """

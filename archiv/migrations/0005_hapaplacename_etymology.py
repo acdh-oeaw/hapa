@@ -5,7 +5,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("archiv", "0004_hapaplacename_wortbildung"),
     ]

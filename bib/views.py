@@ -1,11 +1,9 @@
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from django.contrib.auth.decorators import login_required
-
 from .models import ZotItem
-from .zot_utils import items_to_dict, create_zotitem
-
+from .zot_utils import create_zotitem, items_to_dict
 
 library_id = settings.Z_ID
 library_type = settings.Z_LIBRARY_TYPE

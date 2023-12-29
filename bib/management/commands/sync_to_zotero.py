@@ -1,9 +1,10 @@
-import requests
 import sys
+
+import requests
+from django.conf import settings
 from django.core.management.base import NoArgsCommand
 
 from bib.models import ZotItem
-from django.conf import settings
 
 Z_USER_ID = settings.Z_USER_ID
 Z_COLLECTION = settings.Z_COLLECTION
@@ -22,7 +23,9 @@ class Command(NoArgsCommand):
         try:
             r = requests.get(url)
         except Exception as e:
-            sys.exit(f"aa! errors: {e}!\nThe API didn´t response with a proper json-file")
+            sys.exit(
+                f"aa! errors: {e}!\nThe API didn´t response with a proper json-file"
+            )
 
         response = r.json()
 

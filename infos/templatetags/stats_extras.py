@@ -6,7 +6,6 @@ register = template.Library()
 
 @register.simple_tag
 def create_object_count(app=None):
-
     """fetches all models of the passed in app and returns a
     dict containg the name of each class and the number of instances"""
 

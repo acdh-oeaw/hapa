@@ -1,8 +1,8 @@
 from tqdm import tqdm
-from vocabs.models import SkosConceptScheme, SkosCollection, SkosConcept, ConceptNote
 
-from .config import GN_FTC_SCHEME, GN_FTC_COLLECTION
+from vocabs.models import ConceptNote, SkosCollection, SkosConcept, SkosConceptScheme
 
+from .config import GN_FTC_COLLECTION, GN_FTC_SCHEME
 
 scheme, _ = SkosConceptScheme.objects.get_or_create(**GN_FTC_SCHEME)
 

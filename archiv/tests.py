@@ -1,11 +1,9 @@
 from django.apps import apps
-
-from django.test import TestCase, Client
 from django.contrib.auth.models import User
-
-from gn_places.utils import gn_get_or_create
+from django.test import Client, TestCase
 
 from archiv.models import HapaPlaceName
+from gn_places.utils import gn_get_or_create
 
 LINZ_GN = "https://www.geonames.org/2772400/linz.html"
 MODELS = list(apps.all_models["archiv"].values())

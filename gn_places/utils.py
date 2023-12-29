@@ -1,7 +1,7 @@
-from django.core.exceptions import ObjectDoesNotExist
-
 from acdh_geonames_utils.gn_client import gn_as_object
 from acdh_geonames_utils.utils import extract_id
+from django.core.exceptions import ObjectDoesNotExist
+
 from gn_places.models import GeoNamesPlace
 
 

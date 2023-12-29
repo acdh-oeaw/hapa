@@ -1,6 +1,6 @@
+from browsing.browsing_utils import model_to_dict
 from django.db import models
 from django.urls import reverse
-from browsing.browsing_utils import model_to_dict
 
 
 class ProjectInst(models.Model):
@@ -27,7 +27,6 @@ class ProjectInst(models.Model):
     )
 
     class Meta:
-
         ordering = [
             "name",
         ]
@@ -93,7 +92,6 @@ class TeamMember(models.Model):
     )
 
     class Meta:
-
         ordering = [
             "role",
             "name",
@@ -160,7 +158,6 @@ class AboutTheProject(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-
         ordering = [
             "id",
         ]

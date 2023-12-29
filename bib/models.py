@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import ast
-from django.db import models
-from django.conf import settings
 
+from django.conf import settings
+from django.db import models
 from pyzotero import zotero
 
 library_id = settings.Z_ID

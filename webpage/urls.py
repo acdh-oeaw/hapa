@@ -1,7 +1,7 @@
 from django.urls import path
 from django.views.generic.base import RedirectView
-from webpage import views
 
+from webpage import views
 
 app_name = "webpage"
 

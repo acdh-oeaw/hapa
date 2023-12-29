@@ -1,4 +1,10 @@
 [flake8]
-exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,env,migrations,appcreator,infos,djangobaseproject,idprovider,webpage,manage.py
-
+ignore = D203 W504 F405 W503
 max-line-length = 120
+exclude =
+    .git
+    .tox
+    build
+    dist
+    env
+    venv

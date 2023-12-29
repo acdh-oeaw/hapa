@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.urls import path
-from . import views
-from . import dal_views
+
+from . import dal_views, views
 
 app_name = "bib"
 

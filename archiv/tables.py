@@ -5,7 +5,6 @@ from .models import HapaBeleg, HapaPlaceName
 
 
 class HapaBelegTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
     tags = tables.ManyToManyColumn()
     text = tables.TemplateColumn("{{ record.text|safe }}")
@@ -26,7 +25,6 @@ class HapaBelegTable(tables.Table):
 
 
 class HapaPlaceNameTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
     tags = tables.ManyToManyColumn()
     # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')

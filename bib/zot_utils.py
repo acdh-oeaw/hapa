@@ -1,9 +1,9 @@
 from pyzotero import zotero
+
 from bib.models import ZotItem
 
 
 def items_to_dict(library_id, library_type, api_key, limit=15, since_version=None):
-
     """
     returns a dict with keys 'error' containing possible error-msgs,
     'items' a list of fetched zotero items and
