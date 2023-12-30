@@ -6,7 +6,6 @@ from dal import autocomplete
 from django import forms
 from leaflet.forms.widgets import LeafletWidget
 from mptt.forms import TreeNodeChoiceField
-from icecream import ic
 
 from vocabs.models import SkosConcept
 
@@ -74,10 +73,12 @@ class HapaBelegForm(forms.ModelForm):
             self.fields[
                 "place"
             ].initial = self.instance.rvn_hapaplacename_beleg_beleg.all()
-            ic(self.fields["place"].initial)
 
     def save(self, *args, **kwargs):
         instance = super(HapaBelegForm, self).save(*args, **kwargs)
+        hapa_places = HapaPlaceName.objects.filter(beleg=instance)
+        for x in hapa_places:
+            x.beleg.remove(instance)
         if self.cleaned_data["place"]:
             instance.rvn_hapaplacename_beleg_beleg.add(*self.cleaned_data["place"])
         return self.instance
