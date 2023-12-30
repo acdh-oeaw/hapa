@@ -43,11 +43,19 @@ class HapaBelegFilterFormHelper(FormHelper):
 
 
 class HapaBelegForm(forms.ModelForm):
+    place = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=HapaPlaceName.objects.all(),
+        widget=autocomplete.ModelSelect2Multiple(
+            url="archiv-ac:hapaplacename-autocomplete"
+        ),
+    )
+
     class Meta:
         model = HapaBeleg
         exclude = ()
         widgets = {
-            "zotero_id": autocomplete.ModelSelect2(url="bib:zotitem-autocomplete"),
+            "zotero_id": autocomplete.ModelSelect2(url="bib:zotitem-autocomplete")
         }
 
     def __init__(self, *args, **kwargs):
@@ -60,6 +68,20 @@ class HapaBelegForm(forms.ModelForm):
         self.helper.add_input(
             Submit("submit", "save"),
         )
+
+        if self.instance.pk:
+            self.fields[
+                "place"
+            ].initial = self.instance.rvn_hapaplacename_beleg_beleg.all()
+
+    def save(self, *args, **kwargs):
+        instance = super(HapaBelegForm, self).save(*args, **kwargs)
+        hapa_places = HapaPlaceName.objects.filter(beleg=instance)
+        for x in hapa_places:
+            x.beleg.remove(instance)
+        if self.cleaned_data["place"]:
+            instance.rvn_hapaplacename_beleg_beleg.add(*self.cleaned_data["place"])
+        return self.instance
 
 
 class HapaPlaceNameFilterFormHelper(FormHelper):
