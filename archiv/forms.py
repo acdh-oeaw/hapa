@@ -146,11 +146,8 @@ class HapaPlaceNameForm(forms.ModelForm):
 
     class Meta:
         model = HapaPlaceName
-        exclude = ()
+        exclude = ("beleg",)
         widgets = {
-            "beleg": autocomplete.ModelSelect2Multiple(
-                url="archiv-ac:hapabeleg-autocomplete"
-            ),
             "geonames": autocomplete.ModelSelect2(
                 url="gn_places-ac:geonamesplace-autocomplete"
             ),
