@@ -22,7 +22,7 @@ class HapaBelegFilterFormHelper(FormHelper):
         self.add_input(Submit("Filter", "Search"))
         self.layout = Layout(
             Fieldset(
-                "Basic search options", "short_quote", css_id="basic_search_fields"
+                "Basic search options", "id", "short_quote", css_id="basic_search_fields"
             ),
             Accordion(
                 AccordionGroup(
@@ -36,7 +36,7 @@ class HapaBelegFilterFormHelper(FormHelper):
                     css_id="more",
                 ),
                 AccordionGroup(
-                    "admin", "id", "tags", "internal_comment", css_id="admin_search"
+                    "admin", "tags", "internal_comment", css_id="admin_search"
                 ),
             ),
         )
