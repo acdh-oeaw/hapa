@@ -17,6 +17,8 @@ def copy_beleg(request):
         return redirect("/")
     item.id = None
     item.text = None
+    item.comment = None
+    item.internal_comment = None
     item.page = "KOPIE"
     item.save()
     return redirect(item.get_edit_url())
