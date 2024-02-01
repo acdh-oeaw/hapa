@@ -22,7 +22,10 @@ class HapaBelegFilterFormHelper(FormHelper):
         self.add_input(Submit("Filter", "Search"))
         self.layout = Layout(
             Fieldset(
-                "Basic search options", "id", "short_quote", css_id="basic_search_fields"
+                "Basic search options",
+                "id",
+                "short_quote",
+                css_id="basic_search_fields",
             ),
             Accordion(
                 AccordionGroup(
