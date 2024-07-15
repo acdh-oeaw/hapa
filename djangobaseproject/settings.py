@@ -6,7 +6,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "1234verysecret")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = os.environ.get("DEBUG", False)
+if os.environ.get("DEBUG"):
+    DEBUG = True
+else:
+    DEBUG = False
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 ADD_ALLOWED_HOST = os.environ.get("ALLOWED_HOST", "*")
@@ -52,7 +55,7 @@ INSTALLED_APPS = [
     "reversion",
     "ckeditor",
     "crispy_forms",
-    "crispy_bootstrap4",
+    "crispy_bootstrap5",
     "django_filters",
     "django_tables2",
     "rest_framework",
@@ -73,8 +76,8 @@ if DEBUG:
     INSTALLED_APPS.insert(10, "django_extensions")
     INSTALLED_APPS.insert(11, "fixture_magic")
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
@@ -184,10 +187,11 @@ Z_LIBRARY_TYPE = "group"
 Z_API_KEY = os.environ.get("Z_API_KEY")
 
 LEAFLET_CONFIG = {
-    "DEFAULT_CENTER": (41, 20),
+    "DEFAULT_CENTER": (41.0, 20.0),
     "DEFAULT_ZOOM": 8,
     "MIN_ZOOM": 3,
-    "OVERLAYS": [],
+    "MAX_ZOOM": 18,
+    "DEFAULT_PRECISION": 6,
 }
 
 

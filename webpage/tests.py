@@ -14,9 +14,9 @@ class WebpageTest(TestCase):
         self.assertContains(rv, "Username")
         form_data = {"username": "temporary", "password": "temporary"}
         rv = self.client.post("/accounts/login/", form_data, follow=True)
-        self.assertContains(rv, "temporary")
+        self.assertContains(rv, "Belege")
         rv = self.client.get("/logout/", follow=True)
-        self.assertContains(rv, "signed out")
+        self.assertContains(rv, "You've signed out")
         form_data = {"username": "non_exist", "password": "temporary"}
         rv = self.client.post("/accounts/login/", form_data, follow=True)
         self.assertContains(rv, "user does not exist")
