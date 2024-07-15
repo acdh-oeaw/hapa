@@ -6,7 +6,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "1234verysecret")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = os.environ.get("DEBUG", False)
+DEBUG = os.environ.get("DEBUG", True)
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 ADD_ALLOWED_HOST = os.environ.get("ALLOWED_HOST", "*")
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.gis",
     "reversion",
-    "ckeditor",
+    "django_ckeditor_5",
     "crispy_forms",
     "crispy_bootstrap4",
     "django_filters",
@@ -411,73 +411,126 @@ DEFAULT_SPECIAL_CHARS = [
 
 CUSTOM_SPECIAL_CHARS = "ĀāĂăĄąĆćČčĐđĒēĔĕĖėĘęĚěĜĝĨĩĪīĬĭĴĵĶķĹĺŁłŃńŊŋŌōŎŏŐőŔŕŘřŚśŜŝŞşŠšŨũŪūŬŭŰűŹźŽžǪǫǮǯǴǵȀȁȄȅȈȉȌȍȐȑȔȕȨȩȮȯḀḁḌḍḔḕḖḗḪḫḰḱṀṁṂṃṄṅṆṇṌṍṐṑṒṓṘṙṚṛṢṣṬṭṶṷṸṹẽẼẹẸộỘ"  # noqa: E501
 
-CKEDITOR_CONFIGS = {
+CKEDITOR_5_CONFIGS = {
     "default": {
-        # 'skin': 'office2013',
-        "specialChars": [x for x in CUSTOM_SPECIAL_CHARS] + DEFAULT_SPECIAL_CHARS,
-        "toolbar_YourCustomToolbarConfig": [
-            {
-                "name": "document",
-                "items": [
-                    "Source",
-                    "-",
-                    "Preview",
-                    "Print",
-                    "Templates",
-                    "Maximize",
-                    "ShowBlocks",
-                ],
-            },
-            {
-                "name": "clipboard",
-                "items": [
-                    "Cut",
-                    "Copy",
-                    "Paste",
-                    "PasteText",
-                    "PasteFromWord",
-                    "-",
-                    "Undo",
-                    "Redo",
-                ],
-            },
-            {
-                "name": "paragraph",
-                "items": [
-                    "NumberedList",
-                    "BulletedList",
-                    "Outdent",
-                    "Indent",
-                    "Blockquote",
-                    "CreateDiv",
-                    "JustifyLeft",
-                    "JustifyCenter",
-                    "JustifyRight",
-                    "JustifyBlock",
-                    "Language",
-                ],
-            },
-            {"name": "links", "items": ["Link", "Unlink", "Anchor"]},
-            {"name": "insert", "items": ["Table", "HorizontalRule", "PageBreak"]},
-            {"name": "styles", "items": ["Styles", "Format", "Font", "FontSize"]},
-            {"name": "colors", "items": ["TextColor", "BGColor"]},
-            {
-                "name": "basicstyles",
-                "items": [
-                    "Bold",
-                    "Italic",
-                    "Underline",
-                    "Strike",
-                    "Subscript",
-                    "Superscript",
-                    "RemoveFormat",
-                    "SpecialChar",
-                ],
-            },
+        "toolbar": [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "blockQuote",
+            "imageUpload",
         ],
-        "toolbar": "YourCustomToolbarConfig",
-        "font_names": "Arial/Arial;" "Times New Roman;" "Verdana;",
-        "font_defaultLabel": "Arial",
-        "fontSize_defaultLabel": "12px",
-    }
+    },
+    "extends": {
+        "blockToolbar": [
+            "paragraph",
+            "heading1",
+            "heading2",
+            "heading3",
+            "|",
+            "bulletedList",
+            "numberedList",
+            "|",
+            "blockQuote",
+        ],
+        "toolbar": [
+            "heading",
+            "|",
+            "outdent",
+            "indent",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "underline",
+            "strikethrough",
+            "code",
+            "subscript",
+            "superscript",
+            "highlight",
+            "|",
+            "codeBlock",
+            "sourceEditing",
+            "insertImage",
+            "bulletedList",
+            "numberedList",
+            "todoList",
+            "|",
+            "blockQuote",
+            "imageUpload",
+            "|",
+            "fontSize",
+            "fontFamily",
+            "fontColor",
+            "fontBackgroundColor",
+            "mediaEmbed",
+            "removeFormat",
+            "insertTable",
+        ],
+        "image": {
+            "toolbar": [
+                "imageTextAlternative",
+                "|",
+                "imageStyle:alignLeft",
+                "imageStyle:alignRight",
+                "imageStyle:alignCenter",
+                "imageStyle:side",
+                "|",
+            ],
+            "styles": [
+                "full",
+                "side",
+                "alignLeft",
+                "alignRight",
+                "alignCenter",
+            ],
+        },
+        "table": {
+            "contentToolbar": [
+                "tableColumn",
+                "tableRow",
+                "mergeTableCells",
+                "tableProperties",
+                "tableCellProperties",
+            ],
+        },
+        "heading": {
+            "options": [
+                {
+                    "model": "paragraph",
+                    "title": "Paragraph",
+                    "class": "ck-heading_paragraph",
+                },
+                {
+                    "model": "heading1",
+                    "view": "h1",
+                    "title": "Heading 1",
+                    "class": "ck-heading_heading1",
+                },
+                {
+                    "model": "heading2",
+                    "view": "h2",
+                    "title": "Heading 2",
+                    "class": "ck-heading_heading2",
+                },
+                {
+                    "model": "heading3",
+                    "view": "h3",
+                    "title": "Heading 3",
+                    "class": "ck-heading_heading3",
+                },
+            ]
+        },
+    },
+    "list": {
+        "properties": {
+            "styles": "true",
+            "startIndex": "true",
+            "reversed": "true",
+        }
+    },
 }

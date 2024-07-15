@@ -2,8 +2,10 @@
 from crispy_forms.bootstrap import Accordion, AccordionGroup
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Field, Fieldset, Layout, Submit
+
 from dal import autocomplete
 from django import forms
+from django_ckeditor_5.widgets import CKEditor5Widget
 from leaflet.forms.widgets import LeafletWidget
 from mptt.forms import TreeNodeChoiceField
 
@@ -60,7 +62,10 @@ class HapaBelegForm(forms.ModelForm):
         model = HapaBeleg
         exclude = ()
         widgets = {
-            "zotero_id": autocomplete.ModelSelect2(url="bib:zotitem-autocomplete")
+            "zotero_id": autocomplete.ModelSelect2(url="bib:zotitem-autocomplete"),
+            "text": CKEditor5Widget(
+                attrs={"class": "django_ckeditor_5"}
+            )
         }
 
     def __init__(self, *args, **kwargs):

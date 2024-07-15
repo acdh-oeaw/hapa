@@ -2,7 +2,7 @@
 import json
 
 from browsing.browsing_utils import model_to_dict
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 from django.contrib.gis.db.models import PointField, PolygonField
 from django.contrib.gis.geos import Point
 from django.core.serializers import serialize
@@ -38,7 +38,7 @@ class HapaBeleg(models.Model):
     ).set_extra(
         is_public=True,
     )
-    text = RichTextField(
+    text = CKEditor5Field(
         blank=True,
         null=True,
         verbose_name="Textauszug",
@@ -87,7 +87,7 @@ class HapaBeleg(models.Model):
         is_public=True,
     )
     tags = TaggableManager(blank=True)
-    comment = RichTextField(
+    comment = CKEditor5Field(
         blank=True,
         null=True,
         verbose_name="Kommentar",
@@ -95,7 +95,7 @@ class HapaBeleg(models.Model):
     ).set_extra(
         is_public=True,
     )
-    internal_comment = RichTextField(
+    internal_comment = CKEditor5Field(
         blank=True,
         null=True,
         verbose_name="Kommentar (intern)",
@@ -220,7 +220,7 @@ class HapaPlaceName(models.Model):
     ).set_extra(
         is_public=True,
     )
-    wortbildung = RichTextField(
+    wortbildung = CKEditor5Field(
         blank=True,
         null=True,
         verbose_name="Wortbildung",
@@ -228,7 +228,7 @@ class HapaPlaceName(models.Model):
     ).set_extra(
         is_public=True,
     )
-    etymology = RichTextField(
+    etymology = CKEditor5Field(
         blank=True,
         null=True,
         verbose_name="Etymologie",
@@ -236,7 +236,7 @@ class HapaPlaceName(models.Model):
     ).set_extra(
         is_public=True,
     )
-    syntax = RichTextField(
+    syntax = CKEditor5Field(
         blank=True,
         null=True,
         verbose_name="Syntax",
@@ -307,7 +307,7 @@ class HapaPlaceName(models.Model):
         verbose_name="Historischer Ort",
     )
     tags = TaggableManager(blank=True)
-    comment = RichTextField(
+    comment = CKEditor5Field(
         blank=True,
         null=True,
         verbose_name="Kommentar",
@@ -315,7 +315,7 @@ class HapaPlaceName(models.Model):
     ).set_extra(
         is_public=True,
     )
-    internal_comment = RichTextField(
+    internal_comment = CKEditor5Field(
         blank=True,
         null=True,
         verbose_name="Kommentar (intern)",
