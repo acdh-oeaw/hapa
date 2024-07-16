@@ -9,10 +9,21 @@
 
 {% endblock %}
 {% block content %}
+<div class="container-fluid">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb pt-2">
+          <li class="breadcrumb-item"><a href="{% url 'webpage:start' %}">Home</a></li>
+          {% if class_name == "Ortsname" %}
+          <li class="breadcrumb-item active" aria-current="page">Ortslemma</li>
+          {% else %}
+          <li class="breadcrumb-item active" aria-current="page">Belege</li>
+          {% endif %}
+      </ol>
+  </nav>
 
 <div class="container">
 
-    <h1 class="display-5 text-center p-4">
+    <h1 class="display-5 text-center">
         Browse {% class_definition %} {% block list_title %} {% endblock %}
     </h1>
     {% if user.is_authenticated %}
