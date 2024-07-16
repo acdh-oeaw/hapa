@@ -98,22 +98,21 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
         self.form_class = "genericFilterForm"
         self.form_method = "GET"
         self.form_tag = False
-        self.add_input(Submit("Filter", "Search"))
         self.layout = Layout(
-            Fieldset(
-                "Basic search options",
-                Field(
-                    "name",
-                    css_class="js-kioskboard-input",
-                    data_kioskboard_type="keyboard",
-                    data_kioskboard_specialcharacters="false",
-                ),
-                "alternative_names",
-                "historic_names",
-                "historic",
-                css_id="basic_search_fields",
-            ),
             BS5Accordion(
+                AccordionGroup(
+                    "Basic search options",
+                    Field(
+                        "name",
+                        css_class="js-kioskboard-input",
+                        data_kioskboard_type="keyboard",
+                        data_kioskboard_specialcharacters="false",
+                    ),
+                    "alternative_names",
+                    "historic_names",
+                    "historic",
+                    css_id="basic_search_fields",
+                ),
                 AccordionGroup("Geography", "geonames", "adm_unit", css_id="more"),
                 AccordionGroup(
                     "Details",
@@ -133,6 +132,7 @@ class HapaPlaceNameFilterFormHelper(FormHelper):
                     "unclear",
                     css_id="admin_search",
                 ),
+                always_open=True,
             ),
         )
 

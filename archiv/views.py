@@ -77,7 +77,7 @@ class HapaPlaceNameListView(GenericListView):
     table_class = HapaPlaceNameTable
     init_columns = ["id", "name", "adm_unit"]
     enable_merge = False
-    template_name = "archiv/overrides-genericlistviews.html"
+    template_name = "archiv/generic_list.html"
 
 
 class HapaPlaceNameDetailView(BaseDetailView):
