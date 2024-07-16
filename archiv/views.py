@@ -34,6 +34,7 @@ class HapaBelegListView(GenericListView):
         "page_nr",
     ]
     enable_merge = False
+    template_name = "archiv/generic_list.html"
 
 
 class HapaBelegDetailView(BaseDetailView):
