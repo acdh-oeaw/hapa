@@ -34,11 +34,8 @@ DATABASES = {
 SHARED_URL = "https://shared.acdh.oeaw.ac.at/"
 PROJECT_NAME = "djangobaseproject"
 
-
-ACDH_IMPRINT_URL = (
-    "https://shared.acdh.oeaw.ac.at/acdh-common-assets/api/imprint.php?serviceID="
-)
 REDMINE_ID = 18716
+ACDH_IMPRINT_URL = "https://imprint.acdh.oeaw.ac.at/"
 
 # Application definition
 
