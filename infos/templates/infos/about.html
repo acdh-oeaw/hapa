@@ -22,7 +22,7 @@
                     {% if user.is_authenticated and object.get_edit_url %}
                         <br />
                         <a href="{{ object.get_edit_url }}">
-                            <i class="feather-32" data-feather="edit" title="edit"></i>
+                            <i class="feather-32" class="bi bi-pencil-square" title="edit"></i>
                         </a>
                     {% elif user.is_authenticated %}
                         <br />

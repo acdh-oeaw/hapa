@@ -1,0 +1,120 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load django_tables2 %}
+{% load browsing_extras %}
+{% load crispy_forms_field %}
+{% load crispy_forms_tags %}
+{% block title %} Browse {{ class_name }} {% endblock %}
+{% block scriptHeader %}
+
+{% endblock %}
+{% block content %}
+
+<div class="container">
+
+    <h1 class="display-5 text-center p-4">
+        Browse {% class_definition %} {% block list_title %} {% endblock %}
+    </h1>
+    {% if user.is_authenticated %}
+    <div class="d-grid gap-2">
+        <a class="btn btn-primary float-center ms-5 me-5" href="{{ create_view_link }}">Create new {{ class_name }}</a>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-4">
+            {% block customView %}{% endblock %}
+            {% block create_button %}{% endblock %}
+            <!--Search mask-->
+            {% load django_tables2 crispy_forms_tags %}
+            <form action="." class="uniForm" method="get">
+                {% crispy filter.form filter.form.helper %}
+                {% include 'archiv/partials/column_selector.html' %}
+                <div class="d-grid gap-2 pt-2" aria-label="Search or reset search">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-primary" href=".">Reset</a>
+                </div>
+            </form>
+            {% include 'browsing/partials/chart_form.html' %}
+        </div>
+        <div class="col-md-8" id="results">
+            {% with table.paginator.count as total %}
+            <h2 class="text-center">{{ total }} Result(s)</h2>
+            {% endwith %}
+            {% block table %}
+            {% include 'browsing/partials/table.html' %}
+            {% endblock table %}
+            {% block pagination.allpages %}
+            {% include 'browsing/partials/pagination.html' %}
+            {% endblock pagination.allpages %}
+            <div class="float-end">
+                {% include "browsing/partials/download_menu.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block scripts2 %}
+<script src="{% static 'browsing/js/set-form-attributes.js' %}"></script>
+<script src="{% static 'browsing/js/filter-for-blank-fields.js' %}"></script>
+{% if class_name == "Ortsname" %}
+    <script src="{% static 'archiv/js/kioskboard-aio-1.4.0.min.js' %}"></script>
+    <script>
+        var germanKeys = [
+            {
+                "0": "Q",
+                "1": "W",
+                "2": "E",
+                "3": "R",
+                "4": "T",
+                "5": "Z",
+                "6": "U",
+                "7": "I",
+                "8": "O",
+                "9": "P",
+                "10": "ß"
+            },
+            {
+                "0": "A",
+                "1": "S",
+                "2": "D",
+                "3": "F",
+                "4": "G",
+                "5": "H",
+                "6": "J",
+                "7": "K",
+                "8": "L",
+                "9": "Ö",
+                "10": "Ä"
+            },
+            {
+                "0": "Y",
+                "1": "X",
+                "2": "C",
+                "3": "V",
+                "4": "B",
+                "5": "N",
+                "6": "M",
+                "7": "-"
+            },
+            {
+                "0": "ë",
+                "1": "ç"
+            }
+        ]
+        KioskBoard.Init({
+            keysArrayOfObjects: germanKeys,
+            specialCharactersObject: false,
+            language: 'de',
+            theme: 'light',
+            capsLockActive: false,
+            allowRealKeyboard: true,
+            allowMobileKeyboard: true,
+            autoScroll: false,
+        });
+        KioskBoard.Run('.js-kioskboard-input');
+    </script>
+{% endif %}
+{% endblock scripts2 %}
