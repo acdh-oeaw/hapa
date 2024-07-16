@@ -3,18 +3,13 @@
 {% load webpage_extras %}
 {% block title %} About {% endblock %}
 {% block content %}
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h1 class="card-title">{% projects_metadata 'title' %}</h1>
-        </div>
-        <div class="card-body">
-            <div>
-                <p>
-                    {% projects_metadata 'description' %}
-                </p>
-            </div>
-        </div>
-    </div>
+<div class="container pt-5">
+
+    <h1 class="text-center">{% projects_metadata 'title' %}</h1>
+
+    <p>
+        {% projects_metadata 'description' %}
+    </p>
+
 </div>
 {% endblock %}

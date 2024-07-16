@@ -1,12 +1,60 @@
-{% extends "archiv/generic_detail.html" %}
+{% extends "webpage/base.html" %}
 {% load static %}
 {% load leaflet_tags %}
 {% load webpage_extras %}
+{% block title %}{{ object.name }}{% endblock %}
 {% block scriptHeader %}
 {% leaflet_js %}
 {% leaflet_css %}
 {% endblock %}
-{% block custom %}
+{% block content %}
+<!-- <div class="container"> -->
+<div class="container-fluid">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb pt-2">
+        <li class="breadcrumb-item"><a href="{% url 'webpage:start' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ object.get_listview_url }}">Belege</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ object }}</li>
+    </ol>
+</nav>
+  <div class="row">
+    <div class="col-md-2">
+      {% if object.get_prev %}
+      <div class="text-start fs-1">
+        <a href="{{ object.get_prev }}" title="previous">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <h1 class="text-center">
+        {{ object }}
+      </h1>
+      {% if user.is_authenticated %}
+      <div class="d-flex justify-content-center fs-2">
+        <a href="{{ object.get_edit_url }}" title="edit">
+          <i class="bi bi-pencil-square"></i>
+        </a>
+        <a class="ps-2" href="{% url 'archiv:copy_beleg' %}?current-id={{object.id}}" title="copy">
+          <i class="bi bi-copy"></i>
+        </a>
+      </div>
+      {% endif %}
+     
+    </div>
+    <div class="col-md-2">
+      <div class="text-end fs-1">
+        {% if object.get_next %}
+        <a href="{{ object.get_next }}" style="float:right" title="next">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
 <table class="table table-responsive table-hover">
   <tr>
     <th>ID</th>
@@ -81,14 +129,14 @@
   </tr>
 
 </table> 
+<div class="d-flex justify-content-end fs-2">
+  <a href="{{ object.get_delete_url }}" title="delete">
+    <i class="bi bi-trash3"></i>
+  </a>
+</div>
+</div>
 
-{% if user.is_authenticated %}
-  <div class="row">
-    <div class="col text-center">
-      <a href="{% url 'archiv:copy_beleg' %}?current-id={{object.id}}" title="copy" class="btn btn-default">Copy<i data-feather="copy"></i></a>
-    </div>
-  </div>
-{% endif %}
+
 <script type="text/javascript">
   function map_init_basic(map, options) {
     {% for x in object.rvn_hapaplacename_beleg_beleg.all %}
@@ -102,4 +150,4 @@
     {% endfor %}
   };
 </script>
-{% endblock custom %}
+{% endblock content %}

@@ -10,294 +10,285 @@
 {% block content %}
 <!-- <div class="container"> -->
 <div class="container-fluid">
-  <div class="card-header">
-    <div class="row">
-      <div class="col-md-2">
-        {% if object.get_prev %}
-        <h2>
-          <a href="{{ object.get_prev }}" title="previous">
-            <i class="bi bi-chevron-left"></i>
-          </a>
-        </h2>
-        {% endif %}
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb pt-2">
+        <li class="breadcrumb-item"><a href="{% url 'webpage:start' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ object.get_listview_url }}">Orte</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ object.name }}</li>
+    </ol>
+</nav>
+  <div class="row">
+    <div class="col-md-2">
+      {% if object.get_prev %}
+      <div class="text-start fs-1">
+        <a href="{{ object.get_prev }}" title="previous">
+          <i class="bi bi-chevron-left"></i>
+        </a>
       </div>
-      <div class="col-md-8">
-        <h2 style="text-align: center;">
-          <small><a href="{{ object.get_listview_url }}"
-              title="back to listview"><small>{{ class_name }}</small></a></small>
-          {{ object }}
-          {% if user.is_authenticated %}
-          <a href="{{ object.get_edit_url }}" title="edit">
-            <i class="bi bi-pencil-square"></i>
-          </a>
-          <a href="{{ object.get_delete_url }}" title="delete">
-            <i class="bi bi-trash3"></i>
-          </a>
-          {% endif %}
-          {% if 'archeutils' in APPS %}
-          <a href="{% url 'archeutils:res_as_arche_graph' app_name=app_name model_name=class_name|lower pk=object.id %}"
-            title="As ARCHE-RDF">
-            <i data-feather="download"></i>
-          </a>
-          {% endif%}
-        </h2>
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <h1 class="text-center">
+        {{ object }}
+      </h1>
+      {% if user.is_authenticated %}
+      <div class="d-flex justify-content-center fs-2">
+        <a href="{{ object.get_edit_url }}" title="edit">
+          <i class="bi bi-pencil-square"></i>
+        </a>
       </div>
-      <div class="col-md-2">
-        <h2>
-          {% if object.get_next %}
-          <a href="{{ object.get_next }}" style="float:right" title="next">
-            <i class="bi bi-chevron-right"></i>
-          </a>
+      {% endif %}
+    </div>
+    <div class="col-md-2">
+      <div class="text-end fs-1">
+        {% if object.get_next %}
+        <a href="{{ object.get_next }}" style="float:right" title="next">
+          <i class="bi bi-chevron-right"></i>
+        </a>
         </h2>
         {% endif %}
       </div>
     </div>
   </div>
-  <div class="card-body">
-    {% block custom %}
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Info</h4>
-          </div>
-          <div class="card-body">
-            <table class="table table-responsive table-hover">
-              <tr>
-                <th>Name</th>
-                <td>{{ object.name }}</td>
-              </tr>
-              <tr>
-                <th>Alternative Bezeichnungen</th>
-                <td>
-                  {% if object.alternative_names %}
-                    {{ object.alternative_names }}
-                  {% else %}  
-                    keine Angaben
-                  {% endif %}
-                </td>
-              </tr>
-              <tr>
-                <th>Historische(r) Name(n)</th>
-                <td>
-                  {% if object.historic_names %}
-                    {{ object.historic_names }}
-                  {% else %}  
-                    keine Angaben
-                  {% endif %} 
-                </td>
-              </tr>
-              <tr>
-                <th>Sprache</th>
-                <td>
-                  {% if object.orig_sprache %}
-                    {{ object.orig_sprache }}
-                  {% else %}  
-                    keine Angaben
-                  {% endif %} 
-                </td>
-              </tr>
-              
-              <tr>
-                <th>Administrative Einheit</th>
-                <td>
-                  {% if object.adm_unit %}
-                    {{ object.adm_unit }} >> {{ object.adm_unit.broader_concept }}
-                  {% else %}  
-                    keine Angaben
-                  {% endif %} 
-                </td>
-              </tr>
-              <tr>
-                <th>Historischer Ort</th>
-                <td>{{ object.historic }}</td>
-              </tr>
-              <tr>
-                <th>Geonames</th>
-                <td>
-                  {% if object.geonames %}
-                  <ul>
-                    <li>{{ object.geonames.gn_name }}</li>
-                    <li>
-                      <a href="{{ object.geonames.get_geonames_url }}">
-                        {{ object.geonames.get_geonames_url }}
-                      </a>
-                    </li>
-                    <li>
-                      {{ object.geonames.gn_feature.notation }}
-                      <small>
-                        {{ object.geonames.gn_feature.pref_label }}
-                      </small>
-                    </li>
-                  </ul>
-                  {% else %}
-                  keine Angaben
-                  {% endif %}
-                </td>
-              </tr>
-            </table>
-          </div>
+</div>
+<div class="container">
+  {% block custom %}
+  <div class="row">
+    <div class="col-md-6">
+
+      <h2 class="card-title">Info</h2>
+
+      <dl>
+        
+          <dt>Name</dt>
+          <dd>{{ object.name }}</dd>
+      
+          <dt>Alternative Bezeichnungen</dt>
+          <dd>
+            {% if object.alternative_names %}
+            {{ object.alternative_names }}
+            {% else %}
+            keine Angaben
+            {% endif %}
+          </dd>
+       
+          <dt>Historische(r) Name(n)</dt>
+          <dd>
+            {% if object.historic_names %}
+            {{ object.historic_names }}
+            {% else %}
+            keine Angaben
+            {% endif %}
+          </dd>
+       
+          <dt>Sprache</dt>
+          <dd>
+            {% if object.orig_sprache %}
+            {{ object.orig_sprache }}
+            {% else %}
+            keine Angaben
+            {% endif %}
+          </dd>
+      
+          <dt>Administrative Einheit</dt>
+          <dd>
+            {% if object.adm_unit %}
+            {{ object.adm_unit }} >> {{ object.adm_unit.broader_concept }}
+            {% else %}
+            keine Angaben
+            {% endif %}
+          </dd>
+       
+          <dt>Historischer Ort</dt>
+          <dd>{{ object.historic }}</dd>
+       
+          <dt>Geonames</dt>
+          <dd>
+            {% if object.geonames %}
+            <ul>
+              <li>{{ object.geonames.gn_name }}</li>
+              <li>
+                <a href="{{ object.geonames.get_geonames_url }}">
+                  {{ object.geonames.get_geonames_url }}
+                </a>
+              </li>
+              <li>
+                {{ object.geonames.gn_feature.notation }}
+                <small>
+                  {{ object.geonames.gn_feature.pref_label }}
+                </small>
+              </li>
+            </ul>
+            {% else %}
+            keine Angaben
+            {% endif %}
+          </dd>
+      </table>
+
+    </div>
+    <div class="col-md-6">
+
+      <h2>Karte</h4>
+
+        {{ object.as_geojson|json_script:"my-geojson" }}
+        <script type="text/javascript">
+          function map_init_basic(map, options) {
+            {% if object.lat or object.fuzzy_geom %}
+            var geojsonFeature = L.geoJSON(JSON.parse(document.getElementById('my-geojson').textContent));
+            geojsonFeature.addTo(map);
+            var bounds = geojsonFeature.getBounds();
+            var center = bounds.getCenter();
+            map.panTo(center);
+            {% endif %}
+          };
+        </script>
+        <div style="padding:0;">
+
+          {% leaflet_map "yourmap" callback="window.map_init_basic" %}
+
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Karte</h4>
-          </div>
-          <div class="card-body">
-            {{ object.as_geojson|json_script:"my-geojson" }}
-            <script type="text/javascript">
-              function map_init_basic(map, options) {
-                {% if object.lat or object.fuzzy_geom %}
-                   var geojsonFeature = L.geoJSON(JSON.parse(document.getElementById('my-geojson').textContent));
-                   geojsonFeature.addTo(map);
-                   var bounds = geojsonFeature.getBounds();
-                   var center = bounds.getCenter();
-                   map.panTo(center);
-                {% endif %}
-              };
-            </script>
-            <div style="padding:0;">
 
-              {% leaflet_map "yourmap" callback="window.map_init_basic" %}
 
-            </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h3>
+        Belege
+      </h3>
+    </div>
+    <div class="card-body">
 
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-          <h3>
-            Belege
-          </h3>
-      </div>
-      <div class="card-body">
-
-        <table class="table table-responsive table-hover" id="beleg-table">
-          <thead>
-            <tr>
-              <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">ID</th>
-              <th tabulator-headerFilter="input" tabulator-formatter="html">zotero-id</th>
-              <th tabulator-headerFilter="input" tabulator-formatter="html">
-                short_quote
-              </th>
-              <th tabulator-headerFilter="input">page</th>
-              <th tabulator-headerFilter="input">Datierung</th>
-              <th tabulator-headerFilter="input" tabulator-formatter="html">
-                text
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for x in object.beleg.all %}
-            <tr>
-              <td>
-                <a href="{{ x.get_absolute_url }}">{{ x.id }}</a>
-              </td>
-              <td>
-                <a href="{{ x.zotero_id.zot_html_link }}">{{ x.zotero_id.zot_key }}</a>
-              </td>
-              <td>{{ x.short_quote }}</td>
-              <td>{{ x.page_nr }}</td>
-              <td>{{ x.time_of_origin_start }} - {{ x.time_of_origin_end }} </td>
-              <td>{{ x.text|safe }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        <h4>Download Table</h4>
-        <div class="button-group">
-            <button type="button" class="btn btn-outline-secondary" id="download-csv" title="Download CSV">
-                <i class="bi bi-filetype-csv"></i>
-                <span class="visually-hidden">Download CSV</span>
-            </button>
-            <button type="button" class="btn btn-outline-secondary" id="download-json" title="Download JSON">
-                <i class="bi bi-filetype-json"></i>
-                <span class="visually-hidden">Download JSON</span>
-            </button>
-            <button type="button" class="btn btn-outline-secondary" id="download-html" title="Download HTML">
-                <i class="bi bi-filetype-html"></i>
-                <span class="visually-hidden">Download HTML</span>
-            </button>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <h3>Wortbildung</h3>
-      </div>
-      <div calss="card-body">
-        {{ object.wortbildung|safe }}
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <h3>Etymologie</h3>
-      </div>
-      <div calss="card-body">
-        {{ object.etymology|safe }}
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <h3>Syntax</h3>
-      </div>
-      <div calss="card-body">
-        {{ object.syntax|safe }}
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <h3>Interne Anmerkungen</h3>
-      </div>
-      <div calss="card-body">
-        <table class="table table-responsive table-hover">
+      <table class="table table-responsive table-hover" id="beleg-table">
+        <thead>
           <tr>
-            <th>Fraglich</th>
-            <td>{{ object.unclear }}</td>
+            <th scope="col" tabulator-headerFilter="input" tabulator-formatter="html">ID</th>
+            <th tabulator-headerFilter="input" tabulator-formatter="html">zotero-id</th>
+            <th tabulator-headerFilter="input" tabulator-formatter="html">
+              short_quote
+            </th>
+            <th tabulator-headerFilter="input">page</th>
+            <th tabulator-headerFilter="input">Datierung</th>
+            <th tabulator-headerFilter="input" tabulator-formatter="html">
+              text
+            </th>
           </tr>
+        </thead>
+        <tbody>
+          {% for x in object.beleg.all %}
           <tr>
-            <th>Anmerkung</th>
-            <td>{{ object.internal_comment|safe }}</td>
-          </tr>
-          <tr>
-            <th>Tags</th>
             <td>
-              {% for x in object.tags.all %}
-              <span class="badge badge-secondary">{{ x.name }}</span>
-              {% endfor %}
+              <a href="{{ x.get_absolute_url }}">{{ x.id }}</a>
             </td>
+            <td>
+              <a href="{{ x.zotero_id.zot_html_link }}">{{ x.zotero_id.zot_key }}</a>
+            </td>
+            <td>{{ x.short_quote }}</td>
+            <td>{{ x.page_nr }}</td>
+            <td>{{ x.time_of_origin_start }} - {{ x.time_of_origin_end }} </td>
+            <td>{{ x.text|safe }}</td>
           </tr>
-        </table>
+          {% endfor %}
+        </tbody>
+      </table>
+      <h4>Download Table</h4>
+      <div class="button-group">
+        <button type="button" class="btn btn-outline-secondary" id="download-csv" title="Download CSV">
+          <i class="bi bi-filetype-csv"></i>
+          <span class="visually-hidden">Download CSV</span>
+        </button>
+        <button type="button" class="btn btn-outline-secondary" id="download-json" title="Download JSON">
+          <i class="bi bi-filetype-json"></i>
+          <span class="visually-hidden">Download JSON</span>
+        </button>
+        <button type="button" class="btn btn-outline-secondary" id="download-html" title="Download HTML">
+          <i class="bi bi-filetype-html"></i>
+          <span class="visually-hidden">Download HTML</span>
+        </button>
       </div>
     </div>
-    
   </div>
-  <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator.min.css" rel="stylesheet"></link>
-        <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bootstrap4.min.css" rel="stylesheet"></link>
-  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
-  <script>
-    var table = new Tabulator("#beleg-table", {
-      height:"400px",
-      layout:"fitDataTable",
-    });
-   
-      //trigger download of data.csv file
-      document.getElementById("download-csv").addEventListener("click", function(){
-      table.download("csv", "data.csv");
-      });
-      
-      //trigger download of data.json file
-      document.getElementById("download-json").addEventListener("click", function(){
-      table.download("json", "data.json");
-      });
-      
-      //trigger download of data.html file
-      document.getElementById("download-html").addEventListener("click", function(){
-      table.download("html", "data.html", {style:true});
-      });
-  </script>
-  {% endblock custom %}
-  {% endblock %}
+  <div class="card">
+    <div class="card-header">
+      <h3>Wortbildung</h3>
+    </div>
+    <div calss="card-body">
+      {{ object.wortbildung|safe }}
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h3>Etymologie</h3>
+    </div>
+    <div calss="card-body">
+      {{ object.etymology|safe }}
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h3>Syntax</h3>
+    </div>
+    <div calss="card-body">
+      {{ object.syntax|safe }}
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h3>Interne Anmerkungen</h3>
+    </div>
+    <div calss="card-body">
+      <table class="table table-responsive table-hover">
+        <tr>
+          <th>Fraglich</th>
+          <td>{{ object.unclear }}</td>
+        </tr>
+        <tr>
+          <th>Anmerkung</th>
+          <td>{{ object.internal_comment|safe }}</td>
+        </tr>
+        <tr>
+          <th>Tags</th>
+          <td>
+            {% for x in object.tags.all %}
+            <span class="badge badge-secondary">{{ x.name }}</span>
+            {% endfor %}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end fs-2">
+    <a href="{{ object.get_delete_url }}" title="delete">
+      <i class="bi bi-trash3"></i>
+    </a>
+  </div>
+</div>
+
+<link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator.min.css" rel="stylesheet">
+</link>
+<link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bootstrap4.min.css" rel="stylesheet">
+</link>
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+<script>
+  var table = new Tabulator("#beleg-table", {
+    height: "400px",
+    layout: "fitDataTable",
+  });
+
+  //trigger download of data.csv file
+  document.getElementById("download-csv").addEventListener("click", function () {
+    table.download("csv", "data.csv");
+  });
+
+  //trigger download of data.json file
+  document.getElementById("download-json").addEventListener("click", function () {
+    table.download("json", "data.json");
+  });
+
+  //trigger download of data.html file
+  document.getElementById("download-html").addEventListener("click", function () {
+    table.download("html", "data.html", { style: true });
+  });
+</script>
+{% endblock custom %}
+{% endblock %}
