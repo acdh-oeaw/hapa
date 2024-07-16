@@ -8,8 +8,12 @@ class HapaBelegTable(tables.Table):
     id = tables.LinkColumn(verbose_name="ID")
     tags = tables.ManyToManyColumn(verbose_name="Tags")
     text = tables.TemplateColumn("{{ record.text|safe }}", verbose_name="Textauszug")
-    comment = tables.TemplateColumn("{{ record.comment|safe }}", verbose_name="Kommentar")
-    internal_comment = tables.TemplateColumn("{{ record.internal_comment|safe }}", verbose_name="Kommentar (intern)")
+    comment = tables.TemplateColumn(
+        "{{ record.comment|safe }}", verbose_name="Kommentar"
+    )
+    internal_comment = tables.TemplateColumn(
+        "{{ record.internal_comment|safe }}", verbose_name="Kommentar (intern)"
+    )
     zot_key = tables.TemplateColumn("{{ record.zotero_id.zot_key }}", orderable=False)
 
     class Meta:

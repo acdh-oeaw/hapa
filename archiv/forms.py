@@ -3,7 +3,7 @@ from crispy_forms.bootstrap import AccordionGroup
 from crispy_bootstrap5.bootstrap5 import BS5Accordion
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Field, Fieldset, Layout, Submit
+from crispy_forms.layout import Field, Layout, Submit
 from dal import autocomplete
 from django import forms
 from leaflet.forms.widgets import LeafletWidget
@@ -77,9 +77,9 @@ class HapaBelegForm(forms.ModelForm):
         )
 
         if self.instance.pk:
-            self.fields[
-                "place"
-            ].initial = self.instance.rvn_hapaplacename_beleg_beleg.all()
+            self.fields["place"].initial = (
+                self.instance.rvn_hapaplacename_beleg_beleg.all()
+            )
 
     def save(self, *args, **kwargs):
         instance = super(HapaBelegForm, self).save(*args, **kwargs)

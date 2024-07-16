@@ -12,7 +12,6 @@ api_key = settings.Z_API_KEY
 
 
 class Command(BaseCommand):
-
     """Imports items from zotero-bib"""
 
     help = "Imports all items from zotero-bib"

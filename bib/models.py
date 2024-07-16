@@ -29,7 +29,6 @@ def fetch_bibtex(zot_key):
 
 
 class ZotItem(models.Model):
-
     """Stores main bibliographic information of a Zotero Item"""
 
     zot_key = models.CharField(
