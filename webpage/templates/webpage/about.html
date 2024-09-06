@@ -3,13 +3,54 @@
 {% load webpage_extras %}
 {% block title %} About {% endblock %}
 {% block content %}
-<div class="container pt-5">
+<div class="container">
 
-    <h1 class="text-center">{% projects_metadata 'title' %}</h1>
+    <h1 class="text-center pt-5">Über das Projekt</h1>
+    <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic outlined example">
+        <a href="{% url 'webpage:staticpage' template='about_en' %}" type="button"
+            class="btn btn-outline-primary">read in English</a>
+        <a href="{% url 'webpage:staticpage' template='about_sq' %}" type="button"
+            class="btn btn-outline-primary">read in Albanien</a>
+    </div>
 
-    <p>
-        {% projects_metadata 'description' %}
+    <p class="lead">
+        Mit 1. Januar 2021 hat das vom FWF für vier Jahre finanzierte Drittmittelprojekt <a
+            href="https://www.fwf.ac.at/forschungsradar/10.55776/P33706">Sprachgeschichte der Ortsnamen Albaniens</a>
+        begonnen. Ziel dieses Projektes ist die diachron-linguistische Analyse der auf dem Staatsgebiet Albaniens
+        belegten Ortsnamen (Stadt- und Dorfnamen, d.h. Makrotoponyme) von der Antike bis zur Neuzeit.
     </p>
+
+    <figure class="w-50 float-start pe-4">
+        <img class="pt-1 w-100" src="{% static 'webpage/img/about.png' %}"
+            alt="Louis, Herbert, Karte von Albanien, 1928">
+        <figcaption class="pt-1 w-100 text-center figure-caption">Louis, Herbert, Karte von Albanien, 1928</figcaption>
+    </figure>
+    <p>
+        Dabei werden die besonderen geschichtlichen Hintergründe der Siedlungs- und Migrationsgeschichte des albanischen
+        Raums berücksichtigt und ausgewertet. Dies betrifft u.a. folgende Fragestellungen: die kontrovers diskutierte
+        Thematik um Autochthonie oder aber Zuwanderung der Albaner in ihr historisch dokumentiertes Siedlungsgebiet; die
+        geographisch hohe Zahl an unzweifelhaft slawischen Siedlungsnamen auf dem ganzen Gebiet Albaniens; die Schaffung
+        einer eigenen albanischen Toponomastik; etc.</p>
+    <p>
+        Da die albanische Sprache selbst erst ab der Mitte des 16. nachchristlichen Jahrhunderts literarisch
+        dokumentiert ist und gerade für den Zeitraum zwischen dem Ausgang der Antike und dem 11. nachchristlichen
+        Jahrhundert (- der Ersterwähnung der Albaner als eigenständig wahrgenommene Ethnie in byzantinischen Quellen -)
+        für den albanischen Raum nur spärliche historische Quellen zur Verfügung stehen, stellen gerade die Ortsnamen
+        aussagekräftige Informationen bereit, um die historischen Ereignisse dieser Perioden zu erhellen. Eine auf
+        modernen historisch-linguistischen Methoden durchgeführte Analyse wird schließlich zeigen, welchen
+        phonologischen Veränderungen die Ortsnamen Albaniens seit ihrer Erstbezeugung unterworfen wurden und wie diese
+        phonologischen Veränderungen chronologisch und sprachlich einzuordnen sind. Auch wird diese erstmalig
+        durchgeführte Gesamtuntersuchung der Ortsnamen Albaniens zeigen, welchen Sprachen diese Ortsnamen zuzuordnen
+        sind (voralbanische = griechische und lateinische, albanische, slawische, vlachische, türkische Ortsnamen) und
+        wie sich ihre geographische Distribution darstellt. Am Ende dieses Projektes wird ein Onlinelexikon der
+        albanischen Ortsnamen von A-Zh zur Verfügung gestellt. Ergänzend dazu werden aktive virtuelle Landkarten die
+        Ergebnisse anschaulich darstellen. In Begleitung dazu wird ein praktisches Handbuch der Ortsnamen Albaniens
+        publiziert werden, in dem über verschiedene Aspekte der Ortsnamen in Albanien referiert werden wird. Dieses
+        Projekt soll als Modell und Vorbild für die noch ausstehende diachron-linguistische Erforschung der Ortsnamen
+        der anderen Staaten Südosteuropas dienen.
+    </p>
+    <hr>
+
 
 </div>
 {% endblock %}

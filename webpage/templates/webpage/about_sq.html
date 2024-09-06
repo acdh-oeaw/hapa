@@ -1,0 +1,31 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %} Mbi Projektin {% endblock %}
+{% block content %}
+<div class="container">
+
+    <h1 class="text-center pt-5">Mbi Projektin</h1>
+    <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic outlined example">
+        <a href="{% url 'webpage:staticpage' template='about' %}" type="button"
+            class="btn btn-outline-primary">read in German</a>
+        <a href="{% url 'webpage:staticpage' template='about_en' %}" type="button"
+            class="btn btn-outline-primary">read in English</a>
+    </div>
+
+    <p class="lead">
+        Më 1 janar 2021 filloi projekti <a
+        href="https://www.fwf.ac.at/forschungsradar/10.55776/P33706">Historia Gjuhësore e Toponimeve në Shqipëri</a>, financuar nga FWF (Fondacioni Austriak i Shkencës) për katër vjet. Qëllimi i këtij projekti është analiza diakronike-gjuhësore e toponimeve (emrave të qyteteve dhe fshatrave, d.m.th. makrotoponimeve) të regjistruara në territorin e Shqipërisë nga antikiteti deri në kohën moderne.
+    </p>
+
+    <figure class="w-50 float-start pe-4">
+        <img class="pt-1 w-100" src="{% static 'webpage/img/about.png' %}" alt="Louis, Herbert, Harta e Shqipërisë, 1928">
+        <figcaption class="pt-1 w-100 text-center figure-caption">Louis, Herbert, Harta e Shqipërisë, 1928</figcaption>
+    </figure>
+    <p>
+        Në këtë projekt merren parasysh dhe vlerësohen kondicionet e veçanta historike të vendbanimit dhe historisë së migrimit të territorit shqiptar. Ndër të tjera, do të trajtohen pyetjet e mëposhtme: çështja e diskutuar së autoktonisë ose imigrimit të shqiptarëve në vendbanimin e tyre të dokumentuar historikisht; numrin e lartë gjeografikisht të emrave pa dyshim të vendbanimeve sllave në të gjithë territorin e Shqipërisë; krijimin e një toponomie shqiptare; etj.</p>
+    <p>
+        Gjuha shqipe është e dokumentuarvetëm nga mesi i shekullit të 16-të pas Krishtit dhe nga periudha ndërmjet fundit të antikitetit dhe shekullit të 11-të pas Krishtit (-shqiptarët si etni përmenden për herë të parë në burime byzantine -) për territorin e Shqipërisë janë në dispozicion vetëm burime të rralla historike.  Prandaj emrat e vendeve japin informacione të vlefshme për të hedhur dritë mbi ngjarjet historike të këtyre periudhave. Një analizë e bazuar në metodat moderne historike-gjuhësore do të tregojë se cilat ndryshime fonologjike kanë pësuar toponimet që nga vërtetimi i tyre i parë dhe si këto ndryshime fonologjike mund të klasifikohen në mënyrë kronologjike dhe gjuhësore dhe veçanërisht në lidhje me origjinën e tyre (para-shqiptare = greke ose latine, shqipe, sllave, vllahe, turke). Gjithashtu do të merret parasysh edhe shpërndarja gjeografike e toponimeve shqiptare me origjina të ndryshme. Në fund të këtij projekti, do të vihet në dispozicion një leksik online i toponimeve shqipe nga A-Zh. Si plotësim i kësaj, hartat virtuale aktive do të ilustrojnë rezultatet. Gjithashtu, do të botohet një manual praktik i toponimeve shqiptare, që mbulon aspekte të ndryshme të toponimeve në Shqipëri. Ky projekt do të shërbejë si një model dhe shembull për kërkimin diakronik-gjuhësor të toponimeve të shteteve të tjera të Evropës Juglindore, i cili ende mungon.
+    </p>
+</div>
+{% endblock %}

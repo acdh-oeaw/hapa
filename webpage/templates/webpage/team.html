@@ -1,0 +1,70 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %} Team {% endblock %}
+{% block content %}
+<div class="container">
+
+    <h1 class="text-center pt-5">Team</h1>
+    <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic outlined example">
+        <a href="{% url 'webpage:staticpage' template='team_en' %}" type="button" class="btn btn-outline-primary">read
+            in English</a>
+        <a href="{% url 'webpage:staticpage' template='team_sq' %}" type="button" class="btn btn-outline-primary">read
+            in Albanien</a>
+    </div>
+
+    <h2 class="pt-3">Dr. Joachim Matzinger</h2>
+    <figure class="float-start pe-2">
+        <img class="rounded p-2" width="250px" src="{% static 'webpage/img/matzinger.jpg' %}"
+            alt="Louis, Herbert, map of Albania, 1928">
+    </figure>
+    <p class="lead"><a href="https://www.oeaw.ac.at/ihb/personen/matzinger-joachim">Joachim Matzinger</a> ist
+        wissenschaftlicher Mitarbeiter am Institut für die Erforschung der Habsburgermonarchie und des Balkanraumes
+        (Forschungsbereich Balkanforschung) und zuständig für die linguistischen Forschungen im Rahmen der
+        Balkantoponomastik und der Balkanlinguistik.</p>
+    <h3>Kurzbiografie</h3>
+    <p>Studium der Vergleichenden Sprachwissenschaft in Wien (Mag. phil. 1995), Regensburg und Jena (Schwerpunkte
+        Historische Sprachwissenschaft, slawische Sprachen, indoiranische Sprachen, Armenisch, Latein, Griechisch,
+        keltische Sprachen, usw.). Promotion 2001 an der Friedrich-Schiller-Universität Jena. Von 1992-1995
+        Studienassistent am Institut für Sprachwissenschaft der Universität Wien, zwischen 1997 und 2006
+        wissenschaftlicher Mitarbeiter in verschiedenen DFG-finanzierten Drittmittelprojekten zu Wortbildung bzw. Syntax
+        in indogermanischen Sprachen in Jena. Zwischen 2006 und 2015 Mitarbeiter bzw. Leiter in FWF-finanzierten
+        Drittmittelprojekten zum Verbum bzw. Wortbildung im Altalbanischen.</p>
+    <dl>
+        <dt>Schwerpunkte</dt>
+        <dd>Toponomastik, Altbalkanische Sprachen, Balkanlinguistik, Sprachkontakt, Albanische Sprachwissenschaft und
+            Philologie mit Schwerpunkt auf dem Altalbanischen, Minderheitensprachen (Diaspora)</dd>
+        <dt>Zeit</dt>
+        <dd>Vorgeschichte bis Neuzeit</dd>
+        <dt>Raum</dt>
+        <dd>Südosteuropa mit Schwerpunkt auf dem albanischsprachigem Raum </dd>
+    </dl>
+    <hr>
+
+
+    <h2 class="pt-3">Mag. Dr. Katsiaryna Ackermann</h2>
+    <figure class="float-start pe-2">
+        <img class="rounded p-2" width="250px" src="{% static 'webpage/img/ackermann.jpg' %}"
+            alt="Louis, Herbert, map of Albania, 1928">
+    </figure>
+    <p class="lead">
+        <a href="https://www.oeaw.ac.at/ihb/personen/ackermann-katsiaryna">Katsiaryna Ackermann</a> ist wissenschaftliche
+            Mitarbeiterin am Institut für die Erforschung der Habsburgermonarchie und des Balkanraumes
+            (Forschungsbereich Balkanforschung).
+    </p>
+
+    <h3>Kurzbiografie</h3>
+    <p>Studium der Anglistik, Germanistik, Romanistik mit Spezialisierung in historischer Linguistik und Computerlinguistik in Minsk, Abschluss mit Auszeichnung; Studium der Indoeuropäistik, Slawistik, Iranistik und Byzantinistik in Wien. Promotion 2011 mit summa cum laude. Die Dissertation zur Entwicklung des urslavischen Aoristsystems wurde mit dem Preis der indogermanischen Gesellschaft ausgezeichnet und erschien auf Einladung der Herausgeber in Brill’s Studies in Indo-European Languages and Linguistics. Zwischen 2007 und 2016 Prae- und Postdoc-Assistentin am Institut für Sprachwissenschaft und Institut für Slawistik der Universität Wien. 2009-2010 wissenschaftliche Betreuung der Forschungsgruppe im vom BMWF ausgezeichneten „Sparkling science“-Projekt „Ich spreche, also bin ich“. Seit 2010 universitäre und parauniversitäre Unterrichts- und Prüftätigkeit im Bereich der slavischen und vergleichenden Sprach- und Kulturwissenschaft, sprach- und interkulturelles Training. 2011-2016 im Forschungsteam des RGNF-Projekts “Root Structure of the Indo-European”, an der Russischen Akademie der Wissenschaften (RAS). Seit 2017 wissenschaftliche Mitarbeiterin am Institut für Linguistische Forschungen der RAS, St. Petersburg. Seit 2014 mehrere Forschungsaufenthalte und Expeditionen am Balkan und in Osteuropa. Seit 2017 wissenschaftliche Mitarbeiterin am interdisziplinären Zentrum CIMA im Bereich der paläographischen und philologischen Erschließung der ältesten slavischen Handschriften. 2020-2021 Marie-Jahoda Grant für das Habilitationsprojekt «Thesaurus of Slavic Kinship. A cognitive semantics study».</p>
+    <dl>
+        <dt>Schwerpunkte</dt>
+        <dd>Slavische und Baltische historische und vergleichende Sprachwissenschaft, vergleichende indoeuropäische Sprach- und Kulturwissenschaft, insbesondere Paläobalkanistik, Sprachkontakt, Sozio- und kognitive Linguistik, Sprachtypologie und Sprachuniversalien, Sozial- und Kulturanthropologie.</dd>
+        <dt>Zeit</dt>
+        <dd>Vorhistorisch bis zu Neuzeit</dd>
+        <dt>Raum</dt>
+        <dd>vorwiegend Ost und Südosteuropa, östlicher Mittelmeerraum Themen: Slavische und Baltische historische und vergleichende Sprachwissenschaft, vergleichende indoeuropäische Sprach- und Kulturwissenschaft, insbesondere Paläobalkanistik, Sprachkontakt, Sozio- und kognitive Linguistik, Sprachtypologie und Sprachuniversalien, Sozial- und Kulturanthropologie.</dd>
+    </dl>
+
+
+
+</div>
+{% endblock %}
