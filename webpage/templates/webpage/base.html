@@ -12,10 +12,10 @@
 
 <body class="d-flex flex-column h-100">
     {% include "webpage/partials/navbar.html" %}
-    <main class="flex-shrink-0">
-        <div class="container-fluid">
+    <main class="flex-shrink-0 flex-grow-1">
+        
             {% block content %}{% endblock %}
-        </div>
+        
     </main>
     {% include "webpage/partials/footer.html" %}
 

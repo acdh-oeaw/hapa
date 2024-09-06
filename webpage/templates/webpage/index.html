@@ -3,46 +3,38 @@
 {% load stats_extras %}
 {% load webpage_extras %}
 {% block content %}
-    <div class="jumbotron" style="background-image: url({% static 'webpage/img/hero-title-500px.png' %}); background-repeat: no-repeat;  background-size:cover; height: 500px;">
-        <div class="container hero-title-img" style="padding:.5em;background-color:rgba(235,233,231,0.70) !important; text-align:center;">
-            <a href="https://hapa.ihb.oeaw.ac.at/">
-                <img style="max-width: 258.9px;max-height:257.7px;margin:1em 0 .7em 0;" src="{% static 'webpage/img/hapa-logo-transparent.png' %}" title="Logo Hapa" alt="{% projects_metadata 'title' %}" itemprop="{% projects_metadata 'title' %}"/>
-            </a>
-            <h1 style="text-align:center; color: #000;">{% projects_metadata 'subtitle' %}</h1>          
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">  
-            <div class="col-md-12" style="text-align:center">                    
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Data-Count</h4>
-                    </div>
-                </div>
-            </div>
-            {% create_object_count app='archiv' as models %}
-            {% for x in models %}
-                <div class="col-md-4  text-center">
-                    <div class="card flex-md-row mb-4 box-shadow">                        
-                        <div class="card-body">
-                            <h4 class="mb-0">{{ x.name }}</h4>
-                            <h4 class="count">{{ x.count }}</h4>
-                            {% if x.link %}
-                                <a class="btn btn-main btn-outline-primary btn-sm" href="{{ x.link }}" role="button">View Details</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-            <div class="col-md-4  text-center">
-                <div class="card flex-md-row mb-4 box-shadow">                        
-                    <div class="card-body">
-                        <h4 class="mb-0">Map</h4>
-                        <h4 class="count">all</h4>
-                        <a class="btn btn-main btn-outline-primary btn-sm" href="{% url 'archiv:hapamap_browser' %}" role="button">View Map</a>
-                    </div>
-                </div>
+
+<div class="container col-xxl-8 px-2">
+    <div class="row flex-lg-row align-items-center g-5 py-5">
+        <div class="col-lg-6">
+            <h1 class="display-5 text-body-emphasis lh-1 mb-3">
+                Ortsnamen Albaniens
+            </h1>
+            <p class="lead">
+                Das Projekt erforscht die Sprachgeschichte aller modernen und historischen Ortsnamen Albaniens und
+                leistet damit einen wichtigen Beitrag zur Sprach- und Siedlungsgeschichte des Landes. Mithilfe der
+                Methoden der historischen Sprachwissenschaft werden die Ortsnamen gründlich analysiert. Aktuelle
+                Fortschritte und Aktivitäten werden regelmäßig hier veröffentlicht.
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a href="{% url 'webpage:staticpage' template='about' %}" type="button"
+                    class="btn btn-primary btn-lg px-4 me-md-2">Mehr Erfahren
+                </a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'archiv:hapabeleg_browse' %}" type="button"
+                    class="btn btn-outline-secondary btn-lg px-4">Belege</a>
+                <a href="{% url 'archiv:hapaplacename_browse' %}" type="button"
+                    class="btn btn-outline-secondary btn-lg px-4">Orte</a>
+                {% endif %}
             </div>
         </div>
+        <div class="col-10 col-sm-8 col-lg-6">
+            <figure class="figure">
+                <img src="{% static 'webpage/img/hapa-logo-transparent.png' %}" class="d-block mx-lg-auto img-fluid"
+                    alt="HAPA Projektlogo" width="700" height="500" loading="lazy">
+            </figure>
+        </div>
     </div>
+</div>
+
 {% endblock %}
