@@ -1,0 +1,58 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %} Team {% endblock %}
+{% block content %}
+<div class="container">
+
+    <h1 class="text-center pt-5">Team</h1>
+    <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic outlined example">
+        <a href="{% url 'webpage:staticpage' template='team' %}" type="button" class="btn btn-outline-primary">read
+            in German</a>
+        <a href="{% url 'webpage:staticpage' template='team_en' %}" type="button" class="btn btn-outline-primary">read
+            in English</a>
+    </div>
+
+    <h2 class="pt-3">Dr. Joachim Matzinger</h2>
+    <figure class="float-start pe-2">
+        <img class="rounded p-2" width="250px" src="{% static 'webpage/img/matzinger.jpg' %}"
+            alt="Joachim Matzinger">
+    </figure>
+    <p class="lead"><a href="https://www.oeaw.ac.at/ihb/personen/matzinger-joachim">Joachim Matzinger</a> është studiues në njësinë kërkimore unit Studime Ballkanike tek Institute of Habsburg and Balkan Studies, përgjegjës për kërkimet gjuhësore në kuadrin e onomastikës dhe gjuhësisë së Ballkanit.</p>
+    <h3>Biografi e shkurtër</h3>
+    <p>JJoachim Matzinger ka studiuar gjuhësi krahasuese në Vjenë (MA më 1995), Regensburg dhe Jena, duke u përqëndruar në gjuhësinë historike, gjuhët sllave, gjuhët indo-iraniane, armene, latine, greke dhe gjuhët kelte. Doktoroi më 2001 në Universitetin Friedrich-Schiller në Jena. Nga 1992 deri më 1995 ka qenë bashkëpunëtor shkencor në Departamentin e Gjuhësisë në Universitetin e Vjenës, dhe nga 1997 deri 2006 në Jena si studiues në kuadrin e projekteve të ndryshme për formimin e fjalëve dhe sintaksën në gjuhët indo-evropiane, të financuara nga DFG (Fondacioni Gjerman i Kërkimeve). Nga 2006 deri 2015ka bashkëpunuar dhe drejtuar projekte të financuara nga FWF (Fondacioni Austriak i Shkencës) për fjalëformimin në shqipen e vjetër.</p>
+    <dl>
+        <dt>Temat:</dt>
+        <dd>Toponimia, gjuhët paleoballkanike, gjuhësia ballkanike, kontakt gjuhësor, gjuhësia dhe filologjia shqiptare me fokus në shqipen e vjetër, gjuhët e pakicave (diaspora).</dd>
+        <dt>Koha:</dt>
+        <dd>Parahistori deri në kohën moderne</dd>
+        <dt>Zonat:</dt>
+        <dd>Evropa Juglindore me fokus të veçantë në zonat shqipfolëse</dd>
+    </dl>
+    <hr>
+
+
+    <h2 class="pt-3">Mag. Dr. Katsiaryna Ackermann</h2>
+    <figure class="float-start pe-2">
+        <img class="rounded p-2" width="250px" src="{% static 'webpage/img/ackermann.jpg' %}"
+            alt="Katsiaryna Ackermann">
+    </figure>
+    <p class="lead">
+        <a href="https://www.oeaw.ac.at/ihb/personen/ackermann-katsiaryna">Katsiaryna Ackermann</a> është studiues në njësinë kërkimore unit Studime Ballkanike tek Institute of Habsburg and Balkan Studies.
+    </p>
+
+    <h3>Biografi e shkurtër</h3>
+    <p>Ka studiuar me rezulate të larta Anglistikë, Germanistikë dhe Romanistikë me fokus në gjuhësinë historike dhe gjuhësinë kompjuterike në Minsk; Në Vjenë ka studiuar Indoevropianistikë, Sllavistikë, Iranistikë dhe Studime Bizantine. Doktoraturën e ka përfunduar më 2011 me notën maksimale (summa cum laude). Me punimin e doktoraturës mbi zhvillimin e sistemit aorist proto-sllav ka fituar Çmimin e Shoqërisë Indo-Evropiane. Studimi ështv botuar në serinë Brill’s Studies in Indo-European Languages and Linguistics. Nga 2007 deri 2016 ka qenë asistente (pre- dhe postdoc) në Institutin për Gjuhësi dhe Institutin për Studime Sllave në Universitetin e Vjenës. Mentore e grupit kërkimor në projektin „Sparkling science“-Projekt „Ich spreche, also bin ich“, i cili ka fituar çmimin e BMWF. Që nga viti 2010 është e inkuadruar në mësimdhënie dhe provime universitar dhe parauniversitare në fushën e gjuhësisë sllave dhe krahasuese të studimeve kulturore, ndërkulturore dhe gjuhësore. Në periudhën 2011-2016 ka qenë pjesë e ekipit kërkimor në projektin RGNF “Struktura rrënjësore e Indo-Evropianishtes”, në Akademinë e Shkencave në Rusi (RAS). Që nga viti 2017 është asistente kërkimore në Institutin për Kërkime Gjuhësore të RAS, Shën Petersburg. Që nga viti 2014 ka pasur disa qëndrime kërkimore dhe ekspedita në Ballkan dhe Evropën Lindore. Që nga viti 2017 është asistente kërkimore në qendrën ndërdisiplinore CIMA në fushën e indeksimit paleografik dhe filologjik të dorëshkrimeve më të vjetra sllave. Në periudhën 2020-2021 ka pasur grantin Marie-Jahoda për projektin e habilitacionit “Thesaurus of Slavic Kinship. A cognitive semantics study”.</p>
+    <dl>
+        <dt>Temat:</dt>
+        <dd>Gjuhësia historike dhe krahasuese sllave dhe baltike, gjuhësia krahasuese indo-evropiane dhe studimet kulturore, në veçanti studime paleoballkanike, kontakte gjuhësore, gjuhësi sociolinguistike dhe kognitive, tipologji e gjuhës dhe universale gjuhësore, antropologji sociale dhe kulturore.</dd>
+        <dt>Koha:</dt>
+        <dd>Parahistori deri në kohën moderne</dd>
+        <dt>Zonat:</dt>
+        <dd>Kur lidhet me një zonë të caktuar, kryesisht Evropën Lindore dhe Jugore, Mesdheun Lindor</dd>
+    </dl>
+
+
+
+</div>
+{% endblock %}
