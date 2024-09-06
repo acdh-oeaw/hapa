@@ -58,9 +58,6 @@ class GenericWebpageView(TemplateView):
             template_name = "webpage/index.html"
         return [template_name]
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(GenericWebpageView, self).dispatch(*args, **kwargs)
 
 
 #################################################################
