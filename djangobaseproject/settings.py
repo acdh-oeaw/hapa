@@ -71,7 +71,6 @@ INSTALLED_APPS = [
 ]
 if DEBUG:
     INSTALLED_APPS.insert(10, "django_extensions")
-    INSTALLED_APPS.insert(11, "fixture_magic")
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
