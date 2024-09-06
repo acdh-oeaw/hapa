@@ -11,7 +11,7 @@ jobs:
       DB_NAME: github_actions
     services:
       postgres:
-        image: postgis/postgis:12-master
+        image: postgis/postgis:16-master
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
