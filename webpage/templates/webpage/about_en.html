@@ -1,0 +1,50 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %} About {% endblock %}
+{% block content %}
+<div class="container">
+
+    <h1 class="text-center pt-5">About the Project</h1>
+    <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic outlined example">
+        <a href="{% url 'webpage:staticpage' template='about' %}" type="button"
+            class="btn btn-outline-primary">read in German</a>
+        <a href="{% url 'webpage:staticpage' template='about_sq' %}" type="button"
+            class="btn btn-outline-primary">read in Albanien</a>
+    </div>
+
+    <p class="lead">
+        On January 1, 2021, the FWF-financed project <a
+            href="https://www.fwf.ac.at/forschungsradar/10.55776/P33706">Linguistic History of Place Names in
+            Albania</a> commenced its four-year term. The aim of this project is the diachronic-linguistic analysis of
+        the place names (town and village names, so-called macro-toponymy) documented on the national territory of
+        Albania from ancient to modern times.
+    </p>
+
+    <figure class="w-50 float-start pe-4">
+        <img class="pt-1 w-100" src="{% static 'webpage/img/about.png' %}" alt="Louis, Herbert, map of Albania, 1928">
+        <figcaption class="pt-1 w-100 text-center figure-caption">Louis, Herbert, map of Albania, 1928</figcaption>
+    </figure>
+    <p>
+        The particular historical background of the settlement and migration history of the Albanian area is taken into
+        account and evaluated. Among others, the following questions will be tackled: the controversially discussed
+        issue of autochthony or immigration of the Albanians into their historically documented settlement area; the
+        geographically high number of undoubtedly Slavic settlement names in the whole territory of Albania; the
+        creation of a distinctive Albanian toponomy; etc..</p>
+    <p>
+        Since the Albanian language is documented only from the middle of the 16th century A.D. and since for the period
+        between the end of antiquity and the 11th century A.D. (—the Albanians as an ethnicity are mentioned for the
+        first time Albanians in Byzantine sources—) only sparse historical sources are available for the territory of
+        Albania, place names provide useful information to shed light on the historical events of these periods. An
+        analysis based on modern historical-linguistic methods will show which phonological changes the place names of
+        Albania have undergone since their first attestation and how these phonological changes can be classified
+        chronologically and linguistically, especially with regard to their origin (pre-Albanian = Greek and Latin,
+        Albanian, Slavic, Vlach, Turkish place names). Also, the geographical distribution of the Albanian place names
+        of various origins will be taken into account. At the end of this project, an online lexicon of Albanian place
+        names from A-Zh will be made available. Complementary to this, active virtual maps will illustrate the results.
+        Also, a practical handbook of Albanian place names will be published, covering various aspects of place names in
+        Albania. This project will serve as a model and example for the diachronic-linguistic research of the place
+        names of the other states of Southeastern Europe, which is still pending.
+    </p>
+</div>
+{% endblock %}

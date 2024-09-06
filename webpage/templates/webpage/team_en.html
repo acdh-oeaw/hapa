@@ -1,0 +1,58 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %} Team {% endblock %}
+{% block content %}
+<div class="container">
+
+    <h1 class="text-center pt-5">Team</h1>
+    <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic outlined example">
+        <a href="{% url 'webpage:staticpage' template='team_en' %}" type="button" class="btn btn-outline-primary">read
+            in English</a>
+        <a href="{% url 'webpage:staticpage' template='team_sq' %}" type="button" class="btn btn-outline-primary">read
+            in Albanien</a>
+    </div>
+
+    <h2 class="pt-3">Dr. Joachim Matzinger</h2>
+    <figure class="float-start pe-2">
+        <img class="rounded p-2" width="250px" src="{% static 'webpage/img/matzinger.jpg' %}"
+            alt="Louis, Herbert, map of Albania, 1928">
+    </figure>
+    <p class="lead"><a href="https://www.oeaw.ac.at/ihb/personen/matzinger-joachim">Joachim Matzinger</a> is a research associate in the research unit Balkan Studies of the Institute of Habsburg and Balkan Studies, responsible for linguistic research in the framework of Balkan onomastics and linguistics.</p>
+    <h3>BRIEF BIOGRAPHY</h3>
+    <p>Joachim Matzinger studied comparative linguistics in Vienna (MA in 1995), Regensburg and Jena, focusing on historical linguistics, Slavic languages, Indo-Iranian languages, Armenian, Latin, Greek, and Celtic languages. He received his PhD in 2001 from the Friedrich Schiller University in Jena. From 1992 to 1995, he was employed as a research assistant at the Department of Linguistics at the University of Vienna, and between 1997 and 2006 in Jena as a researcher in the framework of various projects funded by the German Research Foundation and dealing with word formation and syntax in Indo-European languages. From 2006 to 2015, he collaborated on and headed projects funded by the Austrian Science Foundation on word-formation in Old Albanian.</p>
+    <dl>
+        <dt>Research focal points:</dt>
+        <dd>Toponymy, Paleo-Balkan languages, Balkan linguistics, Language contact, Albanian linguistics and philology with emphasis on Old Albanian, minority languages (diaspora)</dd>
+        <dt>Time</dt>
+        <dd>Prehistoric to modern periods</dd>
+        <dt>Area</dt>
+        <dd>Southeast Europe with special emphasis on the Albanian speaking areas</dd>
+    </dl>
+    <hr>
+
+
+    <h2 class="pt-3">Mag. Dr. Katsiaryna Ackermann</h2>
+    <figure class="float-start pe-2">
+        <img class="rounded p-2" width="250px" src="{% static 'webpage/img/ackermann.jpg' %}"
+            alt="Louis, Herbert, map of Albania, 1928">
+    </figure>
+    <p class="lead">
+        <a href="https://www.oeaw.ac.at/ihb/personen/ackermann-katsiaryna">Katsiaryna Ackermann</a> is researcher at the research unit Balkan Studies of the Institute of Habsburg and Balkan Studies.
+    </p>
+
+    <h3>BRIEF BIOGRAPHY</h3>
+    <p>English, German and Romance studies with the focus on historical linguistics and computer linguistics in Minsk (diploma with distinction 2003); a master’s degree in Indo-European and elective courses on Slavic and Iranian linguistics, Byzantine studies in Vienna. She gained her PhD (2011) with summa cum laude by Vienna University. PhD-thesis earned the prize from the Society for Indo-European Studies and appeared upon the invitation of the series editors in Brill’s Studies in Indo-European Languages and Linguistics. Between 2007 and 2016, she was a doctorate and post doc university assistant at the Institute of Linguistic Studies and the Institute of Slavonic Studies of Vienna University. In 2009-2010 she was scientific supervisor of the research group in the “Sparkling science” project “I speak therefore I am“ that was honoured with an award by the Federal Ministry of Science and Research. Since 2010, she has been involved in university and higher education teaching and assessment in Slavic and comparative linguistics, and cultural studies, language- and intercultural training. From 2011 to 2016, she was part of the research team of the RGNF project “Root Structure of the Indo-European” at the Russian Academy of Sciences (RAS). Since 2017, she has been research associate at the Institute for Linguistic Studies of RAS, St. Petersburg. Since 2014, she has made multiple research stays and expeditions to the Balkans and Eastern Europe. Since 2017, she is research associate at the interdisciplinary Centre CIMA in the field of palaeographic and philological research into the oldest Slavic manuscripts. From 2020 to 2021, she was Marie-Jahoda Grantee for the Habilitation project “Thesaurus of Slavic Kinship. A cognitive semantics study”.</p>
+    <dl>
+        <dt>Research focal points:</dt>
+        <dd>Slavic and Baltic historical and comparative linguistics, comparative Indo-European linguistics, and cultural studies, in particular Paleo-Balkan studies, language contact, socio- and cognitive linguistics, language typology and language universals, socio- and cultural anthropology</dd>
+        <dt>Time</dt>
+        <dd>prehistoric to modern periods</dd>
+        <dt>Area</dt>
+        <dd>when bound to a particular area, predominantly Eastern and Southern Europe, Eastern Mediterranean</dd>
+    </dl>
+
+
+
+</div>
+{% endblock %}
