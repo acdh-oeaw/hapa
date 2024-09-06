@@ -59,7 +59,6 @@ class GenericWebpageView(TemplateView):
         return [template_name]
 
 
-
 #################################################################
 #               views for login/logout                          #
 #################################################################
