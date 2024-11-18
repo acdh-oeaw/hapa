@@ -3,7 +3,7 @@ dd {
 }
 
 .navbar {
-    border-bottom: 3px solid #e35205 !important;
+    border-bottom: 3px solid #bf4300 !important;
 }
 
 span.select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -13,7 +13,7 @@ span.select2-container--default .select2-selection--single .select2-selection__r
 
 
 a {
-    color: #e35205;
+    color: #bf4300;
 }
 
 header {
@@ -33,14 +33,14 @@ header {
 
     white-space: normal;
     margin-bottom: 10px;
-    border-color: #e35205;
-    color: #e35205;
+    border-color: #bf4300;
+    color: #bf4300;
     background-color: transparent;
 }
 
 .btn:hover {
-    background-color: #e35205;
-    border-color: #e35205;
+    background-color: #bf4300;
+    border-color: #bf4300;
     color: #444;
 }
 
