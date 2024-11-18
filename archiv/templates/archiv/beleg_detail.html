@@ -2,7 +2,7 @@
 {% load static %}
 {% load leaflet_tags %}
 {% load webpage_extras %}
-{% block title %}{{ object.name }}{% endblock %}
+{% block title %}{{ object }}{% endblock %}
 {% block scriptHeader %}
 {% leaflet_js %}
 {% leaflet_css %}
@@ -17,6 +17,8 @@
         <li class="breadcrumb-item active" aria-current="page">{{ object }}</li>
     </ol>
 </nav>
+</div>
+<div class="container">
   <div class="row">
     <div class="col-md-2">
       {% if object.get_prev %}
@@ -41,7 +43,7 @@
         </a>
       </div>
       {% endif %}
-     
+  
     </div>
     <div class="col-md-2">
       <div class="text-end fs-1">

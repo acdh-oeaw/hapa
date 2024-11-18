@@ -54,13 +54,13 @@
                     {% endif %}
                 </ul>
                 {% if user.is_authenticated %}
-                <a href="{% url 'webpage:user_logout' %}">
-                    <i class="bi bi-person-check"></i>
+                <a href="{% url 'webpage:user_logout' %}" class="pe-3">
+                    <i class="fs-3 bi bi-person-check"></i>
                     <span class="visually-hidden">Click here to log out</span>
                 </a>
                 {% else %}
-                <a href="{% url 'webpage:user_login' %}">
-                    <i class="bi bi-box-arrow-in-right"></i>
+                <a href="{% url 'webpage:user_login' %}" class="pe-3">
+                    <i class="fs-3 bi bi-box-arrow-in-right"></i>
                     <span class="visually-hidden">Click here to log in</span>
                 </a>
                 {% endif %}

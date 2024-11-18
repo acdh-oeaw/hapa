@@ -2,7 +2,7 @@
 {% load static %}
 {% load leaflet_tags %}
 {% load webpage_extras %}
-{% block title %}{{ object.name }}{% endblock %}
+{% block title %}{{ object }}{% endblock %}
 {% block scriptHeader %}
 {% leaflet_js %}
 {% leaflet_css %}
@@ -14,43 +14,46 @@
     <ol class="breadcrumb pt-2">
         <li class="breadcrumb-item"><a href="{% url 'webpage:start' %}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ object.get_listview_url }}">Orte</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ object.name }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ object }}</li>
     </ol>
 </nav>
-  <div class="row">
-    <div class="col-md-2">
-      {% if object.get_prev %}
-      <div class="text-start fs-1">
-        <a href="{{ object.get_prev }}" title="previous">
-          <i class="bi bi-chevron-left"></i>
-        </a>
-      </div>
-      {% endif %}
-    </div>
-    <div class="col-md-8">
-      <h1 class="text-center">
-        {{ object }}
-      </h1>
-      {% if user.is_authenticated %}
-      <div class="d-flex justify-content-center fs-2">
-        <a href="{{ object.get_edit_url }}" title="edit">
-          <i class="bi bi-pencil-square"></i>
-        </a>
-      </div>
-      {% endif %}
-    </div>
-    <div class="col-md-2">
-      <div class="text-end fs-1">
-        {% if object.get_next %}
-        <a href="{{ object.get_next }}" style="float:right" title="next">
-          <i class="bi bi-chevron-right"></i>
-        </a>
-        </h2>
+</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        {% if object.get_prev %}
+        <div class="text-start fs-1">
+          <a href="{{ object.get_prev }}" title="previous">
+            <i class="bi bi-chevron-left"></i>
+          </a>
+        </div>
         {% endif %}
+      </div>
+      <div class="col-md-8">
+        <h1 class="text-center">
+          {{ object }}
+        </h1>
+        {% if user.is_authenticated %}
+        <div class="d-flex justify-content-center fs-2">
+          <a href="{{ object.get_edit_url }}" title="edit">
+            <i class="bi bi-pencil-square"></i>
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="col-md-2">
+        <div class="text-end fs-1">
+          {% if object.get_next %}
+          <a href="{{ object.get_next }}" style="float:right" title="next">
+            <i class="bi bi-chevron-right"></i>
+          </a>
+          </h2>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
-</div>
+
 <div class="container">
   {% block custom %}
   <div class="row">
