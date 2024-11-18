@@ -77,9 +77,9 @@ class HapaBelegForm(forms.ModelForm):
         )
 
         if self.instance.pk:
-            self.fields[
-                "place"
-            ].initial = self.instance.rvn_hapaplacename_beleg_beleg.all()
+            self.fields["place"].initial = (
+                self.instance.rvn_hapaplacename_beleg_beleg.all()
+            )
 
     def save(self, *args, **kwargs):
         instance = super(HapaBelegForm, self).save(*args, **kwargs)

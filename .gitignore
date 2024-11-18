@@ -48,3 +48,4 @@ secret.env
 dump.sql
 venv
 staticfiles
+.secret

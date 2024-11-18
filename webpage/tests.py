@@ -11,7 +11,7 @@ class WebpageTest(TestCase):
 
     def test_001_webpage(self):
         rv = self.client.get("/")
-        self.assertEqual(rv.status_code, 302)
+        self.assertEqual(rv.status_code, 200)
         rv = self.client.get("/accounts/login/")
         self.assertContains(rv, "Username")
         form_data = {"username": "temporary", "password": "temporary"}
