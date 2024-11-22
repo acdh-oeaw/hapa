@@ -2,32 +2,49 @@
 {% load bib_extras %}
 {% block content %}
 <div class="container">
-	<h1>Results</h1>
-	<table class="table table-hover">
-		<tr>
-			<th>books in db before update operation:</th>
-			<td>{{ books_before }}<td>
-		</tr>
-		<tr>
-			<th>books in db after update operation:</th>
-			<td>{{ books_after }}<td>
-		</tr>
-		<tr>
-			<th>updated</th>
-			<td>
-                {% if saved %}
-                    {% for x in saved %}
-                        <li>
-                            {% bib_quote x %}
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    no updates
-                {% endif %}
-			</td>
-		</tr>
-
-	</table>
+	<h1 class="pt-3 text-center">Results</h1>
+	<div class="row">
+		<div class="col-md-6">
+			<h2 class="pt-2 pb-2 text-center">Update Status Zotero Items</h2>
+			<table class="table table-hover">
+				<tr>
+					<th>books in db before update operation:</th>
+					<td>{{ books_before }}<td>
+				</tr>
+				<tr>
+					<th>books in db after update operation:</th>
+					<td>{{ books_after }}<td>
+				</tr>
+				<tr>
+					<th>updated</th>
+					<td>
+						{% if saved %}
+							{% for x in saved %}
+								<li>
+									{% bib_quote x %}
+								</li>
+							{% endfor %}
+						{% else %}
+							no updates
+						{% endif %}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<h2 class="pt-2 pb-2 text-center">Update Status Hapa Belege</h2>
+			{% if updated_belege %}
+			<ul>
+				{% for x in updated_belege %}
+				<li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
+				{% endfor %}
+			</ul>
+			{% else %}
+			<p class="text-center">no Hapa Belege were affected by this Zotero Update</p>
+			{% endif %}
+		</div>
+	</div>
+	
 </div>
 
 {% endblock %}
