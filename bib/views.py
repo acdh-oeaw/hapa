@@ -1,9 +1,12 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from tqdm import tqdm
 
-from .models import ZotItem
-from .zot_utils import create_zotitem, items_to_dict
+from archiv.models import HapaBeleg
+
+from bib.models import ZotItem
+from bib.zot_utils import create_zotitem, items_to_dict
 
 library_id = settings.Z_ID
 library_type = settings.Z_LIBRARY_TYPE
@@ -32,5 +35,10 @@ def update_zotitems(request):
     for x in items["bibs"]:
         temp_item = create_zotitem(x)
         context["saved"].append(temp_item)
+    belege_to_update = HapaBeleg.objects.filter(zotero_id__in=context["saved"])
+    for x in tqdm(belege_to_update, total=belege_to_update.count()):
+        x.save()
+    context["updated_belege"] = belege_to_update
     context["books_after"] = ZotItem.objects.all().count()
+
     return render(request, "bib/synczotero_action.html", context)
